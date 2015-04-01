@@ -29,7 +29,10 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-O2" />
+			<Add option="-Wextra" />
 			<Add option="-Wall" />
+			<Add option="-Werror" />
 			<Add directory="E:/SFML-2.2/include" />
 		</Compiler>
 		<Linker>
