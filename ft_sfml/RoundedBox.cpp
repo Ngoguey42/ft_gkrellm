@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 10:00:17 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/02 16:02:59 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/02 17:18:01 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -92,7 +92,7 @@ void                        RoundedBox::setBorderSize(float size)
 		{
 			this->_internBox = new RoundedBox(this->_size -
 											  sf::Vector2f(size * 2., size * 2.),
-											  this->_radius);
+											  this->_radius - this->_borderSize);
 			this->_hasBorder = true;
 			this->setBorderColor(this->_borderColor);
 			this->setFillColor(this->_color);

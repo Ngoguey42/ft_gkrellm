@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 09:58:37 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/02 16:58:25 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/02 17:01:46 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -45,11 +45,11 @@ int main(void)
 {
 	sf::ContextSettings	settings;
 	settings.antialiasingLevel = 16;
-    sf::RenderWindow    window(sf::VideoMode(220, 620),
+    sf::RenderWindow    window(sf::VideoMode(220, 320),
 							   "ft_gkrellm",
 							   sf::Style::Default ^ sf::Style::Resize,
 							   settings);
-	ftsf::Background	bg(sf::Vector2f(200, 600));
+	ftsf::Background	bg(sf::Vector2f(200, 300));
 
 	
 	try

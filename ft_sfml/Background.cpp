@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 10:59:43 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/02 16:49:38 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/02 17:19:32 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -21,7 +21,7 @@ float const					Background::posY = 10.;
 std::string const			Background::header = "ft_gkrellm";
 std::string const			Background::footer = "ngoguey/wide-aze";
 sf::Color const				Background::color = sf::Color(178, 173, 177);
-float const					Background::titlePad = 5.;
+float const					Background::titlePad = 3.5;
 float const					Background::footerPad = 0.;
 
 // * CONSTRUCTORS *********************************************************** //
