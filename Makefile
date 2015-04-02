@@ -3,9 +3,11 @@ NAME = ft_gkrellm
 
 SRCSFILES = \
 			main.cpp\
+			IMonitorModule.cpp\
 	ft_sfml/RoundedBox.cpp\
 	ft_sfml/DefaultTextBox.cpp\
-	ft_sfml/Background.cpp
+	ft_sfml/Background.cpp\
+	ft_sfml/AModule.cpp
 
 SRCPATH = .
 OBJPATH = obj

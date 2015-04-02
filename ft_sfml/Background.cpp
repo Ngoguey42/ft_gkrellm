@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 10:59:43 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/02 17:19:32 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/02 18:02:34 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -42,7 +42,6 @@ Background::Background(const sf::Vector2f &size) :
 	this->_titleBox.setText1("ft_gkrellm");
 	this->_titleBox.setTextColor(sf::Color::Blue);
 	this->_titleBox.setCharacterSize(20);
-
 
 	this->_footerBox.setFillColor(sf::Color(100, 100, 100));
 	this->_footerBox.setPosition(Background::posX + Background::footerPad,

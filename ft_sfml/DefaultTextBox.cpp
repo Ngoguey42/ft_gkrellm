@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 12:21:57 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/02 16:14:49 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/02 18:44:09 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -19,7 +19,7 @@ namespace ftsf
 // * CONSTRUCTORS *********************************************************** //
 DefaultTextBox::DefaultTextBox(const sf::Vector2f &size, float radius) :
 	RoundedBox(size, radius),
-	_text1("wide-aze / ngoguey", ftsf::Arial, 11)
+	_text1("empty", ftsf::Arial, 11)
 {
 	// std::cout << "[DefaultTextBox](const sf::Vector2f&) Ctor called" << std::end;
 	return ;
