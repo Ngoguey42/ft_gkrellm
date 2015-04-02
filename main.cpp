@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 09:58:37 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/02 16:15:05 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/02 16:58:25 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -41,16 +41,20 @@ float                   getStrHeight(sf::Text const &ref)
 }
 }
 
-
-
 int main(void)
 {
-    sf::RenderWindow    window(sf::VideoMode(220, 620), "SFML works!");
+	sf::ContextSettings	settings;
+	settings.antialiasingLevel = 16;
+    sf::RenderWindow    window(sf::VideoMode(220, 620),
+							   "ft_gkrellm",
+							   sf::Style::Default ^ sf::Style::Resize,
+							   settings);
 	ftsf::Background	bg(sf::Vector2f(200, 600));
+
 	
 	try
 	{
-		ftsf::Arial.loadFromFile("Liberation.ttf");
+		ftsf::Arial.loadFromFile("ft_sfml/Liberation.ttf");
 	}
 	catch (...)
 	{ //todo
@@ -62,7 +66,7 @@ int main(void)
         {
             if (event.type == sf::Event::Closed)
                 window.close();
-        }
+		}
         window.clear();
         window.draw(bg);
         window.display();

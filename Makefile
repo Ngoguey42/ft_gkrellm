@@ -2,15 +2,15 @@
 NAME = ft_gkrellm
 
 SRCSFILES = \
-		main.cpp\
-		RoundedBox.cpp\
-		DefaultTextBox.cpp\
-		Background.cpp
+			main.cpp\
+	ft_sfml/RoundedBox.cpp\
+	ft_sfml/DefaultTextBox.cpp\
+	ft_sfml/Background.cpp
 
 SRCPATH = .
 OBJPATH = obj
 CC = clang++
-INCLUDES = -I . -I $(shell pwd)/SFML/include
+INCLUDES = -I . -I ft_sfml -I $(shell pwd)/SFML/include
 # LIBS =	-L SFML/lib -lsfml-graphics -lsfml-window -lsfml-system\
 # 		SFML/Frameworks/sfml-graphics.framework/sfml-graphics\
 # 		SFML/Frameworks/sfml-window.framework/sfml-window\
