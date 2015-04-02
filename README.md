@@ -6,11 +6,10 @@
 
 Team: [wide-aze](https://github.com/wide-aze) / [ngoguey](https://github.com/Ngoguey42).
 
-On mac os x
+On mac os x:
 ```sh
 make sfml all
-export DYLD_FRAMEWORK_PATH=`pwd`"/SFML/Frameworks"
-./ft_gkrellm
+DYLD_FRAMEWORK_PATH=`pwd`"/SFML/Frameworks" ./ft_gkrellm
 ```
 <br>
  

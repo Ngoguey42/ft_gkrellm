@@ -3,7 +3,9 @@ NAME = ft_gkrellm
 
 SRCSFILES = \
 		main.cpp\
-		RoundedBox.cpp
+		RoundedBox.cpp\
+		DefaultTextBox.cpp\
+		Background.cpp
 
 SRCPATH = .
 OBJPATH = obj
@@ -20,7 +22,7 @@ LDENV = DYLD_FRAMEWORK_PATH="$(shell pwd)/SFML/Frameworks"
 
 LIBS =	-framework sfml-graphics -framework sfml-window -framework sfml-system\
 		-F SFML/Frameworks
-CFLAGS = -Werror -Wall -Wextra -O2
+CFLAGS = -Werror -Wall -Wextra -O2 -g
 RM = rm -rf
 
 SRC = $(addprefix $(SRCPATH)/,$(SRCSFILES))

@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 09:58:45 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/02 10:04:22 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/02 16:02:17 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -16,8 +16,11 @@
 //# include <string>
 //# include <iostream>
 //# include <stdexcept>
+#include <ft_gkrellm.hpp>
 #include <SFML/Graphics.hpp>
 
+namespace ftsf
+{
 class RoundedBox : public sf::Drawable
 {
 public:
@@ -27,10 +30,12 @@ public:
 			   float radius = 10.);
 
 	// * GETTERS / SETTERS ********** //
-	void                        setPosition(float x, float y);
+	sf::Vector2f const			&getSize(void) const;
+	sf::Vector2f const			&getPosition(void) const;
+
+	virtual void                setPosition(const float x, const float y);
 	void                        setFillColor(const sf::Color &color);
 	void                        setBorderColor(const sf::Color &color);
-	void                        setSize(sf::Vector2f const &size);
 	void                        setBorderSize(float size);
 
 	// * MEMBER FUNCTIONS / METHODS * //
@@ -38,11 +43,6 @@ public:
 									 sf::RenderStates states) const;
 	
 protected:
-private:
-	RoundedBox();
-	RoundedBox(RoundedBox const &src);
-	RoundedBox					&operator=(RoundedBox const &rhs);
-
 	// * ATTRIBUTES ***************** //
 	sf::Vector2f                _position;
 	sf::Vector2f                _size;
@@ -55,7 +55,16 @@ private:
 	float                       _borderSize;
 	RoundedBox                  *_internBox;
 	sf::Color                   _borderColor;
+
+private:
+	RoundedBox();
+	RoundedBox(RoundedBox const &src);
+	RoundedBox					&operator=(RoundedBox const &rhs);
+
+	void                        setSize(sf::Vector2f const &size);
+
 };
 //std::ostream					&operator<<(std::ostream &o, RoundedBox const &rhs);
+}
 
 #endif // **************************************************** ROUNDEDBOX_HPP //

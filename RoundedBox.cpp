@@ -6,13 +6,15 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 10:00:17 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/02 10:22:15 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/02 16:02:59 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
 //#include <iostream>
 #include "RoundedBox.hpp"
 
+namespace ftsf
+{
 // * STATICS **************************************************************** //
 // * CONSTRUCTORS *********************************************************** //
 RoundedBox::RoundedBox(const sf::Vector2f &size, float radius) :
@@ -20,7 +22,10 @@ RoundedBox::RoundedBox(const sf::Vector2f &size, float radius) :
 	_hasBorder(false), _borderSize(0), _internBox(NULL)
 {
 	for (int i = 0; i < 4; i++)
+	{
 		this->_corners[i].setRadius(radius);
+		this->_corners[i].setPointCount(30);
+	}
 	this->_box.setPointCount(8);
 	this->setFillColor(sf::Color::Black);
 	this->setBorderColor(sf::Color::Black);
@@ -31,11 +36,19 @@ RoundedBox::RoundedBox(const sf::Vector2f &size, float radius) :
 RoundedBox::~RoundedBox()
 {
 	// std::cout << "[RoundedBox]() Dtor called" << std::endl;
+	if (this->_hasBorder)
+		delete this->_internBox;
 	return ;
 }
 
 // * OPERATORS ************************************************************** //
 // * GETTERS **************************************************************** //
+sf::Vector2f const          &RoundedBox::getSize(void) const
+{return this->_size;}
+sf::Vector2f const          &RoundedBox::getPosition(void) const
+{return this->_position;}
+
+// * SETTERS **************************************************************** //
 void                        RoundedBox::setFillColor(const sf::Color &color)
 {
 	this->_color = color;
@@ -99,17 +112,17 @@ void                        RoundedBox::setBorderSize(float size)
 	}
 	return ;
 }
-void                        RoundedBox::setPosition(float x, float y)
+void                        RoundedBox::setPosition(const float x, const float y)
 {
 	const float		xNorm = x + this->_radius;
 	const float		yNorm = y + this->_radius;
 	const float		xRight = x + this->_size.x;
-	const float		YBottom = y + this->_size.y;
+	const float		yBottom = y + this->_size.y;
 	const float		xRightNorm = xRight - this->_radius;
-	const float		YBottomNorm = YBottom - this->_radius;
+	const float		yBottomNorm = yBottom - this->_radius;
 	const float		corner_rightX = xRightNorm - this->_radius;
-	const float		corner_bottomY = YBottomNorm - this->_radius;
-	
+	const float		corner_bottomY = yBottomNorm - this->_radius;
+
 	this->_position.x = x;
 	this->_position.y = y;
 	this->_corners[0].setPosition(x, y);
@@ -121,17 +134,16 @@ void                        RoundedBox::setPosition(float x, float y)
 	this->_box.setPoint(1, sf::Vector2f(xNorm, y));
 	this->_box.setPoint(2, sf::Vector2f(xRightNorm, y));
 	this->_box.setPoint(3, sf::Vector2f(xRight, yNorm));
-	this->_box.setPoint(4, sf::Vector2f(xRight, YBottomNorm));
-	this->_box.setPoint(5, sf::Vector2f(xRightNorm, YBottom));
-	this->_box.setPoint(6, sf::Vector2f(xNorm, YBottom));
-	this->_box.setPoint(7, sf::Vector2f(x, YBottomNorm));
+	this->_box.setPoint(4, sf::Vector2f(xRight, yBottomNorm));
+	this->_box.setPoint(5, sf::Vector2f(xRightNorm, yBottom));
+	this->_box.setPoint(6, sf::Vector2f(xNorm, yBottom));
+	this->_box.setPoint(7, sf::Vector2f(x, yBottomNorm));
 	if (this->_hasBorder)
 		this->_internBox->setPosition(x + this->_borderSize,
 									  y + this->_borderSize);
 	return ;
 }
 
-// * SETTERS **************************************************************** //
 // * MEMBER FUNCTIONS / METHODS ********************************************* //
 void                        RoundedBox::draw(sf::RenderTarget& target,
 											 sf::RenderStates states) const
@@ -145,3 +157,4 @@ void                        RoundedBox::draw(sf::RenderTarget& target,
 }
 
 // * NESTED_CLASSES ********************************************************* //
+}
