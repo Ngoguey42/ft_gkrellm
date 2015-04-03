@@ -3,16 +3,16 @@ NAME = ft_gkrellm
 
 SRCSFILES = \
 			main.cpp\
-			IMonitorModule.cpp\
+	modules/IMonitorModule.cpp\
 	ft_sfml/RoundedBox.cpp\
 	ft_sfml/DefaultTextBox.cpp\
 	ft_sfml/Background.cpp\
-	ft_sfml/AModule.cpp
+	ft_sfml/Module.cpp
 
-SRCPATH = .
+SRCPATH = srcs
 OBJPATH = obj
 CC = clang++
-INCLUDES = -I . -I ft_sfml -I $(shell pwd)/SFML/include
+INCLUDES = -I $(SRCPATH) -I $(shell pwd)/SFML/include
 # LIBS =	-L SFML/lib -lsfml-graphics -lsfml-window -lsfml-system\
 # 		SFML/Frameworks/sfml-graphics.framework/sfml-graphics\
 # 		SFML/Frameworks/sfml-window.framework/sfml-window\

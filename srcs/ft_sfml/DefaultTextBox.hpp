@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 11:50:47 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/02 15:55:26 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/03 09:23:23 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -15,9 +15,11 @@
 
 //# include <string>
 # include <iostream>
-# include <ft_gkrellm.hpp>
-# include <RoundedBox.hpp>
+
 # include <SFML/Graphics.hpp>
+
+# include <ft_gkrellm.hpp>
+# include <ft_sfml/RoundedBox.hpp>
 
 namespace ftsf
 {

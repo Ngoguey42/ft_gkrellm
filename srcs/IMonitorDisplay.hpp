@@ -1,34 +1,36 @@
 // ************************************************************************** //
 //                                                                            //
 //                                                        :::      ::::::::   //
-//   IMonitorModule.hpp                                 :+:      :+:    :+:   //
+//   IMonitorDisplay.hpp                                :+:      :+:    :+:   //
 //                                                    +:+ +:+         +:+     //
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
-//   Created: 2015/04/02 17:42:17 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/02 19:17:45 by ngoguey          ###   ########.fr       //
+//   Created: 2015/04/02 16:51:35 by ngoguey           #+#    #+#             //
+//   Updated: 2015/04/03 09:11:02 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
-#ifndef IMONITORMODULE_HPP
-# define IMONITORMODULE_HPP
+#ifndef IMONITORDISPLAY_HPP
+# define IMONITORDISPLAY_HPP
 
 //# include <string>
 //# include <iostream>
 //# include <stdexcept>
 
-class IMonitorModule
+namespace ft
+{
+class IMonitorDisplay
 {
 public:
-	IMonitorModule();
-	virtual ~IMonitorModule();
-	virtual void                refresh_datas(void) = 0;
-
+	IMonitorDisplay();
+	virtual ~IMonitorDisplay() {}
+	
 protected:
 private:
-	IMonitorModule(IMonitorModule const &src);
-	IMonitorModule				&operator=(IMonitorModule const &rhs);
+	IMonitorDisplay(IMonitorDisplay const &src);
+	IMonitorDisplay				&operator=(IMonitorDisplay const &rhs);
 };
-//std::ostream					&operator<<(std::ostream &o, IMonitorModule const &rhs);
+//std::ostream					&operator<<(std::ostream &o, IMonitorDisplay const &rhs);
+}
 
-#endif // ************************************************ IMONITORMODULE_HPP //
+#endif // *********************************************** IMONITORDISPLAY_HPP //

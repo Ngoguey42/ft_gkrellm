@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 10:45:03 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/02 18:43:54 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/03 09:23:08 by ngoguey          ###   ########.fr       //
 
 //                                                                            //
 // ************************************************************************** //
@@ -15,12 +15,14 @@
 # define BACKGROUND_HPP
 
 // # include <string>
-# include <iostream>
-# include <ft_gkrellm.hpp>
-# include <RoundedBox.hpp>
-# include <DefaultTextBox.hpp>
-# include <SFML/Graphics.hpp>
 //# include <stdexcept>
+# include <iostream>
+
+# include <SFML/Graphics.hpp>
+
+# include <ft_gkrellm.hpp>
+# include <ft_sfml/RoundedBox.hpp>
+# include <ft_sfml/DefaultTextBox.hpp>
 
 namespace ftsf
 {

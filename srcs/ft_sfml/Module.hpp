@@ -1,30 +1,32 @@
 // ************************************************************************** //
 //                                                                            //
 //                                                        :::      ::::::::   //
-//   AModule.hpp                                        :+:      :+:    :+:   //
+//   Module.hpp                                         :+:      :+:    :+:   //
 //                                                    +:+ +:+         +:+     //
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
-//   Created: 2015/04/02 17:43:39 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/02 19:18:24 by ngoguey          ###   ########.fr       //
+//   Created: 2015/04/03 09:09:03 by ngoguey           #+#    #+#             //
+//   Updated: 2015/04/03 09:52:44 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
-#ifndef AMODULE_HPP
-# define AMODULE_HPP
+#ifndef MODULE_HPP
+# define MODULE_HPP
 
 //# include <string>
 //# include <iostream>
 //# include <stdexcept>
-# include <ft_gkrellm.hpp>
-# include <RoundedBox.hpp>
-# include <DefaultTextBox.hpp>
-# include <IMonitorModule.hpp>
 # include <SFML/Graphics.hpp>
+
+# include <ft_gkrellm.hpp>
+# include <modules/IMonitorModule.hpp>
+
+# include <ft_sfml/RoundedBox.hpp>
+# include <ft_sfml/DefaultTextBox.hpp>
 
 namespace ftsf
 {
-class AModule : public IMonitorModule, public sf::Drawable
+class Module : public sf::Drawable
 {
 public:
 	// * STATICS ******************** //
@@ -35,7 +37,7 @@ public:
 	static sf::Color const		mainBorderColor;
 	
 	// * CTORS / DTORS ************** //
-	virtual ~AModule();
+	virtual ~Module();
 
 	// * MEMBER FUNCTIONS / METHODS * //
 	virtual void                draw(sf::RenderTarget& target,
@@ -44,18 +46,18 @@ public:
 	virtual void                refresh_datas(void) = 0;
 	
 protected:
-	AModule(const sf::Vector2f &mainBoxSize);
+	Module(const sf::Vector2f &mainBoxSize);
 
 	// * ATTRIBUTES ***************** //
 	DefaultTextBox				topBox;
 	RoundedBox					mainBox;
 
 private:
-	AModule();
-	AModule(AModule const &src);
-	AModule						&operator=(AModule const &rhs);
+	Module();
+	Module(Module const &src);
+	Module						&operator=(Module const &rhs);
 
 };
-//std::ostream					&operator<<(std::ostream &o, AModule const &rhs);
+//std::ostream					&operator<<(std::ostream &o, Module const &rhs);
 }
-#endif // ******************************************************* AMODULE_HPP //
+#endif // ******************************************************** MODULE_HPP //

@@ -6,17 +6,17 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 09:58:37 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/02 17:01:46 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/03 09:55:25 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
 #include <iostream>
 #include <ctime>
 #include <cmath>
-#include <ft_gkrellm.hpp>
-// #include <RoundedBox.hpp>
-#include <Background.hpp>
 #include <SFML/Graphics.hpp>
+
+#include <ft_gkrellm.hpp>
+#include <ft_sfml/Background.hpp>
 
 namespace ftsf
 {
@@ -43,21 +43,20 @@ float                   getStrHeight(sf::Text const &ref)
 
 int main(void)
 {
-	sf::ContextSettings	settings;
-	settings.antialiasingLevel = 16;
     sf::RenderWindow    window(sf::VideoMode(220, 320),
 							   "ft_gkrellm",
 							   sf::Style::Default ^ sf::Style::Resize,
-							   settings);
+							   	sf::ContextSettings(0, 0, 8));
 	ftsf::Background	bg(sf::Vector2f(200, 300));
-
+	
 	
 	try
 	{
-		ftsf::Arial.loadFromFile("ft_sfml/Liberation.ttf");
+		ftsf::Arial.loadFromFile("srcs/ft_sfml/Liberation.ttf");
 	}
 	catch (...)
 	{ //todo
+		return (1);
 	}
     while (window.isOpen())
     {

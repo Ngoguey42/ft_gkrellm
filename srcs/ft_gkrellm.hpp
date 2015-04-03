@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 10:48:04 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/02 19:12:44 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/03 09:10:49 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -15,18 +15,26 @@
 
 # include <SFML/Graphics.hpp>
 
+namespace ft
+{
 class IMonitorModule;
+class IMonitorDisplay;
+
+}
+
 
 namespace ftsf
 {
+extern sf::Font			Arial;
+
 float					getStrWidth(sf::Text const &ref);
 float					getStrHeight(sf::Text const &ref);
 
 class RoundedBox;
 class DefaultTextBox;
 class Background;
+class Module;
 
-extern sf::Font			Arial;
 }
 
 #endif // **************************************************** FT_GKRELLM_HPP //
