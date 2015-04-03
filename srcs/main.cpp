@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 09:58:37 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/03 13:02:12 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/03 13:20:07 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -50,19 +50,29 @@ int						main(void)
 	
 	//lire les argv pour fill modules
 
-	if (1) //si il faut lancer la sfml
+	try
 	{
-		std::cout << "SFML: Loading ..." << std::endl;
-		ftsf::Arial.loadFromFile("srcs/ft_sfml/Liberation.ttf"); //verif
-		display[0] = new ftsf::Window(
-			modules,
-			ftsf::Window::calculateWindowSize(modules));
-		display[0]->updateDisplay();
-		std::cout << "SFML: Finished Loading ..." << std::endl;	
-		
+		if (1) //si il faut lancer la sfml
+		{
+			std::cout << "SFML: Loading ..." << std::endl;
+			ftsf::Arial.loadFromFile("srcs/ft_sfml/Liberation.ttf"); //verif
+			display[0] = new ftsf::Window(
+				modules,
+				ftsf::Window::calculateWindowSize(modules));
+			display[0]->updateDisplay();
+			std::cout << "SFML: Finished Loading ..." << std::endl;	
+		}
+		if (0)
+		{
+			//si il faut lancer la ncurse
+		}
 	}
-	//si il faut lancer la ncurse
-
+	catch (...)
+	{
+		std::cout << "launching failed" << std::endl;
+		return (1);
+	
+	}
 	while (1)
 	{
 		

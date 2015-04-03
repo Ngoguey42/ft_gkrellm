@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:09:03 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/03 09:52:44 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/03 13:21:53 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -43,7 +43,6 @@ public:
 	virtual void                draw(sf::RenderTarget& target,
 									 sf::RenderStates states) const;
 	virtual void                setPosition(const float x, const float y);
-	virtual void                refresh_datas(void) = 0;
 	
 protected:
 	Module(const sf::Vector2f &mainBoxSize);
