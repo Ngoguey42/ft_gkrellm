@@ -6,14 +6,13 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 10:48:04 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/03 12:48:13 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/03 12:58:41 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
 #ifndef FT_GKRELLM_HPP
 # define FT_GKRELLM_HPP
 
-# include <pthread.h>
 # include <SFML/Graphics.hpp>
 # include <IMonitorDisplay.hpp>
 # include <modules/IMonitorModule.hpp>
@@ -24,15 +23,6 @@ class IMonitorDisplay;
 
 class IMonitorModule;
 class Data;
-
-struct							threadDatas
-{
-	// pthread_mutexattr_t			mutex_attr;
-	// pthread_mutex_t				mutex;
-	pthread_t					tid;
-	std::vector<IMonitorModule>	const *modules;
-	IMonitorDisplay				*display;
-};
 }
 
 namespace ftsf

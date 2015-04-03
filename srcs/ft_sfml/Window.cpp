@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:13:13 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/03 12:44:19 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/03 13:03:10 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -18,14 +18,14 @@ namespace ftsf
 // * STATICS **************************************************************** //
 sf::Vector2f const			Window::backgroundInsets = sf::Vector2f(20, 20);
 sf::Vector2f				Window::calculateWindowSize(
-	std::vector<ft::IMonitorModule> const *modules)
+	std::vector<ft::IMonitorModule> const &modules)
 {
 	(void)modules;
 	return (sf::Vector2f(220, 620));
 }
 
 // * CONSTRUCTORS *********************************************************** //
-Window::Window(std::vector<ft::IMonitorModule> const *modules,
+Window::Window(std::vector<ft::IMonitorModule> const &modules,
 			   sf::Vector2f const &winSize) :
 	sf::RenderWindow(sf::VideoMode(winSize.x, winSize.y),
 					 "ft_gkrellm",
@@ -50,9 +50,9 @@ Window::~Window()
 // * GETTERS **************************************************************** //
 // * SETTERS **************************************************************** //
 // * MEMBER FUNCTIONS / METHODS ********************************************* //
-void						Window::updateDisplayLoop()
+void						Window::updateDisplay()
 {
-	while (this->isOpen())
+	if (this->isOpen())
 	{
 		sf::Event	event;
 
