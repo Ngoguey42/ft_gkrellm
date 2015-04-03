@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 10:00:53 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/03 10:47:52 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/03 10:57:33 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -28,7 +28,7 @@ public:
 	virtual ~TimeModule();
 	void						refresh_datas(void);
 	std::vector<Data> const		&get_datas(void) const;
-	
+
 protected:
 private:
 	TimeModule(TimeModule const &src);

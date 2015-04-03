@@ -3,12 +3,14 @@ NAME = ft_gkrellm
 
 SRCSFILES = \
 			main.cpp\
+			IMonitorDisplay.cpp\
 	modules/IMonitorModule.cpp\
 	modules/Data.cpp\
 	modules/TimeModule.cpp\
 	ft_sfml/RoundedBox.cpp\
 	ft_sfml/DefaultTextBox.cpp\
 	ft_sfml/Background.cpp\
+	ft_sfml/Window.cpp\
 	ft_sfml/Module.cpp
 
 SRCPATH = srcs

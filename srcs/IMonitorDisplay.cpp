@@ -1,55 +1,30 @@
 // ************************************************************************** //
 //                                                                            //
 //                                                        :::      ::::::::   //
-//   Window.cpp                                         :+:      :+:    :+:   //
+//   IMonitorDisplay.cpp                                :+:      :+:    :+:   //
 //                                                    +:+ +:+         +:+     //
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
-//   Created: 2015/04/03 09:13:13 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/03 11:04:26 by ngoguey          ###   ########.fr       //
+//   Created: 2015/04/03 11:07:11 by ngoguey           #+#    #+#             //
+//   Updated: 2015/04/03 11:08:00 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
 //#include <iostream>
-#include "Window.hpp"
+#include "IMonitorDisplay.hpp"
 
-namespace ftsf
+namespace ft
 {
 // * STATICS **************************************************************** //
-sf::Vector2f const			Window::backgroundInsets = sf::Vector2f(20, 20);
-
 // * CONSTRUCTORS *********************************************************** //
-Window::Window(sf::Vector2f const &winSize) :
-	sf::RenderWindow(sf::VideoMode(winSize.x, winSize.y),
-					 "ft_gkrellm",
-					 sf::Style::Default ^ sf::Style::Resize,
-					 sf::ContextSettings(0, 0, 8)),
-	ft::IMonitorDisplay(),
-	_bg(winSize - Window::backgroundInsets),
-	_modules()
+IMonitorDisplay::IMonitorDisplay()
 {
-	while (this->isOpen())
-	{
-		sf::Event	event;
-
-		while (this->pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-				this->close();
-		}
-		this->clear();
-		this->draw(this->_bg);
-		this->display();
-	}
-	// std::cout << "[Window](sf::Vector2f const&) Ctor called" << std::endl;
-	(void)winSize;
 	return ;
 }
-
 // * DESTRUCTORS ************************************************************ //
-Window::~Window()
+IMonitorDisplay::~IMonitorDisplay()
 {
-	// std::cout << "[Window]() Dtor called" << std::endl;
+	// std::cout << "[IMonitorDisplay]() Dtor called" << std::endl;
 	return ;
 }
 

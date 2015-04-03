@@ -5,8 +5,8 @@
 //                                                    +:+ +:+         +:+     //
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
-//   Created: 2015/04/02 16:51:35 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/03 09:11:02 by ngoguey          ###   ########.fr       //
+//   Created: 2015/04/03 11:05:12 by ngoguey           #+#    #+#             //
+//   Updated: 2015/04/03 11:08:30 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -23,8 +23,8 @@ class IMonitorDisplay
 {
 public:
 	IMonitorDisplay();
-	virtual ~IMonitorDisplay() {}
-	
+	virtual ~IMonitorDisplay();
+
 protected:
 private:
 	IMonitorDisplay(IMonitorDisplay const &src);
@@ -32,5 +32,4 @@ private:
 };
 //std::ostream					&operator<<(std::ostream &o, IMonitorDisplay const &rhs);
 }
-
 #endif // *********************************************** IMONITORDISPLAY_HPP //

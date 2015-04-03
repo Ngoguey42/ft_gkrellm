@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:13:06 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/03 09:47:20 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/03 12:13:51 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -34,6 +34,9 @@ public:
 	Window(sf::Vector2f const &winSize);
 	virtual ~Window();
 
+	// * MEMBER FUNCTIONS / METHODS * //
+	void						updateImage
+	
 protected:
 private:
 	Window();
