@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:13:06 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/03 12:13:51 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/03 12:44:01 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -21,6 +21,7 @@
 # include <ft_gkrellm.hpp>
 # include <IMonitorDisplay.hpp>
 # include <ft_sfml/Background.hpp>
+# include <ft_sfml/Module.hpp>
 
 namespace ftsf
 {
@@ -29,13 +30,16 @@ class Window : public sf::RenderWindow, public ft::IMonitorDisplay
 public:
 	// * STATICS ******************** //
 	static sf::Vector2f const	backgroundInsets;
-
+	static sf::Vector2f			calculateWindowSize(
+		std::vector<ft::IMonitorModule> const *modules);
+	
 	// * CTORS / DTORS ************** //
-	Window(sf::Vector2f const &winSize);
+	Window(std::vector<ft::IMonitorModule> const *modules,
+		   sf::Vector2f const &winSize);
 	virtual ~Window();
 
 	// * MEMBER FUNCTIONS / METHODS * //
-	void						updateImage
+	void						updateDisplayLoop();
 	
 protected:
 private:
@@ -45,7 +49,8 @@ private:
 
 	// * ATTRIBUTES ***************** //
 	ftsf::Background			_bg;
-	std::vector<Module*>		_modules;
+	std::vector<ft::IMonitorModule>	const	*_modules;
+	std::vector<Module>			_modulesFrames;
 };
 //std::ostream					&operator<<(std::ostream &o, Window const &rhs);
 }

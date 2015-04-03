@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 09:58:37 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/03 12:14:35 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/03 12:53:27 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -14,7 +14,7 @@
 #include <ctime>
 #include <cmath>
 #include <pthread.h>
-#include <unistd.h>
+// #include <unistd.h>
 #include <SFML/Graphics.hpp>
 
 #include <ft_gkrellm.hpp>
@@ -45,41 +45,46 @@ float                   getStrHeight(sf::Text const &ref)
 }
 }
 
-
-
 static void				*threadsplit_sfml(void *ptr)
 {
 	ft::threadDatas		*datas = static_cast<ft::threadDatas*>(ptr);
 
-	std::cout << "SFML: Loading ..." << std::endl;
-	// ftsf::Window		sfwin(sf::Vector2f(220, 320));
-	ftsf::Arial.loadFromFile("srcs/ft_sfml/Liberation.ttf"); //verif
-	// sleep(2);
-	std::cout << "SFML: Finished Loading ..." << std::endl;	
-	pthread_mutex_unlock(&datas->mutex);
+	// std::cout << "SFML: Loading ..." << std::endl;
+	// ftsf::Arial.loadFromFile("srcs/ft_sfml/Liberation.ttf"); //verif
 
-	
+	// ftsf::Window		win(datas->modules,
+							// ftsf::Window::calculateWindowSize(datas->modules));
+
+	std::cout << "SFML: Finished Loading ..." << std::endl;	
+	// pthread_mutex_unlock(&datas->mutex);
+	datas->display->updateDisplayLoop();
 	return (NULL);
 }
 
 static int				launch_sfml(ft::threadDatas *datas)
 {
 	//faire full verif sur ces appels systeme, return une error
-	pthread_mutexattr_init(&datas->mutex_attr);
-	pthread_mutexattr_setprotocol(&datas->mutex_attr, PTHREAD_PRIO_INHERIT);
-	pthread_mutexattr_setpshared(&datas->mutex_attr, PTHREAD_PROCESS_SHARED);
-	pthread_mutex_init(&datas->mutex, &datas->mutex_attr);
-	std::cout << "MAIN: locking sfml's mutex (1)" << std::endl;
-	pthread_mutex_lock(&datas->mutex);
-	std::cout << "MAIN: lockED sfml's mutex (1)" << std::endl;
+	// pthread_mutexattr_init(&datas->mutex_attr);
+	// pthread_mutexattr_setprotocol(&datas->mutex_attr, PTHREAD_PRIO_INHERIT);
+	// pthread_mutexattr_setpshared(&datas->mutex_attr, PTHREAD_PROCESS_SHARED);
+	// pthread_mutex_init(&datas->mutex, &datas->mutex_attr);
+	// std::cout << "MAIN: locking sfml's mutex (1)" << std::endl;
+	// pthread_mutex_lock(&datas->mutex);
+	// std::cout << "MAIN: lockED sfml's mutex (1)" << std::endl;
+	std::cout << "SFML: Loading ..." << std::endl;
+	ftsf::Arial.loadFromFile("srcs/ft_sfml/Liberation.ttf"); //verif
+	datas->display = new ftsf::Window(
+		datas->modules,
+		ftsf::Window::calculateWindowSize(datas->modules));
+	
 	pthread_create(&datas->tid, NULL, &threadsplit_sfml, datas);
 	
-	std::cout << "MAIN: locking sfml's mutex (2)" << std::endl;	
-	pthread_mutex_lock(&datas->mutex);
-	std::cout << "MAIN: lockED sfml's mutex (2)" << std::endl;
-	pthread_mutex_unlock(&datas->mutex);
-	pthread_mutex_destroy(&datas->mutex);
-	pthread_mutexattr_destroy(&datas->mutex_attr);
+	// std::cout << "MAIN: locking sfml's mutex (2)" << std::endl;	
+	// pthread_mutex_lock(&datas->mutex);
+	// std::cout << "MAIN: lockED sfml's mutex (2)" << std::endl;
+	// pthread_mutex_unlock(&datas->mutex);
+	// pthread_mutex_destroy(&datas->mutex);
+	// pthread_mutexattr_destroy(&datas->mutex_attr);
 	return (0);
 }
 

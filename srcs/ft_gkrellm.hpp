@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 10:48:04 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/03 11:40:56 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/03 12:48:13 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -15,6 +15,8 @@
 
 # include <pthread.h>
 # include <SFML/Graphics.hpp>
+# include <IMonitorDisplay.hpp>
+# include <modules/IMonitorModule.hpp>
 
 namespace ft
 {
@@ -25,10 +27,11 @@ class Data;
 
 struct							threadDatas
 {
-	pthread_mutexattr_t			mutex_attr;
-	pthread_mutex_t				mutex;
+	// pthread_mutexattr_t			mutex_attr;
+	// pthread_mutex_t				mutex;
 	pthread_t					tid;
-	std::vector<IMonitorModule>	*modules;
+	std::vector<IMonitorModule>	const *modules;
+	IMonitorDisplay				*display;
 };
 }
 
