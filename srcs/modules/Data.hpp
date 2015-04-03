@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 10:04:28 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/03 10:19:51 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/03 10:50:10 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -30,6 +30,7 @@ public:
 	};
 
 	Data(Data::Type t);
+	Data(Data const &src);
 	virtual ~Data();
 
 	Data::Type const			&getType(void) const;
@@ -41,10 +42,9 @@ public:
 protected:
 private:
 	Data();
-	Data(Data const &src);
 	Data						&operator=(Data const &rhs);
 
-	Data::Type const					_type;
+	Data::Type const			_type;
 	std::string					_str;
 };
 //std::ostream					&operator<<(std::ostream &o, Data const &rhs);

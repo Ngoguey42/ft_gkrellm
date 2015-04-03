@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 10:07:07 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/03 10:19:48 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/03 10:51:29 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -24,7 +24,13 @@ Data::Data(Data::Type t) :
 	// std::cout << "[Data](Style) Ctor called" << std::endl;
 	return ;
 }
-
+Data::Data(Data const &src) :
+	_type(src.getType()),
+	_str(src.getStr())
+{
+	// std::cout << "[Data](Data const &src) Ctor called" << std::endl;
+	return ;
+}
 
 // * DESTRUCTORS ************************************************************ //
 Data::~Data()

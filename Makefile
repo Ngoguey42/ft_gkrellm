@@ -5,6 +5,7 @@ SRCSFILES = \
 			main.cpp\
 	modules/IMonitorModule.cpp\
 	modules/Data.cpp\
+	modules/TimeModule.cpp\
 	ft_sfml/RoundedBox.cpp\
 	ft_sfml/DefaultTextBox.cpp\
 	ft_sfml/Background.cpp\
