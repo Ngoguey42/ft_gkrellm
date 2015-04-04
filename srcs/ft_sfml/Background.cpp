@@ -37,7 +37,7 @@ Background::Background(const sf::Vector2f &size) :
 	_footerBox(sf::Vector2f(size.x - Background::footerPad * 2.,
 							Background::footerHeight), 3.)
 {
-	std::cout << "[Background](const sf::Vector2f&) Ctor called" << std::endl;
+	// std::cout << "[Background](const sf::Vector2f&) Ctor called" << std::endl;
 	this->_box.setFillColor(Background::color);
 	this->_box.setPosition(Background::posX, Background::posY);
 	this->_titleBox.setFillColor(sf::Color(130, 130, 130));
@@ -66,7 +66,7 @@ Background::Background(const sf::Vector2f &size) :
 // * DESTRUCTORS ************************************************************ //
 Background::~Background()
 {
-	std::cout << "[Background]() Dtor called" << std::endl;
+	// std::cout << "[Background]() Dtor called" << std::endl;
 	return ;
 }
 

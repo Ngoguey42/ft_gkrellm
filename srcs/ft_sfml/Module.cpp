@@ -109,7 +109,7 @@ void						Module::setPosition(const float x, const float y)
 		(*it).setPosition(
 			x + (this->_mainBox.getSize().x - ftsf::getStrWidth(*it)) / 2,
 			frameY);
-		std::cout << "setting text center to " << frameY << std::endl;		
+		// std::cout << "setting text center to " << frameY << std::endl;		
 		frameY += ftsf::getStrHeight(*it) + Module::stringsBottomPadding;
 	}
 	return ;
@@ -126,7 +126,7 @@ void						Module::draw(sf::RenderTarget& target,
 	for (std::vector<sf::Text>::const_iterator it = this->_stringsFrames.begin();
 		 it != this->_stringsFrames.end(); it++)
 	{
-		std::cout << "Calling draw for text" << std::endl;
+		// std::cout << "Calling draw for text" << std::endl;
 		
 		target.draw(*it, states);
 	}

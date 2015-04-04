@@ -23,6 +23,12 @@
 #include <ft_gkrellm.hpp>
 #include <modules/IMonitorModule.hpp>
 #include <modules/TimeModule.hpp>
+#include <modules/CPUModule.hpp>
+#include <modules/HostnameModule.hpp>
+#include <modules/NetworkModule.hpp>
+#include <modules/OSinfoModule.hpp>
+#include <modules/RAMModule.hpp>
+#include <modules/PonyModule.hpp>
 #include <ft_sfml/Window.hpp>
 
 namespace ftsf
@@ -60,18 +66,19 @@ std::vector<ft::IMonitorModule*> &modules)
 	{
 		std::transform(it->begin(), it->end(), it->begin(), ::tolower);
 		if (*it == "hostname")
-			modules.push_back(new ft::TimeModule("Time"));
+			modules.push_back(new ft::HostnameModule("Hostname"));
 		else if (*it == "osinfo")
-			modules.push_back(new ft::TimeModule("Time"));
-		else if (*it == "date")
+			modules.push_back(new ft::OSinfoModule("OSinfo"));
+		else if (*it == "time" || *it == "date")
 			modules.push_back(new ft::TimeModule("Time"));
 		else if (*it == "cpu")
-			modules.push_back(new ft::TimeModule("Time"));
+			modules.push_back(new ft::CPUModule("CPU"));
 		else if (*it == "ram")
-			modules.push_back(new ft::TimeModule("Time"));
+			modules.push_back(new ft::RAMModule("RAM"));
 		else if (*it == "network")
-			modules.push_back(new ft::TimeModule("Time"));
+			modules.push_back(new ft::NetworkModule("Network"));
 	}
+	modules.push_back(new ft::PonyModule("Pony"));
 }
 
 static void			put_sfml_displays(std::vector<ft::IMonitorModule*> &modules,
@@ -138,7 +145,7 @@ int					main(int ac, char *av[])
 					  std::mem_fun(&ft::IMonitorModule::refresh_datas));
 		displays.remove_if(std::mem_fun(&ft::IMonitorDisplay::updateDisplay));
 		//fuites memoires ?
-		usleep(1000000);
+		usleep(1000000/24);
 	}
     return (0);
 }

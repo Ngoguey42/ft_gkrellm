@@ -71,10 +71,10 @@ Window::~Window()
 // * MEMBER FUNCTIONS / METHODS ********************************************* //
 int							Window::updateDisplay()
 {
-	std::cout << "Updating display:  this=" <<
-		((unsigned long long int)this) % 0x1000 <<
-		"  isopen: " << this->isOpen()
-			  << std::endl;
+	// std::cout << "Updating display:  this=" <<
+		// ((unsigned long long int)this) % 0x1000 <<
+		// "  isopen: " << this->isOpen()
+		// 	  << std::endl;
 	if (this->isOpen())
 	{
 		sf::Event	event;
@@ -92,7 +92,7 @@ int							Window::updateDisplay()
 		for (std::vector<Module*>::iterator it = this->_modulesFrames.begin();
 			 it != this->_modulesFrames.end(); it++)
 		{
-			std::cout << "Window::updateDisplay, Calling draw for module" << std::endl;
+			// std::cout << "Window::updateDisplay, Calling draw for module" << std::endl;
 			(*it)->refreshStrings();
 			(*it)->setPosition(10., y);
 			y += (*it)->getHeight();
