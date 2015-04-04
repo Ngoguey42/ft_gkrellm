@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 09:58:37 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/04 08:53:03 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/04 12:26:34 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -86,21 +86,6 @@ std::list<ft::IMonitorDisplay*> &displays)
 		std::cout << "n" << std::endl;//fin debug
 	if (s || n)
 	{
-		while (--nb >= 0)
-		{
-			std::cout << "SFML: Loading ..." << std::endl;
-			ftsf::Arial.loadFromFile("srcs/ft_sfml/Liberation.ttf"); //verif
-			if (s)
-			{
-				displays.push_back(new ftsf::Window(modules,
-					ftsf::Window::calculateWindowSize(modules)));
-			}
-			if (n) 
-			{
-				;
-			}
-			std::cout << "SFML: Finished Loading ..." << std::endl;	
-		}
 		for (std::vector<std::string>::iterator it = args.begin(); it != args.end(); it++)
 		{
 			std::transform(it->begin(), it->end(), it->begin(), ::tolower);
@@ -116,6 +101,21 @@ std::list<ft::IMonitorDisplay*> &displays)
 				modules.push_back(new ft::TimeModule("Time"));
 			else if (*it == "network")
 				modules.push_back(new ft::TimeModule("Time"));
+		}
+		while (--nb >= 0)
+		{
+			std::cout << "SFML: Loading ..." << std::endl;
+			ftsf::Arial.loadFromFile("srcs/ft_sfml/Liberation.ttf"); //verif
+			if (s)
+			{
+				displays.push_back(new ftsf::Window(modules,
+					ftsf::Window::calculateWindowSize(modules)));
+			}
+			if (n)
+			{
+				;
+			}
+			std::cout << "SFML: Finished Loading ..." << std::endl;	
 		}
 	}
 }
