@@ -10,7 +10,7 @@
 //                                                                            //
 // ************************************************************************** //
 
-//#include <iostream>
+#include <ctime>
 #include "TimeModule.hpp"
 
 namespace ft
@@ -22,9 +22,15 @@ TimeModule::TimeModule(std::string const &moduleName) :
 	_strings(),
 	_moduleName(moduleName)
 {
+	time_t		t;
+	char		buffer[100];
+
 	// std::cout << "[TimeModule]() Ctor called" << std::endl;
-	this->_strings.push_back("Mardi");
-	this->_strings.push_back("18h42");
+	time (&t);
+	std::strftime(buffer, 80, "%a %d %b %y", localtime(&t));
+	this->_strings.push_back(buffer);
+	std::strftime(buffer, 80, "%r", localtime(&t));
+	this->_strings.push_back(buffer);
 	return ;
 }
 
@@ -47,10 +53,19 @@ std::string const			&TimeModule::getModuleName(void) const
 // * MEMBER FUNCTIONS / METHODS ********************************************* //
 void						TimeModule::refresh_datas(void)
 {
-	std::cout << "Updating time datas:  this=" <<
-		((unsigned long long int)this) % 0x1000
-			  << std::endl;
-	this->_strings[0] = "caca";
+	// std::cout << "Updating time datas:  this=" <<
+	// 	((unsigned long long int)this) % 0x1000
+	// 		  << std::endl;
+	time_t		t;
+	char		buffer[100];
+
+	// std::cout << "[TimeModule]() Ctor called" << std::endl;
+	time (&t);
+	std::strftime(buffer, 80, "%a %d %b %y", localtime(&t));
+	this->_strings[0] = buffer;
+	std::strftime(buffer, 80, "%r", localtime(&t));
+	this->_strings[1] = buffer;
+	// this->_strings[0] = "caca";
 	//updated notre vector de strings
 	return ;
 }

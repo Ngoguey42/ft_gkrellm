@@ -87,7 +87,7 @@ std::list<ft::IMonitorDisplay*> &displays, int nb)
 	}
 }
 
-void				parse_input(int ac, char **av, 
+static void			parse_input(int ac, char **av, 
 std::vector<ft::IMonitorModule*> &modules,
 std::list<ft::IMonitorDisplay*> &displays)
 {
@@ -111,12 +111,6 @@ std::list<ft::IMonitorDisplay*> &displays)
 	put_modules(args, modules);
 	if (s)
 		put_sfml_displays(modules, displays, nb);
-
-/* DEBUG */
-	if (s)
-		std::cout << "s" << std::endl;
-	if (n)
-		std::cout << "n" << std::endl;
 }
 
 #include <unistd.h>
