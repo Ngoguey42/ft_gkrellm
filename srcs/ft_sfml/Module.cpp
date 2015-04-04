@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:09:09 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/04 13:44:33 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/04 13:48:01 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -50,7 +50,6 @@ float						Module::calcModuleFullHeight(
 	return (Module::calcMainBoxHeight(module) + Module::topBoxHeight +
 			Module::ModuleBottomPadding);
 }
-
 
 // * CONSTRUCTORS *********************************************************** //
 Module::Module(const sf::Vector2f &mainBoxSize,
