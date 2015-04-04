@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:09:03 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/04 08:52:40 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/04 11:58:49 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -39,25 +39,28 @@ public:
 	// * CTORS / DTORS ************** //
 	Module(const sf::Vector2f &mainBoxSize,
 		   ft::IMonitorModule const *refModule);
+	Module(Module const &src);
 	virtual ~Module();
 
 	// * MEMBER FUNCTIONS / METHODS * //
 	virtual void                draw(sf::RenderTarget& target,
 									 sf::RenderStates states) const;
 	virtual void                setPosition(const float x, const float y);
+	float						getHeight(void) const;
+	void						refreshStrings(void);
 	
 protected:
 private:
 	Module();
-	Module(Module const &src);
 	Module						&operator=(Module const &rhs);
 
 	// * ATTRIBUTES ***************** //
 	DefaultTextBox				_topBox;
 	RoundedBox					_mainBox;
 	ft::IMonitorModule const	*_refModule;
-	std::vector<sf::Text*>		_stringsFrames;
-
+	std::vector<sf::Text>		_stringsFrames;
+	float						_height;
+	
 };
 //std::ostream					&operator<<(std::ostream &o, Module const &rhs);
 }

@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:13:13 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/04 08:24:57 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/04 11:58:34 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -33,9 +33,17 @@ Window::Window(std::vector<ft::IMonitorModule*> const &modules,
 					 sf::ContextSettings(0, 0, 8)),
 	ft::IMonitorDisplay(),
 	_bg(winSize - Window::backgroundInsets),
-	_modules(modules)
+	_modules(modules),
+	_modulesFrames()
 {
-	// std::cout << "[Window](sf::Vector2f const&) Ctor called" << std::endl;
+	for (std::vector<ft::IMonitorModule*>::const_iterator it =
+			 this->_modules.begin();
+		 it != this->_modules.end(); it++)
+	{
+		this->_modulesFrames.push_back(
+			new ftsf::Module(winSize - Window::backgroundInsets, *it));
+		
+	}
 	return ;
 }
 
@@ -59,6 +67,7 @@ int							Window::updateDisplay()
 	if (this->isOpen())
 	{
 		sf::Event	event;
+		float		y;
 
 		while (this->pollEvent(event))
 		{
@@ -66,7 +75,32 @@ int							Window::updateDisplay()
 				this->close();
 		}
 		this->clear();
+
+		// std::pointer_to_binary_function<Window*, sf::Drawable&, void> Test(draw);
 		this->draw(this->_bg);
+		y = 60.f;
+		for (std::vector<Module*>::iterator it = this->_modulesFrames.begin();
+			 it != this->_modulesFrames.end(); it++)
+		{
+			std::cout << "Window::updateDisplay, Calling draw for module" << std::endl;
+			(*it)->refreshStrings();
+			(*it)->setPosition(10., y);
+			y += (*it)->getHeight();
+			this->draw(**it);
+			
+		}
+		// (void)Test;
+		// for (std::vector<Module>::const_iterator it =
+		// 		 this->_modulesFrames.begin();
+		// 	 it != this->_modulesFrames.end(); it++)
+		// 	target.draw(*it, states);
+		
+		// std::for_each(this->_modulesFrames.begin(), this->_modulesFrames.end(),
+		// 			  bind1st(
+		// 				  std::mem_fun_ref(&ftsf::Window::draw),
+		// 				  this
+		// 				  )
+		// );
 		// udpate Modules' DataFrames		
 		// draw Modules	
 		this->display();

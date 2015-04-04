@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:13:06 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/04 06:39:48 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/04 11:30:06 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -50,7 +50,7 @@ private:
 	// * ATTRIBUTES ***************** //
 	ftsf::Background			_bg;
 	std::vector<ft::IMonitorModule*> const	&_modules;
-	std::vector<Module>			_modulesFrames;
+	std::vector<Module*>		_modulesFrames;
 };
 //std::ostream					&operator<<(std::ostream &o, Window const &rhs);
 }
