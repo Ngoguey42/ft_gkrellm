@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 10:59:43 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/02 18:02:34 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/04 13:57:00 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -16,20 +16,26 @@
 namespace ftsf
 {
 // * STATICS **************************************************************** //
-float const					Background::posX = 10.;
-float const					Background::posY = 10.;
+float const					Background::posX = 10.f;
+float const					Background::posY = 10.f;
 std::string const			Background::header = "ft_gkrellm";
 std::string const			Background::footer = "ngoguey/wide-aze";
 sf::Color const				Background::color = sf::Color(178, 173, 177);
-float const					Background::titlePad = 3.5;
-float const					Background::footerPad = 0.;
+float const					Background::titlePad = 0.0f;
+// float const					Background::titlePad = 3.5f;
+float const					Background::titleHeight = 45.f;
+float const					Background::footerPad = 0.f;
+float const					Background::footerHeight = 15.f;
+
 
 // * CONSTRUCTORS *********************************************************** //
 Background::Background(const sf::Vector2f &size) :
 	_size(size),
-	_titleBox(sf::Vector2f(size.x - Background::titlePad * 2., 45.), 9.),
+	_titleBox(sf::Vector2f(size.x - Background::titlePad * 2.,
+						   Background::titleHeight), 9.),
 	_box(size, 5.),
-	_footerBox(sf::Vector2f(size.x - Background::footerPad * 2., 15.), 3.)
+	_footerBox(sf::Vector2f(size.x - Background::footerPad * 2.,
+							Background::footerHeight), 3.)
 {
 	std::cout << "[Background](const sf::Vector2f&) Ctor called" << std::endl;
 	this->_box.setFillColor(Background::color);

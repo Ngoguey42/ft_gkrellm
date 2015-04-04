@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:13:06 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/04 11:30:06 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/04 13:58:14 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -30,6 +30,8 @@ class Window : public sf::RenderWindow, public ft::IMonitorDisplay
 public:
 	// * STATICS ******************** //
 	static sf::Vector2f const	backgroundInsets;
+	static float const			firstModulePadding;
+
 	static sf::Vector2f			calculateWindowSize(
 		std::vector<ft::IMonitorModule*> const &modules);
 	
