@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:13:06 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/03 13:03:02 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/04 13:58:14 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -30,16 +30,18 @@ class Window : public sf::RenderWindow, public ft::IMonitorDisplay
 public:
 	// * STATICS ******************** //
 	static sf::Vector2f const	backgroundInsets;
+	static float const			firstModulePadding;
+
 	static sf::Vector2f			calculateWindowSize(
-		std::vector<ft::IMonitorModule> const &modules);
+		std::vector<ft::IMonitorModule*> const &modules);
 	
 	// * CTORS / DTORS ************** //
-	Window(std::vector<ft::IMonitorModule> const &modules,
+	Window(std::vector<ft::IMonitorModule*> const &modules,
 		   sf::Vector2f const &winSize);
 	virtual ~Window();
 
 	// * MEMBER FUNCTIONS / METHODS * //
-	void						updateDisplay();
+	int							updateDisplay();
 	
 protected:
 private:
@@ -49,8 +51,8 @@ private:
 
 	// * ATTRIBUTES ***************** //
 	ftsf::Background			_bg;
-	std::vector<ft::IMonitorModule>	const	&_modules;
-	std::vector<Module>			_modulesFrames;
+	std::vector<ft::IMonitorModule*> const	&_modules;
+	std::vector<Module*>		_modulesFrames;
 };
 //std::ostream					&operator<<(std::ostream &o, Window const &rhs);
 }

@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:13:13 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/03 13:03:10 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/04 14:04:13 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -17,15 +17,26 @@ namespace ftsf
 {
 // * STATICS **************************************************************** //
 sf::Vector2f const			Window::backgroundInsets = sf::Vector2f(20, 20);
+float const					Window::firstModulePadding = 5.f;
+
 sf::Vector2f				Window::calculateWindowSize(
-	std::vector<ft::IMonitorModule> const &modules)
+	std::vector<ft::IMonitorModule*> const &modules)
 {
-	(void)modules;
-	return (sf::Vector2f(220, 620));
+	float	y = 0.f;
+
+	for (std::vector<ft::IMonitorModule const*>::const_iterator it =
+			 modules.begin();
+		 it != modules.end(); it++)
+		y += Module::calcModuleFullHeight(**it);
+	y += Background::titleHeight +
+		Background::footerHeight +
+		Window::firstModulePadding +
+		Window::backgroundInsets.y;
+	return (sf::Vector2f(220, y));
 }
 
 // * CONSTRUCTORS *********************************************************** //
-Window::Window(std::vector<ft::IMonitorModule> const &modules,
+Window::Window(std::vector<ft::IMonitorModule*> const &modules,
 			   sf::Vector2f const &winSize) :
 	sf::RenderWindow(sf::VideoMode(winSize.x, winSize.y),
 					 "ft_gkrellm",
@@ -33,9 +44,17 @@ Window::Window(std::vector<ft::IMonitorModule> const &modules,
 					 sf::ContextSettings(0, 0, 8)),
 	ft::IMonitorDisplay(),
 	_bg(winSize - Window::backgroundInsets),
-	_modules(modules)
+	_modules(modules),
+	_modulesFrames()
 {
-	// std::cout << "[Window](sf::Vector2f const&) Ctor called" << std::endl;
+	for (std::vector<ft::IMonitorModule*>::const_iterator it =
+			 this->_modules.begin();
+		 it != this->_modules.end(); it++)
+	{
+		this->_modulesFrames.push_back(
+			new ftsf::Module(winSize - Window::backgroundInsets, *it));
+		
+	}
 	return ;
 }
 
@@ -50,11 +69,16 @@ Window::~Window()
 // * GETTERS **************************************************************** //
 // * SETTERS **************************************************************** //
 // * MEMBER FUNCTIONS / METHODS ********************************************* //
-void						Window::updateDisplay()
+int							Window::updateDisplay()
 {
+	// std::cout << "Updating display:  this=" <<
+		// ((unsigned long long int)this) % 0x1000 <<
+		// "  isopen: " << this->isOpen()
+		// 	  << std::endl;
 	if (this->isOpen())
 	{
 		sf::Event	event;
+		float		y;
 
 		while (this->pollEvent(event))
 		{
@@ -63,9 +87,22 @@ void						Window::updateDisplay()
 		}
 		this->clear();
 		this->draw(this->_bg);
+		y = Window::firstModulePadding + Window::backgroundInsets.y / 2.f+
+			Background::titleHeight;
+		for (std::vector<Module*>::iterator it = this->_modulesFrames.begin();
+			 it != this->_modulesFrames.end(); it++)
+		{
+			// std::cout << "Window::updateDisplay, Calling draw for module" << std::endl;
+			(*it)->refreshStrings();
+			(*it)->setPosition(10., y);
+			y += (*it)->getHeight();
+			this->draw(**it);
+			
+		}
 		this->display();
+		return (0);
 	}	
-	return ;
+	return (1);
 }
 
 // * NESTED_CLASSES ********************************************************* //

@@ -11,6 +11,23 @@ On mac os x:
 make sfml all
 DYLD_FRAMEWORK_PATH=`pwd`"/SFML/Frameworks" ./ft_gkrellm
 ```
+
+### Classes tree:
+```cpp
+
+namespace ft;
+class IMonitorDisplay;
+class IMonitorModule;
+class TimeModule : public IMonitorModule;
+
+namespace ftsf;
+class Window : public sf::RenderWindow, public ft::IMonitorDisplay; //singleton
+class Background : public sf::Drawable; //singleton, one inside the above Window class
+class Module : public sf::Drawable; //one for each ft::IMonitorModule
+class RoundedBox : public sf::Drawable; //contains 4xsf::CircleShape and 1xsf::ConvexShape
+class DefaultTextBox : public RoundedBox; //contains 1xsf::Text
+```
+
 <br>
  
 <br><br><br><br><br><br><br><br>

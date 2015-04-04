@@ -1,17 +1,17 @@
 // ************************************************************************** //
 //                                                                            //
 //                                                        :::      ::::::::   //
-//   TimeModule.hpp                                     :+:      :+:    :+:   //
+//   RAMModule.hpp                                      :+:      :+:    :+:   //
 //                                                    +:+ +:+         +:+     //
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 10:00:53 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/04 09:00:52 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/04 15:40:25 by wide-aze         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
-#ifndef TIMEMODULE_HPP
-# define TIMEMODULE_HPP
+#ifndef RAMMODULE_HPP
+# define RAMMODULE_HPP
 
 //# include <string>
 //# include <iostream>
@@ -20,11 +20,11 @@
 
 namespace ft
 {
-class TimeModule : public IMonitorModule
+class RAMModule : public IMonitorModule
 {
 public:
-	TimeModule(std::string const &moduleName);
-	virtual ~TimeModule();
+	RAMModule(std::string const &moduleName);
+	virtual ~RAMModule();
 	
 	void						refresh_datas(void);
 	std::vector<std::string> const	&getStrings(void) const;
@@ -32,15 +32,15 @@ public:
 	
 protected:
 private:
-	TimeModule();
-	TimeModule(TimeModule const &src);
-	TimeModule					&operator=(TimeModule const &rhs);
+	RAMModule();
+	RAMModule(RAMModule const &src);
+	RAMModule					&operator=(RAMModule const &rhs);
 
 	std::vector<std::string>	_strings;
 	std::string const			_moduleName;
 	
 };
-//std::ostream					&operator<<(std::ostream &o, TimeModule const &rhs);
+//std::ostream					&operator<<(std::ostream &o, RAMModule const &rhs);
 }
 
-#endif // **************************************************** TIMEMODULE_HPP //
+#endif // ***************************************************** RAMMODULE_HPP //

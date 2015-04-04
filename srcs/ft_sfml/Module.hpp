@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:09:03 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/03 13:21:53 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/04 13:38:01 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -16,11 +16,11 @@
 //# include <string>
 //# include <iostream>
 //# include <stdexcept>
+# include <vector>
 # include <SFML/Graphics.hpp>
 
 # include <ft_gkrellm.hpp>
 # include <modules/IMonitorModule.hpp>
-
 # include <ft_sfml/RoundedBox.hpp>
 # include <ft_sfml/DefaultTextBox.hpp>
 
@@ -36,26 +36,40 @@ public:
 	static sf::Color const		mainColor;
 	static sf::Color const		mainBorderColor;
 	
+	static float const			topBoxHeight;
+	static float const			mainBoxContentInset;
+	static float const			stringsBottomPadding;
+	static float const			ModuleBottomPadding;
+
+	static float				calcMainBoxHeight(
+		ft::IMonitorModule const &module);
+	static float				calcModuleFullHeight(
+		ft::IMonitorModule const &module);
 	// * CTORS / DTORS ************** //
+	Module(const sf::Vector2f &mainBoxSize,
+		   ft::IMonitorModule const *refModule);
+	Module(Module const &src);
 	virtual ~Module();
 
 	// * MEMBER FUNCTIONS / METHODS * //
 	virtual void                draw(sf::RenderTarget& target,
 									 sf::RenderStates states) const;
 	virtual void                setPosition(const float x, const float y);
+	float						getHeight(void) const;
+	void						refreshStrings(void);
 	
 protected:
-	Module(const sf::Vector2f &mainBoxSize);
-
-	// * ATTRIBUTES ***************** //
-	DefaultTextBox				topBox;
-	RoundedBox					mainBox;
-
 private:
 	Module();
-	Module(Module const &src);
 	Module						&operator=(Module const &rhs);
 
+	// * ATTRIBUTES ***************** //
+	DefaultTextBox				_topBox;
+	RoundedBox					_mainBox;
+	ft::IMonitorModule const	*_refModule;
+	std::vector<sf::Text>		_stringsFrames;
+	float						_height;
+	
 };
 //std::ostream					&operator<<(std::ostream &o, Module const &rhs);
 }

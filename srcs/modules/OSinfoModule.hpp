@@ -1,17 +1,17 @@
 // ************************************************************************** //
 //                                                                            //
 //                                                        :::      ::::::::   //
-//   TimeModule.hpp                                     :+:      :+:    :+:   //
+//   OSinfoModule.hpp                                   :+:      :+:    :+:   //
 //                                                    +:+ +:+         +:+     //
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 10:00:53 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/04 09:00:52 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/04 15:38:49 by wide-aze         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
-#ifndef TIMEMODULE_HPP
-# define TIMEMODULE_HPP
+#ifndef OSINFOMODULE_HPP
+# define OSINFOMODULE_HPP
 
 //# include <string>
 //# include <iostream>
@@ -20,11 +20,11 @@
 
 namespace ft
 {
-class TimeModule : public IMonitorModule
+class OSinfoModule : public IMonitorModule
 {
 public:
-	TimeModule(std::string const &moduleName);
-	virtual ~TimeModule();
+	OSinfoModule(std::string const &moduleName);
+	virtual ~OSinfoModule();
 	
 	void						refresh_datas(void);
 	std::vector<std::string> const	&getStrings(void) const;
@@ -32,15 +32,15 @@ public:
 	
 protected:
 private:
-	TimeModule();
-	TimeModule(TimeModule const &src);
-	TimeModule					&operator=(TimeModule const &rhs);
+	OSinfoModule();
+	OSinfoModule(OSinfoModule const &src);
+	OSinfoModule					&operator=(OSinfoModule const &rhs);
 
 	std::vector<std::string>	_strings;
 	std::string const			_moduleName;
 	
 };
-//std::ostream					&operator<<(std::ostream &o, TimeModule const &rhs);
+//std::ostream					&operator<<(std::ostream &o, OSinfoModule const &rhs);
 }
 
-#endif // **************************************************** TIMEMODULE_HPP //
+#endif // ************************************************** OSINFOMODULE_HPP //

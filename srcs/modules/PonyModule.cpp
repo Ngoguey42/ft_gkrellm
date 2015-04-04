@@ -1,7 +1,7 @@
 // ************************************************************************** //
 //                                                                            //
 //                                                        :::      ::::::::   //
-//   TimeModule.cpp                                     :+:      :+:    :+:   //
+//   PonyModule.cpp                                     :+:      :+:    :+:   //
 //                                                    +:+ +:+         +:+     //
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
@@ -11,49 +11,49 @@
 // ************************************************************************** //
 
 #include <ctime>
-#include "TimeModule.hpp"
+#include "PonyModule.hpp"
 
 namespace ft
 {
 // * STATICS **************************************************************** //
 // * CONSTRUCTORS *********************************************************** //
-TimeModule::TimeModule(std::string const &moduleName) :
+PonyModule::PonyModule(std::string const &moduleName) :
 	IMonitorModule(),
 	_strings(),
 	_moduleName(moduleName)
 {
-	// std::cout << "[TimeModule]() Ctor called" << std::endl;
+	// std::cout << "[PonyModule]() Ctor called" << std::endl;
 	this->_strings.push_back("");
 	this->_strings.push_back("");
 	return ;
 }
 
 // * DESTRUCTORS ************************************************************ //
-TimeModule::~TimeModule()
+PonyModule::~PonyModule()
 {
-	// std::cout << "[TimeModule]() Dtor called" << std::endl;
+	// std::cout << "[PonyModule]() Dtor called" << std::endl;
 	return ;
 }
 
 // * OPERATORS ************************************************************** //
-std::vector<std::string> const	&TimeModule::getStrings(void) const
+std::vector<std::string> const	&PonyModule::getStrings(void) const
 {return (this->_strings);}
 
-std::string const			&TimeModule::getModuleName(void) const
+std::string const			&PonyModule::getModuleName(void) const
 {return (this->_moduleName);}
 
 // * GETTERS **************************************************************** //
 // * SETTERS **************************************************************** //
 // * MEMBER FUNCTIONS / METHODS ********************************************* //
-void						TimeModule::refresh_datas(void)
+void						PonyModule::refresh_datas(void)
 {
-	// std::cout << "Updating time datas:  this=" <<
+	// std::cout << "Updating pony datas:  this=" <<
 	// 	((unsigned long long int)this) % 0x1000
 	// 		  << std::endl;
 	time_t		t;
 	char		buffer[100];
 
-	// std::cout << "[TimeModule]() Ctor called" << std::endl;
+	// std::cout << "[PonyModule]() Ctor called" << std::endl;
 	time (&t);
 	std::strftime(buffer, 80, "%a %d %b %y", localtime(&t));
 	this->_strings[0] = buffer;

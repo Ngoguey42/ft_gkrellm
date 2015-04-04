@@ -1,7 +1,7 @@
 // ************************************************************************** //
 //                                                                            //
 //                                                        :::      ::::::::   //
-//   TimeModule.hpp                                     :+:      :+:    :+:   //
+//   PonyModule.hpp                                     :+:      :+:    :+:   //
 //                                                    +:+ +:+         +:+     //
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
@@ -10,8 +10,8 @@
 //                                                                            //
 // ************************************************************************** //
 
-#ifndef TIMEMODULE_HPP
-# define TIMEMODULE_HPP
+#ifndef PONYMODULE_HPP
+# define PONYMODULE_HPP
 
 //# include <string>
 //# include <iostream>
@@ -20,11 +20,11 @@
 
 namespace ft
 {
-class TimeModule : public IMonitorModule
+class PonyModule : public IMonitorModule
 {
 public:
-	TimeModule(std::string const &moduleName);
-	virtual ~TimeModule();
+	PonyModule(std::string const &moduleName);
+	virtual ~PonyModule();
 	
 	void						refresh_datas(void);
 	std::vector<std::string> const	&getStrings(void) const;
@@ -32,15 +32,15 @@ public:
 	
 protected:
 private:
-	TimeModule();
-	TimeModule(TimeModule const &src);
-	TimeModule					&operator=(TimeModule const &rhs);
+	PonyModule();
+	PonyModule(PonyModule const &src);
+	PonyModule					&operator=(PonyModule const &rhs);
 
 	std::vector<std::string>	_strings;
 	std::string const			_moduleName;
 	
 };
-//std::ostream					&operator<<(std::ostream &o, TimeModule const &rhs);
+//std::ostream					&operator<<(std::ostream &o, PonyModule const &rhs);
 }
 
-#endif // **************************************************** TIMEMODULE_HPP //
+#endif // **************************************************** PONYMODULE_HPP //

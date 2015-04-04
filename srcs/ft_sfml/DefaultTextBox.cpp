@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 12:21:57 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/02 18:44:09 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/04 10:30:02 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -54,10 +54,10 @@ void                        DefaultTextBox::setPosition(const float x,
 	RoundedBox::setPosition(x, y);
 
 	// std::cout << this->_text1.getCharacterSize() << std::endl;
-	this->_text1.setOrigin(ftsf::getStrWidth(this->_text1) / 2.,
-						   ftsf::getStrHeight(this->_text1) / 2);
-	this->_text1.setPosition(x + this->getSize().x / 2,
-							 y + this->getSize().y /2.);
+	this->_text1.setOrigin(ftsf::getStrWidth(this->_text1) / 2.f,
+						   ftsf::getStrHeight(this->_text1) / 2.f);
+	this->_text1.setPosition(x + this->getSize().x / 2.f,
+							 y + this->getSize().y /2.f);
 	return ;
 }
 void                        DefaultTextBox::setCharacterSize(size_t s)

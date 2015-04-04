@@ -1,17 +1,17 @@
 // ************************************************************************** //
 //                                                                            //
 //                                                        :::      ::::::::   //
-//   TimeModule.hpp                                     :+:      :+:    :+:   //
+//   CPUModule.hpp                                      :+:      :+:    :+:   //
 //                                                    +:+ +:+         +:+     //
-//   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
+//   By: wide-aze <wide-aze@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
-//   Created: 2015/04/03 10:00:53 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/04 09:00:52 by ngoguey          ###   ########.fr       //
+//   Created: 2015/04/04 15:35:01 by wide-aze          #+#    #+#             //
+//   Updated: 2015/04/04 15:35:04 by wide-aze         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
-#ifndef TIMEMODULE_HPP
-# define TIMEMODULE_HPP
+#ifndef CPUMODULE_HPP
+# define CPUMODULE_HPP
 
 //# include <string>
 //# include <iostream>
@@ -20,11 +20,11 @@
 
 namespace ft
 {
-class TimeModule : public IMonitorModule
+class CPUModule : public IMonitorModule
 {
 public:
-	TimeModule(std::string const &moduleName);
-	virtual ~TimeModule();
+	CPUModule(std::string const &moduleName);
+	virtual ~CPUModule();
 	
 	void						refresh_datas(void);
 	std::vector<std::string> const	&getStrings(void) const;
@@ -32,15 +32,15 @@ public:
 	
 protected:
 private:
-	TimeModule();
-	TimeModule(TimeModule const &src);
-	TimeModule					&operator=(TimeModule const &rhs);
+	CPUModule();
+	CPUModule(CPUModule const &src);
+	CPUModule					&operator=(CPUModule const &rhs);
 
 	std::vector<std::string>	_strings;
 	std::string const			_moduleName;
 	
 };
-//std::ostream					&operator<<(std::ostream &o, TimeModule const &rhs);
+//std::ostream					&operator<<(std::ostream &o, CPUModule const &rhs);
 }
 
-#endif // **************************************************** TIMEMODULE_HPP //
+#endif // ***************************************************** CPUMODULE_HPP //

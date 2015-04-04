@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 11:05:12 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/03 12:58:19 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/04 06:23:28 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -25,7 +25,7 @@ public:
 	IMonitorDisplay();
 	virtual ~IMonitorDisplay();
 
-	virtual void				 updateDisplay(void) = 0;
+	virtual int					updateDisplay(void) = 0;
 	
 protected:
 private:

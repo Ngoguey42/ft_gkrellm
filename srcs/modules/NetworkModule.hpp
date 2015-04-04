@@ -1,17 +1,17 @@
 // ************************************************************************** //
 //                                                                            //
 //                                                        :::      ::::::::   //
-//   TimeModule.hpp                                     :+:      :+:    :+:   //
+//   NetworkModule.hpp                                  :+:      :+:    :+:   //
 //                                                    +:+ +:+         +:+     //
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 10:00:53 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/04 09:00:52 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/04 15:37:40 by wide-aze         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
-#ifndef TIMEMODULE_HPP
-# define TIMEMODULE_HPP
+#ifndef NETWORKMODULE_HPP
+# define NETWORKMODULE_HPP
 
 //# include <string>
 //# include <iostream>
@@ -20,11 +20,11 @@
 
 namespace ft
 {
-class TimeModule : public IMonitorModule
+class NetworkModule : public IMonitorModule
 {
 public:
-	TimeModule(std::string const &moduleName);
-	virtual ~TimeModule();
+	NetworkModule(std::string const &moduleName);
+	virtual ~NetworkModule();
 	
 	void						refresh_datas(void);
 	std::vector<std::string> const	&getStrings(void) const;
@@ -32,15 +32,15 @@ public:
 	
 protected:
 private:
-	TimeModule();
-	TimeModule(TimeModule const &src);
-	TimeModule					&operator=(TimeModule const &rhs);
+	NetworkModule();
+	NetworkModule(NetworkModule const &src);
+	NetworkModule					&operator=(NetworkModule const &rhs);
 
 	std::vector<std::string>	_strings;
 	std::string const			_moduleName;
 	
 };
-//std::ostream					&operator<<(std::ostream &o, TimeModule const &rhs);
+//std::ostream					&operator<<(std::ostream &o, NetworkModule const &rhs);
 }
 
-#endif // **************************************************** TIMEMODULE_HPP //
+#endif // ************************************************* NETWORKMODULE_HPP //

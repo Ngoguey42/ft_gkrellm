@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 09:58:45 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/02 16:02:17 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/04 11:51:25 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -37,7 +37,8 @@ public:
 	void                        setFillColor(const sf::Color &color);
 	void                        setBorderColor(const sf::Color &color);
 	void                        setBorderSize(float size);
-
+	void                        setSize(sf::Vector2f const &size);
+	
 	// * MEMBER FUNCTIONS / METHODS * //
 	void                        draw(sf::RenderTarget& target,
 									 sf::RenderStates states) const;
@@ -61,7 +62,6 @@ private:
 	RoundedBox(RoundedBox const &src);
 	RoundedBox					&operator=(RoundedBox const &rhs);
 
-	void                        setSize(sf::Vector2f const &size);
 
 };
 //std::ostream					&operator<<(std::ostream &o, RoundedBox const &rhs);

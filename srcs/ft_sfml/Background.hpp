@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 10:45:03 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/03 09:23:08 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/04 13:54:30 by ngoguey          ###   ########.fr       //
 
 //                                                                            //
 // ************************************************************************** //
@@ -36,7 +36,9 @@ public:
 	static std::string const	footer;
 	static sf::Color const		color;
 	static float const			titlePad;
+	static float const			titleHeight;
 	static float const			footerPad;
+	static float const			footerHeight;
 
 	// * CTORS / DTORS ************** //
 	Background(const sf::Vector2f &size);
