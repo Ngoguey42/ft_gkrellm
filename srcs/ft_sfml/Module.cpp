@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:09:09 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/03 09:10:26 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/04 08:54:36 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -24,21 +24,25 @@ sf::Color const             Module::mainColor = sf::Color(138, 133, 177);
 sf::Color const             Module::mainBorderColor = sf::Color(138, 133, 177);
 
 // * CONSTRUCTORS *********************************************************** //
-Module::Module(const sf::Vector2f &mainBoxSize) :
+Module::Module(const sf::Vector2f &mainBoxSize,
+			   ft::IMonitorModule const *refModule) :
 	sf::Drawable(),
-	topBox(sf::Vector2f(mainBoxSize.x, 20.), 3.f),
-	mainBox(mainBoxSize, 5.f)
+	_topBox(sf::Vector2f(mainBoxSize.x, 20.), 3.f),
+	_mainBox(mainBoxSize, 5.f),
+	_refModule(refModule),
+	_stringsFrames()
 {
-	// std::cout << "[Module](const sf::Vector2f&) Ctor called" << std::endl;
-	this->topBox.setFillColor(Module::titleColor);
-	this->topBox.setBorderColor(Module::titleBorderColor);
-	this->topBox.setBorderSize(3.);
-	this->topBox.setTextColor(Module::titleTextColor);
-	this->topBox.setCharacterSize(11.);
+	// stOxd::cout << "[Module](const sf::Vector2f&) Ctor called" << std::endl;
+	this->_topBox.setFillColor(Module::titleColor);
+	this->_topBox.setBorderColor(Module::titleBorderColor);
+	this->_topBox.setBorderSize(3.);
+	this->_topBox.setTextColor(Module::titleTextColor);
+	this->_topBox.setCharacterSize(11.);
+	this->_topBox.setText1(refModule->getModuleName());
 
-	this->mainBox.setFillColor(Module::mainColor);
-	this->mainBox.setBorderColor(Module::mainBorderColor);
-	this->mainBox.setBorderSize(5.);
+	this->_mainBox.setFillColor(Module::mainColor);
+	this->_mainBox.setBorderColor(Module::mainBorderColor);
+	this->_mainBox.setBorderSize(5.);
 
 	return ;
 }
@@ -55,19 +59,20 @@ Module::~Module()
 // * SETTERS **************************************************************** //
 void						Module::setPosition(const float x, const float y)
 {
-	this->topBox.setPosition(x, y);
-	this->mainBox.setPosition(x, y + this->topBox.getSize().y);
+	this->_topBox.setPosition(x, y);
+	this->_mainBox.setPosition(x, y + this->_topBox.getSize().y);
 	return ;
 }
 
 // * MEMBER FUNCTIONS / METHODS ********************************************* //
+
 void						Module::draw(sf::RenderTarget& target, 
 	sf::RenderStates states) const
 {
-	target.draw(this->topBox, states);
-	target.draw(this->mainBox, states);
-	(void)target;
-	(void)states;
+	target.draw(this->_topBox, states);
+	target.draw(this->_mainBox, states);
+
+//refresh toutes nos 'stringsFrames' face aux 'strings' du refModule
 	return ;
 }
 

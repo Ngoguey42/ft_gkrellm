@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:13:13 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/04 07:11:16 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/04 08:24:57 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -67,6 +67,8 @@ int							Window::updateDisplay()
 		}
 		this->clear();
 		this->draw(this->_bg);
+		// udpate Modules' DataFrames		
+		// draw Modules	
 		this->display();
 		return (0);
 	}	

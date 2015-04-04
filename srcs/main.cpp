@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 09:58:37 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/04 07:22:11 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/04 08:53:03 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -59,17 +59,15 @@ int						main(int ac, char *av[])
 		//lire les argv pour fill modules
 		(void)ac;
 		(void)av;
+		modules.push_back(new ft::TimeModule("Time1"));
+		modules.push_back(new ft::TimeModule("Time2"));
+		//lire les argv pour fill modules
 
-		modules.push_back(new ft::TimeModule());
-		modules.push_back(new ft::TimeModule);
 		
 		if (1) //si il faut lancer la sfml
 		{
 			std::cout << "SFML: Loading ..." << std::endl;
 			ftsf::Arial.loadFromFile("srcs/ft_sfml/Liberation.ttf"); //verif
-			displays.push_back(new ftsf::Window(
-								   modules,
-								   ftsf::Window::calculateWindowSize(modules)));
 			displays.push_back(new ftsf::Window(
 								   modules,
 								   ftsf::Window::calculateWindowSize(modules)));
@@ -91,6 +89,7 @@ int						main(int ac, char *av[])
 		std::for_each(modules.begin(), modules.end(),
 					  std::mem_fun(&ft::IMonitorModule::refresh_datas));
 		displays.remove_if(std::mem_fun(&ft::IMonitorDisplay::updateDisplay));
+		//fuites memoires ?
 		usleep(1000000);
 	}
     return (0);

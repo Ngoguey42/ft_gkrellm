@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 10:48:04 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/03 12:58:41 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/04 08:44:05 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -20,9 +20,7 @@
 namespace ft
 {
 class IMonitorDisplay;
-
 class IMonitorModule;
-class Data;
 }
 
 namespace ftsf

@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 10:00:45 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/04 07:06:02 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/04 09:00:55 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -17,13 +17,14 @@ namespace ft
 {
 // * STATICS **************************************************************** //
 // * CONSTRUCTORS *********************************************************** //
-TimeModule::TimeModule() :
+TimeModule::TimeModule(std::string const &moduleName) :
 	IMonitorModule(),
-	_datas()
+	_strings(),
+	_moduleName(moduleName)
 {
 	// std::cout << "[TimeModule]() Ctor called" << std::endl;
-	this->_datas.push_back(Data(Data::String));
-	this->_datas.push_back(Data(Data::String));
+	this->_strings.push_back("Mardi");
+	this->_strings.push_back("18h42");
 	return ;
 }
 
@@ -35,20 +36,21 @@ TimeModule::~TimeModule()
 }
 
 // * OPERATORS ************************************************************** //
-// * GETTERS **************************************************************** //
-std::vector<Data> const		&TimeModule::get_datas(void) const
-{return this->_datas;}
+std::vector<std::string> const	&TimeModule::getStrings(void) const
+{return (this->_strings);}
 
-// * SETTERS **************************************************************** //
+std::string const			&TimeModule::getModuleName(void) const
+{return (this->_moduleName);}
+
+// * GETTERS **************************************************************** //// * SETTERS **************************************************************** //
 // * MEMBER FUNCTIONS / METHODS ********************************************* //
 void						TimeModule::refresh_datas(void)
 {
 	std::cout << "Updating time datas:  this=" <<
 		((unsigned long long int)this) % 0x1000
 			  << std::endl;
-	
-	this->_datas[0].setStr("Mardi 42 Lol 2042");
-	this->_datas[1].setStr("18:42:LOL");
+
+	//updated notre vector de strings
 	return ;
 }
 

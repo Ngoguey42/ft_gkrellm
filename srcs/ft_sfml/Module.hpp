@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:09:03 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/03 13:21:53 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/04 08:52:40 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -16,11 +16,11 @@
 //# include <string>
 //# include <iostream>
 //# include <stdexcept>
+# include <vector>
 # include <SFML/Graphics.hpp>
 
 # include <ft_gkrellm.hpp>
 # include <modules/IMonitorModule.hpp>
-
 # include <ft_sfml/RoundedBox.hpp>
 # include <ft_sfml/DefaultTextBox.hpp>
 
@@ -37,6 +37,8 @@ public:
 	static sf::Color const		mainBorderColor;
 	
 	// * CTORS / DTORS ************** //
+	Module(const sf::Vector2f &mainBoxSize,
+		   ft::IMonitorModule const *refModule);
 	virtual ~Module();
 
 	// * MEMBER FUNCTIONS / METHODS * //
@@ -45,16 +47,16 @@ public:
 	virtual void                setPosition(const float x, const float y);
 	
 protected:
-	Module(const sf::Vector2f &mainBoxSize);
-
-	// * ATTRIBUTES ***************** //
-	DefaultTextBox				topBox;
-	RoundedBox					mainBox;
-
 private:
 	Module();
 	Module(Module const &src);
 	Module						&operator=(Module const &rhs);
+
+	// * ATTRIBUTES ***************** //
+	DefaultTextBox				_topBox;
+	RoundedBox					_mainBox;
+	ft::IMonitorModule const	*_refModule;
+	std::vector<sf::Text*>		_stringsFrames;
 
 };
 //std::ostream					&operator<<(std::ostream &o, Module const &rhs);

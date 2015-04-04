@@ -6,18 +6,17 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 17:42:17 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/03 10:41:31 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/04 09:01:01 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
 #ifndef IMONITORMODULE_HPP
 # define IMONITORMODULE_HPP
 
-//# include <string>
-//# include <iostream>
+// # include <string>
+# include <iostream>
 //# include <stdexcept>
 # include <Vector>
-# include <modules/Data.hpp>
 
 namespace ft
 {
@@ -28,8 +27,9 @@ public:
 	virtual ~IMonitorModule();
 
 	virtual void                refresh_datas(void) = 0;
-	virtual std::vector<Data> const	&get_datas(void) const = 0;
-
+	virtual std::string const			&getModuleName(void) const = 0;
+	virtual std::vector<std::string>const    &getStrings(void) const = 0;
+	
 protected:
 private:
 	IMonitorModule(IMonitorModule const &src);

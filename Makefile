@@ -5,7 +5,6 @@ SRCSFILES = \
 			main.cpp\
 			IMonitorDisplay.cpp\
 	modules/IMonitorModule.cpp\
-	modules/Data.cpp\
 	modules/TimeModule.cpp\
 	ft_sfml/RoundedBox.cpp\
 	ft_sfml/DefaultTextBox.cpp\
