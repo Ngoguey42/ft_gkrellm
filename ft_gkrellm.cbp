@@ -34,6 +34,7 @@
 			<Add option="-Wall" />
 			<Add option="-Werror" />
 			<Add directory="E:/SFML-2.2/include" />
+			<Add directory="srcs" />
 		</Compiler>
 		<Linker>
 			<Add library="sfml-graphics" />
@@ -42,7 +43,26 @@
 			<Add directory="E:/SFML-2.2/lib" />
 			<Add directory="E:/SFML-2.2/bin" />
 		</Linker>
-		<Unit filename="main.cpp" />
+		<Unit filename="srcs/IMonitorDisplay.cpp" />
+		<Unit filename="srcs/IMonitorDisplay.hpp" />
+		<Unit filename="srcs/ft_gkrellm.hpp" />
+		<Unit filename="srcs/ft_sfml/Background.cpp" />
+		<Unit filename="srcs/ft_sfml/Background.hpp" />
+		<Unit filename="srcs/ft_sfml/DefaultTextBox.cpp" />
+		<Unit filename="srcs/ft_sfml/DefaultTextBox.hpp" />
+		<Unit filename="srcs/ft_sfml/Module.cpp" />
+		<Unit filename="srcs/ft_sfml/Module.hpp" />
+		<Unit filename="srcs/ft_sfml/RoundedBox.cpp" />
+		<Unit filename="srcs/ft_sfml/RoundedBox.hpp" />
+		<Unit filename="srcs/ft_sfml/Window.cpp" />
+		<Unit filename="srcs/ft_sfml/Window.hpp" />
+		<Unit filename="srcs/main.cpp" />
+		<Unit filename="srcs/modules/Data.cpp" />
+		<Unit filename="srcs/modules/Data.hpp" />
+		<Unit filename="srcs/modules/IMonitorModule.cpp" />
+		<Unit filename="srcs/modules/IMonitorModule.hpp" />
+		<Unit filename="srcs/modules/TimeModule.cpp" />
+		<Unit filename="srcs/modules/TimeModule.hpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
