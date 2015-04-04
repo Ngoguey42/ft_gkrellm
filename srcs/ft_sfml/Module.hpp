@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:09:03 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/04 11:58:49 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/04 13:38:01 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -36,6 +36,15 @@ public:
 	static sf::Color const		mainColor;
 	static sf::Color const		mainBorderColor;
 	
+	static float const			topBoxHeight;
+	static float const			mainBoxContentInset;
+	static float const			stringsBottomPadding;
+	static float const			ModuleBottomPadding;
+
+	static float				calcMainBoxHeight(
+		ft::IMonitorModule const &module);
+	static float				calcModuleFullHeight(
+		ft::IMonitorModule const &module);
 	// * CTORS / DTORS ************** //
 	Module(const sf::Vector2f &mainBoxSize,
 		   ft::IMonitorModule const *refModule);

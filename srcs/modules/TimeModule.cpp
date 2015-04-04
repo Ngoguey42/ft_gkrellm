@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 10:00:45 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/04 09:00:55 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/04 12:43:01 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -42,14 +42,15 @@ std::vector<std::string> const	&TimeModule::getStrings(void) const
 std::string const			&TimeModule::getModuleName(void) const
 {return (this->_moduleName);}
 
-// * GETTERS **************************************************************** //// * SETTERS **************************************************************** //
+// * GETTERS **************************************************************** //
+// * SETTERS **************************************************************** //
 // * MEMBER FUNCTIONS / METHODS ********************************************* //
 void						TimeModule::refresh_datas(void)
 {
 	std::cout << "Updating time datas:  this=" <<
 		((unsigned long long int)this) % 0x1000
 			  << std::endl;
-
+	this->_strings[0] = "caca";
 	//updated notre vector de strings
 	return ;
 }

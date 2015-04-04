@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 10:48:04 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/04 08:44:05 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/04 13:33:53 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -29,6 +29,7 @@ extern sf::Font			Arial;
 
 float					getStrWidth(sf::Text const &ref);
 float					getStrHeight(sf::Text const &ref);
+float					getStrHeight(std::string const &ref);
 
 class RoundedBox;
 class DefaultTextBox;
