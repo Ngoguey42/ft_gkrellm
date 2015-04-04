@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 10:00:45 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/03 13:19:38 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/04 07:06:02 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -43,6 +43,10 @@ std::vector<Data> const		&TimeModule::get_datas(void) const
 // * MEMBER FUNCTIONS / METHODS ********************************************* //
 void						TimeModule::refresh_datas(void)
 {
+	std::cout << "Updating time datas:  this=" <<
+		((unsigned long long int)this) % 0x1000
+			  << std::endl;
+	
 	this->_datas[0].setStr("Mardi 42 Lol 2042");
 	this->_datas[1].setStr("18:42:LOL");
 	return ;

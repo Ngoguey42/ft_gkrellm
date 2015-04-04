@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:13:13 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/03 13:03:10 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/04 07:11:16 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -18,14 +18,14 @@ namespace ftsf
 // * STATICS **************************************************************** //
 sf::Vector2f const			Window::backgroundInsets = sf::Vector2f(20, 20);
 sf::Vector2f				Window::calculateWindowSize(
-	std::vector<ft::IMonitorModule> const &modules)
+	std::vector<ft::IMonitorModule*> const &modules)
 {
 	(void)modules;
 	return (sf::Vector2f(220, 620));
 }
 
 // * CONSTRUCTORS *********************************************************** //
-Window::Window(std::vector<ft::IMonitorModule> const &modules,
+Window::Window(std::vector<ft::IMonitorModule*> const &modules,
 			   sf::Vector2f const &winSize) :
 	sf::RenderWindow(sf::VideoMode(winSize.x, winSize.y),
 					 "ft_gkrellm",
@@ -50,8 +50,12 @@ Window::~Window()
 // * GETTERS **************************************************************** //
 // * SETTERS **************************************************************** //
 // * MEMBER FUNCTIONS / METHODS ********************************************* //
-void						Window::updateDisplay()
+int							Window::updateDisplay()
 {
+	std::cout << "Updating display:  this=" <<
+		((unsigned long long int)this) % 0x1000 <<
+		"  isopen: " << this->isOpen()
+			  << std::endl;
 	if (this->isOpen())
 	{
 		sf::Event	event;
@@ -64,8 +68,9 @@ void						Window::updateDisplay()
 		this->clear();
 		this->draw(this->_bg);
 		this->display();
+		return (0);
 	}	
-	return ;
+	return (1);
 }
 
 // * NESTED_CLASSES ********************************************************* //
