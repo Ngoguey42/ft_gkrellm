@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 10:00:45 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/07 17:00:48 by wide-aze         ###   ########.fr       //
+//   Updated: 2015/04/07 19:22:29 by wide-aze         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -24,6 +24,7 @@ OSinfoModule::OSinfoModule(std::string const &moduleName) :
 	_moduleName(moduleName)
 {
 	// std::cout << "[OSinfoModule]() Ctor called" << std::endl;
+	this->_strings.push_back("");
 	this->_strings.push_back("");
 	return ;
 }
@@ -51,12 +52,18 @@ void						OSinfoModule::refresh_datas(void)
 	// 	((unsigned long long int)this) % 0x1000
 	// 		  << std::endl;
 	// std::cout << "[OSinfoModule]() Ctor called" << std::endl;
-	char	hwmachine[100];
+	char	kernostype[100];
+	char	kernosrelease[100];
 	size_t	size = 100;
 
 //int sysctlbyname(char *name, void *oldp, size_t *oldlenp, void *newp, size_t newlen);
-	sysctlbyname("kern.uuid", &hwmachine, &size, NULL, 0);
-	this->_strings[0] = hwmachine;
+	sysctlbyname("kern.ostype", &kernostype, &size, NULL, 0);
+	sysctlbyname("kern.osrelease", &kernosrelease, &size, NULL, 0);
+
+	this->_strings[0] = "Type: ";
+	this->_strings[0] += kernostype;
+	this->_strings[1] = "Release: ";
+	this->_strings[1] += kernosrelease;
 	return ;
 }
 
