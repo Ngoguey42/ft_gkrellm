@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 10:00:45 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/04 15:35:34 by wide-aze         ###   ########.fr       //
+//   Updated: 2015/04/07 18:29:45 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -22,8 +22,14 @@ HostnameModule::HostnameModule(std::string const &moduleName) :
 	_strings(),
 	_moduleName(moduleName)
 {
-	// std::cout << "[HostnameModule]() Ctor called" << std::endl;
-	this->_strings.push_back("");
+	char		buffer[100];
+
+	this->_strings.resize(1);
+	buffer[0] = '\0';
+	if (gethostname(buffer, sizeof(buffer) - 1) != 0)
+		this->_strings[0] = "error...";
+	else
+		this->_strings[0] = buffer;
 	return ;
 }
 
@@ -46,18 +52,6 @@ std::string const			&HostnameModule::getModuleName(void) const
 // * MEMBER FUNCTIONS / METHODS ********************************************* //
 void						HostnameModule::refresh_datas(void)
 {
-	// std::cout << "Updating hostname datas:  this=" <<
-	// 	((unsigned long long int)this) % 0x1000
-	// 		  << std::endl;
-	// std::cout << "[HostnameModule]() Ctor called" << std::endl;
-	char		buffer[100];
-
-	if (gethostname(buffer, 99))
-		this->_strings[0] = "error...";
-	else
-		this->_strings[0] = buffer;
-	// this->_strings[0] = "caca";
-	//updated notre vector de strings
 	return ;
 }
 

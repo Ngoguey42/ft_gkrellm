@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 10:00:45 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/04 12:43:01 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/07 18:33:06 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -23,8 +23,7 @@ TimeModule::TimeModule(std::string const &moduleName) :
 	_moduleName(moduleName)
 {
 	// std::cout << "[TimeModule]() Ctor called" << std::endl;
-	this->_strings.push_back("");
-	this->_strings.push_back("");
+	this->_strings.resize(2);
 	return ;
 }
 
@@ -47,20 +46,16 @@ std::string const			&TimeModule::getModuleName(void) const
 // * MEMBER FUNCTIONS / METHODS ********************************************* //
 void						TimeModule::refresh_datas(void)
 {
-	// std::cout << "Updating time datas:  this=" <<
-	// 	((unsigned long long int)this) % 0x1000
-	// 		  << std::endl;
 	time_t		t;
 	char		buffer[100];
+	size_t		ret;
 
-	// std::cout << "[TimeModule]() Ctor called" << std::endl;
-	time (&t);
-	std::strftime(buffer, 80, "%a %d %b %y", localtime(&t));
-	this->_strings[0] = buffer;
-	std::strftime(buffer, 80, "%r", localtime(&t));
-	this->_strings[1] = buffer;
-	// this->_strings[0] = "caca";
-	//updated notre vector de strings
+	time(&t);
+	ret = std::strftime(buffer, sizeof(buffer) - 1, "%a %d %b %y",
+						localtime(&t));
+	this->_strings[0].assign(buffer, ret);
+	std::strftime(buffer, sizeof(buffer) - 1, "%r", localtime(&t));
+	this->_strings[1].assign(buffer, ret);
 	return ;
 }
 

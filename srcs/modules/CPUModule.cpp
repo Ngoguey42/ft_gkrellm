@@ -6,7 +6,7 @@
 //   By: wide-aze <wide-aze@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/04 15:35:11 by wide-aze          #+#    #+#             //
-//   Updated: 2015/04/07 18:12:12 by wide-aze         ###   ########.fr       //
+//   Updated: 2015/04/07 18:27:24 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -23,16 +23,24 @@ CPUModule::CPUModule(std::string const &moduleName) :
 	_strings(),
 	_moduleName(moduleName)
 {
-	// std::cout << "[CPUModule]() Ctor called" << std::endl;
-	this->_strings.push_back("");
-	this->_strings.push_back("");
+	char			buf[100];
+	size_t			buflen = 100;
+	size_t			pos;
+
+	this->_strings.resize(2);
+	sysctlbyname("machdep.cpu.brand_string", &buf, &buflen, NULL, 0);
+	pos = buflen;
+	this->_strings[0].assign(buf, pos);
+	pos = this->_strings[0].find(" ", this->_strings[0].find(" ") + 1);
+	this->_strings[1].assign(this->_strings[0], pos + 1, buflen - pos - 1);
+	this->_strings[0].resize(pos);	
+	return ;
 	return ;
 }
 
 // * DESTRUCTORS ************************************************************ //
 CPUModule::~CPUModule()
 {
-	// std::cout << "[CPUModule]() Dtor called" << std::endl;
 	return ;
 }
 
@@ -48,16 +56,6 @@ std::string const			&CPUModule::getModuleName(void) const
 // * MEMBER FUNCTIONS / METHODS ********************************************* //
 void						CPUModule::refresh_datas(void)
 {
-	// std::cout << "Updating cpu datas:  this=" <<
-	// 	((unsigned long long int)this) % 0x1000
-	// 		  << std::endl;
-	// std::cout << "[CPUModule]() Ctor called" << std::endl;
-	char buf[100];
-	size_t buflen = 100;
-
-	sysctlbyname("machdep.cpu.brand_string", &buf, &buflen, NULL, 0);
-	// transform here to 2 strings
-	this->_strings[0] = buf;
 	return ;
 }
 

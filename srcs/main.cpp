@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 09:58:37 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/07 17:39:02 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/07 18:30:18 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -78,8 +78,9 @@ std::vector<ft::IMonitorModule*> &modules)
 			modules.push_back(new ft::RAMModule("RAM"));
 		else if (*it == "network")
 			modules.push_back(new ft::NetworkModule("Network"));
+		else if (*it == "pony")
+			modules.push_back(new ft::PonyModule("Pony"));
 	}
-	modules.push_back(new ft::PonyModule("Pony"));
 }
 
 static void			put_sfml_displays(std::vector<ft::IMonitorModule*> &modules,
