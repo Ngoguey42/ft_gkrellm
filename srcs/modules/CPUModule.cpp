@@ -6,13 +6,14 @@
 //   By: wide-aze <wide-aze@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/04 15:35:11 by wide-aze          #+#    #+#             //
-//   Updated: 2015/04/07 18:59:26 by wide-aze         ###   ########.fr       //
+//   Updated: 2015/04/07 20:40:22 by wide-aze         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
 #include "CPUModule.hpp"
 #include <sys/types.h>
 #include <sys/sysctl.h>
+#include <sstream>
 
 namespace ft
 {
@@ -34,6 +35,7 @@ CPUModule::CPUModule(std::string const &moduleName) :
 	pos = this->_strings[0].find(" ", this->_strings[0].find(" ") + 1);
 	this->_strings[1].assign(this->_strings[0], pos + 1, buflen - pos - 2);
 	this->_strings[0].resize(pos);	
+	this->_strings.push_back("");
 	return ;
 }
 
@@ -55,6 +57,17 @@ std::string const			&CPUModule::getModuleName(void) const
 // * MEMBER FUNCTIONS / METHODS ********************************************* //
 void						CPUModule::refresh_datas(void)
 {
+	std::stringstream   ssbuf;
+	char                charbuf[100];
+	FILE                *stream;
+
+	if((stream = popen("top -l 1 | head -n 10 | grep CPU | cut -d' ' -f3", "r")))
+	{
+		while (fgets(charbuf, 100, stream))
+			ssbuf << charbuf;
+		pclose(stream);
+		this->_strings[2] = "usage: " + ssbuf.str();
+	}
 	return ;
 }
 

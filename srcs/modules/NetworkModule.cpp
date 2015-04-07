@@ -6,12 +6,17 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 10:00:45 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/04 15:37:44 by wide-aze         ###   ########.fr       //
+//   Updated: 2015/04/07 20:42:28 by wide-aze         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
-#include <ctime>
 #include "NetworkModule.hpp"
+#include <sys/types.h>
+#include <sys/sysctl.h>
+#include <sstream>
+
+#define INCMD "top -l 1 | head -n 10 | grep Networks | cut -d' ' -f3"
+#define OUTCMD "top -l 1 | head -n 10 | grep Networks | cut -d' ' -f5"
 
 namespace ft
 {
@@ -23,6 +28,7 @@ NetworkModule::NetworkModule(std::string const &moduleName) :
 	_moduleName(moduleName)
 {
 	// std::cout << "[NetworkModule]() Ctor called" << std::endl;
+	this->_strings.push_back("");
 	this->_strings.push_back("");
 	this->_strings.push_back("");
 	return ;
@@ -50,17 +56,30 @@ void						NetworkModule::refresh_datas(void)
 	// std::cout << "Updating network datas:  this=" <<
 	// 	((unsigned long long int)this) % 0x1000
 	// 		  << std::endl;
-	time_t		t;
-	char		buffer[100];
+	std::stringstream   inssbuf;
+	char                incharbuf[100];
+	FILE                *instream;
+	std::stringstream   outssbuf;
+	char                outcharbuf[100];
+	FILE                *outstream;
 
-	// std::cout << "[NetworkModule]() Ctor called" << std::endl;
-	time (&t);
-	std::strftime(buffer, 80, "%a %d %b %y", localtime(&t));
-	this->_strings[0] = buffer;
-	std::strftime(buffer, 80, "%r", localtime(&t));
-	this->_strings[1] = buffer;
-	// this->_strings[0] = "caca";
-	//updated notre vector de strings
+	if ((instream = popen(INCMD, "r")))
+	{
+		if ((outstream = popen(OUTCMD, "r")))
+		{
+			while (fgets(incharbuf, 100, instream))
+				inssbuf << incharbuf;
+			while (fgets(outcharbuf, 100, outstream))
+				outssbuf << outcharbuf;
+			pclose(instream);
+			pclose(outstream);
+			this->_strings[0] = "PACKETS:";
+			this->_strings[1] = "IN: " + inssbuf.str();
+			this->_strings[2] = "OUT: " + outssbuf.str();
+		}
+		else
+			pclose(instream);
+	}
 	return ;
 }
 
