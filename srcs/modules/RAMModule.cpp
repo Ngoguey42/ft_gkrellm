@@ -6,12 +6,15 @@
 //   By: wide-aze <wide-aze@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/04 15:40:35 by wide-aze          #+#    #+#             //
-//   Updated: 2015/04/04 15:40:36 by wide-aze         ###   ########.fr       //
+//   Updated: 2015/04/07 17:31:13 by wide-aze         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
-#include <ctime>
 #include "RAMModule.hpp"
+#include <sys/sysctl.h>
+#include <sys/types.h>
+#include <sstream>
+#include <iomanip>
 
 namespace ft
 {
@@ -50,19 +53,20 @@ void						RAMModule::refresh_datas(void)
 	// std::cout << "Updating ram datas:  this=" <<
 	// 	((unsigned long long int)this) % 0x1000
 	// 		  << std::endl;
-	time_t		t;
-	char		buffer[100];
-
 	// std::cout << "[RAMModule]() Ctor called" << std::endl;
-	time (&t);
-	std::strftime(buffer, 80, "%a %d %b %y", localtime(&t));
-	this->_strings[0] = buffer;
-	std::strftime(buffer, 80, "%r", localtime(&t));
-	this->_strings[1] = buffer;
-	// this->_strings[0] = "caca";
-	//updated notre vector de strings
+	std::stringstream	tmp;
+	long long ll;
+	size_t  size = 100;
+
+// MAX RAM
+	sysctlbyname("hw.memsize", static_cast<int64_t*>(&ll), &size, NULL, 0);
+	tmp << std::fixed << std::setprecision( 2 ) <<
+		static_cast<float>(ll) / static_cast<float>(1024 * 1024 * 1024) << "gB";
+	this->_strings[0] = tmp.str();
 	return ;
 }
+
+
 
 // * NESTED_CLASSES ********************************************************* //
 }
