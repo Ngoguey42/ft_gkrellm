@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:09:03 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/07 15:45:59 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/07 16:32:21 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -62,7 +62,8 @@ public:
 	virtual void                setPosition(const float x, const float y);
 	float						getHeight(void) const;
 	void						refreshStrings(void);
-	
+	int							doesCollideArrow(float x, float y);
+
 protected:
 private:
 	Module();

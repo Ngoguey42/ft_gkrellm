@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:09:09 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/07 15:55:42 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/07 16:43:26 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -19,8 +19,7 @@ namespace ftsf
 {
 // * STATICS **************************************************************** //
 sf::Color const             Module::titleColor = sf::Color(0, 0, 0);
-sf::Color const             Module::titleBorderColor = sf::Color(78, 73,
-																 77);
+sf::Color const             Module::titleBorderColor = sf::Color(78, 73, 77);
 sf::Color const             Module::titleTextColor = sf::Color(75, 125, 250);
 sf::Color const             Module::mainColor = sf::Color(45, 45, 45);
 sf::Color const             Module::mainBorderColor = sf::Color(100, 100, 100);
@@ -44,8 +43,6 @@ float						Module::calcMainBoxHeight(
 		 it != module.getStrings().end();
 		 it++)
 		tot += ftsf::getStrHeight(*it) + Module::stringsBottomPadding;
-	// if (tot > 0.f)
-	// 	tot -= Module::stringsBottomPadding;
 	return (tot + Module::mainBoxContentInset * 2.f);
 }
 
@@ -70,16 +67,13 @@ Module::Module(const sf::Vector2f &mainBoxSize,
 	// stOxd::cout << "[Module](const sf::Vector2f&) Ctor called" << std::endl;
 	this->_arrows[0].setTexture(ftsf::Module::arrowTexture);
 	this->_arrows[0].setColor(sf::Color(255, 255, 255, 220));
-	this->_arrows[0].setTextureRect(sf::IntRect(0,
-												Module::ArrowSize,
-												Module::ArrowSize,
-												-Module::ArrowSize));
+	this->_arrows[0].setTextureRect(
+		sf::IntRect(0, Module::ArrowSize,
+					Module::ArrowSize, -Module::ArrowSize));
 	this->_arrows[1].setTexture(ftsf::Module::arrowTexture);
 	this->_arrows[1].setColor(sf::Color(255, 255, 255, 220));
-	this->_arrows[1].setTextureRect(sf::IntRect(0,
-												0,
-												Module::ArrowSize,
-												Module::ArrowSize));
+	this->_arrows[1].setTextureRect(
+		sf::IntRect(0, 0, Module::ArrowSize, Module::ArrowSize));
 
 	this->_topBox.setFillColor(Module::titleColor);
 	this->_topBox.setBorderColor(Module::titleBorderColor);
@@ -148,31 +142,39 @@ void						Module::draw(sf::RenderTarget& target,
 	target.draw(this->_arrows[0], states);	
 	target.draw(this->_arrows[1], states);
 	target.draw(this->_mainBox, states);
-
 	for (std::vector<sf::Text>::const_iterator it = this->_stringsFrames.begin();
 		 it != this->_stringsFrames.end(); it++)
-	{
-		// std::cout << "Calling draw for text" << std::endl;
-		
 		target.draw(*it, states);
-	}
-//refresh toutes nos 'stringsFrames' face aux 'strings' du refModule
 	return ;
 }
 void						Module::refreshStrings(void)
 {
 	std::vector<sf::Text>::iterator itf = this->_stringsFrames.begin();
 	std::vector<std::string>::const_iterator its =
-		this->_refModule->getStrings().begin();
-			
-	for (;
-		 itf != this->_stringsFrames.end() &&
+		this->_refModule->getStrings().begin();			
+	for (;itf != this->_stringsFrames.end() &&
 			 its != this->_refModule->getStrings().end();
 		 itf++, its++)
-	{
 		itf->setString(*its);
-	}
 	return ;
+}
+int							Module::doesCollideArrow(float x, float y)
+{
+	const sf::Vector2f		&a0pos = this->_arrows[0].getPosition();
+
+	if (y > a0pos.y && y < a0pos.y + Module::ArrowSize)
+	{
+		float				a1x = this->_arrows[1].getPosition().x;
+
+		if (x > a1x)
+		{
+			if (x < a1x + Module::ArrowSize)
+				return (1);
+			else if (x > a0pos.x && x < a0pos.x + Module::ArrowSize)
+				return (2);
+		}
+	}
+	return (0);
 }
 
 // * NESTED_CLASSES ********************************************************* //

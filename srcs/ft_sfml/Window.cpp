@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:13:13 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/07 15:23:02 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/07 17:04:06 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -71,10 +71,6 @@ Window::~Window()
 // * MEMBER FUNCTIONS / METHODS ********************************************* //
 int							Window::updateDisplay()
 {
-	// std::cout << "Updating display:  this=" <<
-		// ((unsigned long long int)this) % 0x1000 <<
-		// "  isopen: " << this->isOpen()
-		// 	  << std::endl;
 	if (this->isOpen())
 	{
 		sf::Event	event;
@@ -84,6 +80,9 @@ int							Window::updateDisplay()
 		{
 			if (event.type == sf::Event::Closed)
 				this->close();
+			else if (event.type == sf::Event::MouseButtonPressed &&
+					 event.mouseButton.button == sf::Mouse::Left)
+				this->checkArrowClick(event.mouseButton.x, event.mouseButton.y);
 		}
 		this->clear();
 		this->draw(this->_bg);
@@ -92,7 +91,6 @@ int							Window::updateDisplay()
 		for (std::vector<Module*>::iterator it = this->_modulesFrames.begin();
 			 it != this->_modulesFrames.end(); it++)
 		{
-			// std::cout << "Window::updateDisplay, Calling draw for module" << std::endl;
 			(*it)->refreshStrings();
 			(*it)->setPosition(10., y);
 			y += (*it)->getHeight();
@@ -103,6 +101,26 @@ int							Window::updateDisplay()
 	}	
 	return (1);
 }
+void						Window::checkArrowClick(float x, float y)
+{
+	int		val;
 
+	for (std::vector<Module*>::iterator it =
+			 this->_modulesFrames.begin();
+		 it != this->_modulesFrames.end(); it++)
+	{
+		if ((val = (*it)->doesCollideArrow(x, y)) != 0)
+		{
+			if (val == 2 && it != this->_modulesFrames.begin())
+				iter_swap(it, it - 1);
+			else if (val == 1 && (it + 1) != this->_modulesFrames.end())
+				iter_swap(it + 1, it);
+			return ;
+		}
+	}
+	return ;
+}		
+
+		
 // * NESTED_CLASSES ********************************************************* //
 }

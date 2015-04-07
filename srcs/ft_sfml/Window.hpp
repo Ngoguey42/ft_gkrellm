@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:13:06 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/04 13:58:14 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/07 16:51:49 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -49,6 +49,8 @@ private:
 	Window(Window const &src);
 	Window						&operator=(Window const &rhs);
 
+	void						checkArrowClick(float x, float y);
+	
 	// * ATTRIBUTES ***************** //
 	ftsf::Background			_bg;
 	std::vector<ft::IMonitorModule*> const	&_modules;
