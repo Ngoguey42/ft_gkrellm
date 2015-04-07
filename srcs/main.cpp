@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 09:58:37 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/07 15:54:02 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/07 17:39:02 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -40,7 +40,7 @@ float				getStrWidth(sf::Text const &ref)
 	float			ret = static_cast<std::string const&>(ref.getString())
 	.length();
 
-	if (ref.getCharacterSize() <= 10)
+	if (ref.getCharacterSize() <= 12)
 		return ((ref.getCharacterSize() - 4)) * ret;
 	if (ref.getCharacterSize() >= 20)
 		return ((ref.getCharacterSize() - 8) * ret);

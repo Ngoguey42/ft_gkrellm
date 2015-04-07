@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 10:00:45 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/04 12:43:01 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/07 18:10:20 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -23,8 +23,35 @@ PonyModule::PonyModule(std::string const &moduleName) :
 	_moduleName(moduleName)
 {
 	// std::cout << "[PonyModule]() Ctor called" << std::endl;
-	this->_strings.push_back("");
-	this->_strings.push_back("");
+	this->_strings.resize(28);
+	this->_strings[0]  = "                __..___ ";
+	this->_strings[1]  = "          _.-'____<'``  ";
+	this->_strings[2]  = "    ___.-`.-'`     ```_'";
+	this->_strings[3]  = "   /  \\.'` __.----'','/.";
+	this->_strings[4]  = "  ( /  \\_/` ,---''.' /  ";
+	this->_strings[5]  = "  | |    `,._\\  ,'  /``'";
+	this->_strings[6]  = " /( '.  .'``'-`   .-.   ";
+	this->_strings[7]  = "( /\\    | |``'.`._|.-:  ";
+	this->_strings[8]  = "|| (\\_  ( (    \\ _ | |  ";
+	this->_strings[9]  = "|| : \\   \\ \\    ))\\ \\j  ";
+	this->_strings[10]  = "|( (, \\   '.`--'/  ``-. ";
+	this->_strings[11]  = "' . \\`.`.   ````  \\__/  ";
+	this->_strings[12]  = " V(  \\ `-\\-,______.-'   ";
+	this->_strings[13]  = "__/\\ .`.     /.^. /     ";
+	this->_strings[14]  = "    \\|`.:   (/   V      ";
+	this->_strings[15]  = "         `   \\          ";
+	this->_strings[16]  = "              |         ";
+	this->_strings[17]  = "              |         ";
+	this->_strings[18]  = "              |         ";
+	this->_strings[19]  = "          \\__/          ";
+	this->_strings[20]  = "_____\\       \\          ";
+	this->_strings[21]  = "|    |\\       \\         ";
+	this->_strings[22]  = "     | `--,    \\        ";
+	this->_strings[23]  = "     |   /      l       ";
+	this->_strings[24]  = "      | (       |       ";
+	this->_strings[25]  = "      |  \\      |       ";
+	this->_strings[26]  = "       \\  `.___/        ";
+	this->_strings[27]  = "\\_______)               ";
 	return ;
 }
 
@@ -47,20 +74,18 @@ std::string const			&PonyModule::getModuleName(void) const
 // * MEMBER FUNCTIONS / METHODS ********************************************* //
 void						PonyModule::refresh_datas(void)
 {
-	// std::cout << "Updating pony datas:  this=" <<
-	// 	((unsigned long long int)this) % 0x1000
-	// 		  << std::endl;
-	time_t		t;
-	char		buffer[100];
-
-	// std::cout << "[PonyModule]() Ctor called" << std::endl;
-	time (&t);
-	std::strftime(buffer, 80, "%a %d %b %y", localtime(&t));
-	this->_strings[0] = buffer;
-	std::strftime(buffer, 80, "%r", localtime(&t));
-	this->_strings[1] = buffer;
-	// this->_strings[0] = "caca";
-	//updated notre vector de strings
+	if (time(NULL) % 2 == 0)
+	{
+		this->_strings[7]  = "( /\\    | |``'.`._|.-:  ";
+		this->_strings[8]  = "|| (\\_  ( (    \\ _ | |  ";
+		this->_strings[9]  = "|| : \\   \\ \\    ))\\ \\j  ";
+	}
+	else
+	{
+		this->_strings[7]  = "( /\\    | |`*'.`._|.*:  ";
+		this->_strings[8]  = "|| (\\_  ( ( *W*\\ _ |W|  ";
+		this->_strings[9]  = "|| : \\   \\ \\ ** ))\\ \\j  ";
+	}
 	return ;
 }
 
