@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:13:13 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/04 14:04:13 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/07 15:23:02 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -97,7 +97,6 @@ int							Window::updateDisplay()
 			(*it)->setPosition(10., y);
 			y += (*it)->getHeight();
 			this->draw(**it);
-			
 		}
 		this->display();
 		return (0);

@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:09:09 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/04 13:48:01 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/07 15:55:42 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -24,10 +24,15 @@ sf::Color const             Module::titleBorderColor = sf::Color(78, 73,
 sf::Color const             Module::titleTextColor = sf::Color(75, 125, 250);
 sf::Color const             Module::mainColor = sf::Color(45, 45, 45);
 sf::Color const             Module::mainBorderColor = sf::Color(100, 100, 100);
+sf::Texture					Module::arrowTexture;
+
 float const					Module::topBoxHeight = 25.f;
 float const					Module::mainBoxContentInset = 10.f;
 float const					Module::stringsBottomPadding = 2.f;
 float const					Module::ModuleBottomPadding = 2.f;
+float const					Module::ArrowSize = 15.f;
+float const					Module::ArrowVertPadding = 5.f;
+float const					Module::ArrowHorizPadding = 5.f;
 
 float						Module::calcMainBoxHeight(
 	ft::IMonitorModule const &module)
@@ -63,6 +68,19 @@ Module::Module(const sf::Vector2f &mainBoxSize,
 	_height(Module::calcModuleFullHeight(*refModule))
 {
 	// stOxd::cout << "[Module](const sf::Vector2f&) Ctor called" << std::endl;
+	this->_arrows[0].setTexture(ftsf::Module::arrowTexture);
+	this->_arrows[0].setColor(sf::Color(255, 255, 255, 220));
+	this->_arrows[0].setTextureRect(sf::IntRect(0,
+												Module::ArrowSize,
+												Module::ArrowSize,
+												-Module::ArrowSize));
+	this->_arrows[1].setTexture(ftsf::Module::arrowTexture);
+	this->_arrows[1].setColor(sf::Color(255, 255, 255, 220));
+	this->_arrows[1].setTextureRect(sf::IntRect(0,
+												0,
+												Module::ArrowSize,
+												Module::ArrowSize));
+
 	this->_topBox.setFillColor(Module::titleColor);
 	this->_topBox.setBorderColor(Module::titleBorderColor);
 	this->_topBox.setBorderSize(3.);
@@ -100,6 +118,12 @@ void						Module::setPosition(const float x, const float y)
 	float		frameY;
 
 	this->_topBox.setPosition(x, y);
+	this->_arrows[0].setPosition(x + this->_topBox.getSize().x -
+								 Module::ArrowHorizPadding -
+								 Module::ArrowSize,
+								 y + Module::ArrowVertPadding);
+	this->_arrows[1].setPosition(x + Module::ArrowHorizPadding,
+								 y + Module::ArrowVertPadding);
 	frameY = y + Module::topBoxHeight;
 	this->_mainBox.setPosition(x, frameY);
 	frameY += Module::mainBoxContentInset;
@@ -121,6 +145,8 @@ void						Module::draw(sf::RenderTarget& target,
 										 sf::RenderStates states) const
 {
 	target.draw(this->_topBox, states);
+	target.draw(this->_arrows[0], states);	
+	target.draw(this->_arrows[1], states);
 	target.draw(this->_mainBox, states);
 
 	for (std::vector<sf::Text>::const_iterator it = this->_stringsFrames.begin();
