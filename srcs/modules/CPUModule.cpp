@@ -6,12 +6,13 @@
 //   By: wide-aze <wide-aze@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/04 15:35:11 by wide-aze          #+#    #+#             //
-//   Updated: 2015/04/04 15:35:12 by wide-aze         ###   ########.fr       //
+//   Updated: 2015/04/07 18:12:12 by wide-aze         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
-#include <ctime>
 #include "CPUModule.hpp"
+#include <sys/types.h>
+#include <sys/sysctl.h>
 
 namespace ft
 {
@@ -50,17 +51,13 @@ void						CPUModule::refresh_datas(void)
 	// std::cout << "Updating cpu datas:  this=" <<
 	// 	((unsigned long long int)this) % 0x1000
 	// 		  << std::endl;
-	time_t		t;
-	char		buffer[100];
-
 	// std::cout << "[CPUModule]() Ctor called" << std::endl;
-	time (&t);
-	std::strftime(buffer, 80, "%a %d %b %y", localtime(&t));
-	this->_strings[0] = buffer;
-	std::strftime(buffer, 80, "%r", localtime(&t));
-	this->_strings[1] = buffer;
-	// this->_strings[0] = "caca";
-	//updated notre vector de strings
+	char buf[100];
+	size_t buflen = 100;
+
+	sysctlbyname("machdep.cpu.brand_string", &buf, &buflen, NULL, 0);
+	// transform here to 2 strings
+	this->_strings[0] = buf;
 	return ;
 }
 
