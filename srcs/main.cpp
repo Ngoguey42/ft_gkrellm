@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 09:58:37 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/04 13:34:06 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/07 15:54:02 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -30,6 +30,7 @@
 #include <modules/RAMModule.hpp>
 #include <modules/PonyModule.hpp>
 #include <ft_sfml/Window.hpp>
+#include <ft_sfml/Module.hpp>
 
 namespace ftsf
 {
@@ -84,14 +85,15 @@ std::vector<ft::IMonitorModule*> &modules)
 static void			put_sfml_displays(std::vector<ft::IMonitorModule*> &modules,
 std::list<ft::IMonitorDisplay*> &displays, int nb)
 {
+	std::cout << "SFML: Loading ..." << std::endl;
+	ftsf::Arial.loadFromFile("srcs/ft_sfml/Liberation.ttf"); //verif !!!!
+	ftsf::Module::arrowTexture.loadFromFile("srcs/ft_sfml/arrow.png");//verif !!!!
 	while (--nb >= 0)
 	{
-		std::cout << "SFML: Loading ..." << std::endl;
-		ftsf::Arial.loadFromFile("srcs/ft_sfml/Liberation.ttf"); //verif
 		displays.push_back(new ftsf::Window(modules,
 				ftsf::Window::calculateWindowSize(modules)));
-		std::cout << "SFML: Finished Loading ..." << std::endl;	
 	}
+	std::cout << "SFML: Finished Loading ..." << std::endl;	
 }
 
 static void			parse_input(int ac, char **av, 
@@ -131,6 +133,10 @@ int					main(int ac, char *av[])
 	
 	try
 	{
+		//fuites memoires ?
+		//fuites memoires ?
+		//fuites memoires ?
+		//fuites memoires ?
 		parse_input(ac, av, modules, displays);
 	}
 	catch (...)
@@ -141,10 +147,13 @@ int					main(int ac, char *av[])
 	}
 	while (displays.size() > 0)
 	{
+		//fuites memoires ?
+		//fuites memoires ?
+		//fuites memoires ?
+		//fuites memoires ?
 		std::for_each(modules.begin(), modules.end(),
 					  std::mem_fun(&ft::IMonitorModule::refresh_datas));
 		displays.remove_if(std::mem_fun(&ft::IMonitorDisplay::updateDisplay));
-		//fuites memoires ?
 		usleep(1000000/24);
 	}
     return (0);

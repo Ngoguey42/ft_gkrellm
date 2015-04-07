@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:09:09 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/04 13:48:01 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/07 16:43:26 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -19,15 +19,19 @@ namespace ftsf
 {
 // * STATICS **************************************************************** //
 sf::Color const             Module::titleColor = sf::Color(0, 0, 0);
-sf::Color const             Module::titleBorderColor = sf::Color(78, 73,
-																 77);
+sf::Color const             Module::titleBorderColor = sf::Color(78, 73, 77);
 sf::Color const             Module::titleTextColor = sf::Color(75, 125, 250);
 sf::Color const             Module::mainColor = sf::Color(45, 45, 45);
 sf::Color const             Module::mainBorderColor = sf::Color(100, 100, 100);
+sf::Texture					Module::arrowTexture;
+
 float const					Module::topBoxHeight = 25.f;
 float const					Module::mainBoxContentInset = 10.f;
 float const					Module::stringsBottomPadding = 2.f;
 float const					Module::ModuleBottomPadding = 2.f;
+float const					Module::ArrowSize = 15.f;
+float const					Module::ArrowVertPadding = 5.f;
+float const					Module::ArrowHorizPadding = 5.f;
 
 float						Module::calcMainBoxHeight(
 	ft::IMonitorModule const &module)
@@ -39,8 +43,6 @@ float						Module::calcMainBoxHeight(
 		 it != module.getStrings().end();
 		 it++)
 		tot += ftsf::getStrHeight(*it) + Module::stringsBottomPadding;
-	// if (tot > 0.f)
-	// 	tot -= Module::stringsBottomPadding;
 	return (tot + Module::mainBoxContentInset * 2.f);
 }
 
@@ -63,6 +65,16 @@ Module::Module(const sf::Vector2f &mainBoxSize,
 	_height(Module::calcModuleFullHeight(*refModule))
 {
 	// stOxd::cout << "[Module](const sf::Vector2f&) Ctor called" << std::endl;
+	this->_arrows[0].setTexture(ftsf::Module::arrowTexture);
+	this->_arrows[0].setColor(sf::Color(255, 255, 255, 220));
+	this->_arrows[0].setTextureRect(
+		sf::IntRect(0, Module::ArrowSize,
+					Module::ArrowSize, -Module::ArrowSize));
+	this->_arrows[1].setTexture(ftsf::Module::arrowTexture);
+	this->_arrows[1].setColor(sf::Color(255, 255, 255, 220));
+	this->_arrows[1].setTextureRect(
+		sf::IntRect(0, 0, Module::ArrowSize, Module::ArrowSize));
+
 	this->_topBox.setFillColor(Module::titleColor);
 	this->_topBox.setBorderColor(Module::titleBorderColor);
 	this->_topBox.setBorderSize(3.);
@@ -100,6 +112,12 @@ void						Module::setPosition(const float x, const float y)
 	float		frameY;
 
 	this->_topBox.setPosition(x, y);
+	this->_arrows[0].setPosition(x + this->_topBox.getSize().x -
+								 Module::ArrowHorizPadding -
+								 Module::ArrowSize,
+								 y + Module::ArrowVertPadding);
+	this->_arrows[1].setPosition(x + Module::ArrowHorizPadding,
+								 y + Module::ArrowVertPadding);
 	frameY = y + Module::topBoxHeight;
 	this->_mainBox.setPosition(x, frameY);
 	frameY += Module::mainBoxContentInset;
@@ -121,32 +139,42 @@ void						Module::draw(sf::RenderTarget& target,
 										 sf::RenderStates states) const
 {
 	target.draw(this->_topBox, states);
+	target.draw(this->_arrows[0], states);	
+	target.draw(this->_arrows[1], states);
 	target.draw(this->_mainBox, states);
-
 	for (std::vector<sf::Text>::const_iterator it = this->_stringsFrames.begin();
 		 it != this->_stringsFrames.end(); it++)
-	{
-		// std::cout << "Calling draw for text" << std::endl;
-		
 		target.draw(*it, states);
-	}
-//refresh toutes nos 'stringsFrames' face aux 'strings' du refModule
 	return ;
 }
 void						Module::refreshStrings(void)
 {
 	std::vector<sf::Text>::iterator itf = this->_stringsFrames.begin();
 	std::vector<std::string>::const_iterator its =
-		this->_refModule->getStrings().begin();
-			
-	for (;
-		 itf != this->_stringsFrames.end() &&
+		this->_refModule->getStrings().begin();			
+	for (;itf != this->_stringsFrames.end() &&
 			 its != this->_refModule->getStrings().end();
 		 itf++, its++)
-	{
 		itf->setString(*its);
-	}
 	return ;
+}
+int							Module::doesCollideArrow(float x, float y)
+{
+	const sf::Vector2f		&a0pos = this->_arrows[0].getPosition();
+
+	if (y > a0pos.y && y < a0pos.y + Module::ArrowSize)
+	{
+		float				a1x = this->_arrows[1].getPosition().x;
+
+		if (x > a1x)
+		{
+			if (x < a1x + Module::ArrowSize)
+				return (1);
+			else if (x > a0pos.x && x < a0pos.x + Module::ArrowSize)
+				return (2);
+		}
+	}
+	return (0);
 }
 
 // * NESTED_CLASSES ********************************************************* //
