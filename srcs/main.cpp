@@ -29,6 +29,7 @@
 #include <modules/OSinfoModule.hpp>
 #include <modules/RAMModule.hpp>
 #include <modules/PonyModule.hpp>
+#include <modules/DiskModule.hpp>
 #include <ft_sfml/Window.hpp>
 #include <ft_sfml/Module.hpp>
 
@@ -46,12 +47,12 @@ float				getStrWidth(sf::Text const &ref)
 		return ((ref.getCharacterSize() - 8) * ret);
 	return ((ref.getCharacterSize() - 5) * ret);
 }
-float                   getStrHeight(std::string const &ref)
+float				getStrHeight(std::string const &ref)
 {
 	(void)ref;
 	return (12.5);
 }
-float                   getStrHeight(sf::Text const &ref)
+float				getStrHeight(sf::Text const &ref)
 {
 	if (ref.getCharacterSize() <= 15)
 		return (12.5);
@@ -80,6 +81,8 @@ std::vector<ft::IMonitorModule*> &modules)
 			modules.push_back(new ft::NetworkModule("Network"));
 		else if (*it == "pony")
 			modules.push_back(new ft::PonyModule("Pony"));
+		else if (*it == "disk")
+			modules.push_back(new ft::DiskModule("Disk"));
 	}
 }
 

@@ -1,77 +1,73 @@
 // ************************************************************************** //
 //                                                                            //
 //                                                        :::      ::::::::   //
-//   RAMModule.cpp                                      :+:      :+:    :+:   //
+//   DiskModule.cpp                                  :+:      :+:    :+:   //
 //                                                    +:+ +:+         +:+     //
-//   By: wide-aze <wide-aze@student.42.fr>          +#+  +:+       +#+        //
+//   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
-//   Created: 2015/04/04 15:40:35 by wide-aze          #+#    #+#             //
-//   Updated: 2015/04/07 20:40:31 by wide-aze         ###   ########.fr       //
+//   Created: 2015/04/03 10:00:45 by ngoguey           #+#    #+#             //
+//   Updated: 2015/04/07 20:42:28 by wide-aze         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
-#include "RAMModule.hpp"
-#include <sys/sysctl.h>
+#include "DiskModule.hpp"
 #include <sys/types.h>
+#include <sys/sysctl.h>
 #include <sstream>
-#include <iomanip>
 
 namespace ft
 {
 // * STATICS **************************************************************** //
 // * CONSTRUCTORS *********************************************************** //
-RAMModule::RAMModule(std::string const &moduleName) :
+DiskModule::DiskModule(std::string const &moduleName) :
 	IMonitorModule(),
 	_strings(),
 	_moduleName(moduleName)
 {
-	// std::cout << "[RAMModule]() Ctor called" << std::endl;
+	// std::cout << "[DiskModule]() Ctor called" << std::endl;
+	this->_strings.push_back("");
 	this->_strings.push_back("");
 	this->_strings.push_back("");
 	return ;
 }
 
 // * DESTRUCTORS ************************************************************ //
-RAMModule::~RAMModule()
+DiskModule::~DiskModule()
 {
-	// std::cout << "[RAMModule]() Dtor called" << std::endl;
+	// std::cout << "[DiskModule]() Dtor called" << std::endl;
 	return ;
 }
 
 // * OPERATORS ************************************************************** //
-std::vector<std::string> const	&RAMModule::getStrings(void) const
+std::vector<std::string> const	&DiskModule::getStrings(void) const
 {return (this->_strings);}
 
-std::string const			&RAMModule::getModuleName(void) const
+std::string const			&DiskModule::getModuleName(void) const
 {return (this->_moduleName);}
 
 // * GETTERS **************************************************************** //
 // * SETTERS **************************************************************** //
 // * MEMBER FUNCTIONS / METHODS ********************************************* //
-void						RAMModule::refresh_datas(void)
+void						DiskModule::refresh_datas(void)
 {
-	// std::cout << "Updating ram datas:  this=" <<
+	// std::cout << "Updating disk datas:  this=" <<
 	// 	((unsigned long long int)this) % 0x1000
 	// 		  << std::endl;
-	// std::cout << "[RAMModule]() Ctor called" << std::endl;
+	std::stringstream   ssbuf;
+	char                charbuf[100];
+	FILE                *stream;
+	std::string			tmp;
 
-	std::stringstream	ssbuf;
-	char				charbuf[100];
-    FILE				*stream;
-	
-	if ((stream = popen("top -l 1 | head -n 10 | grep PhysMem | cut -d' ' -f2", "r")))
+	if((stream = popen("top -l 1 | head -n 10 | grep Disk | cut -d' ' -f2,4", "r")))
 	{
 		while (fgets(charbuf, 100, stream))
 			ssbuf << charbuf;
 		pclose(stream);
-		this->_strings[1] = "Usage: " + ssbuf.str();
-
-		std::stringstream	ram;
-		long long ll;
-		size_t  size = 100;
-		sysctlbyname("hw.memsize", static_cast<int64_t*>(&ll), &size, NULL, 0);
-		ram << static_cast<float>(ll) / static_cast<float>(1024 * 1024 * 1024) * 1000 << "M";
-		this->_strings[0] = "Capacity: " + ram.str();
+		tmp = ssbuf.str();
+		this->_strings[0] = "DATA";
+		this->_strings[1] = "read: " + tmp.substr(0, tmp.find('/'));
+		this->_strings[2] = "write: " + tmp.substr(tmp.find(' ') + 1,
+			tmp.find_last_of('/') - tmp.find(' ') - 1);
 	}
 	return ;
 }

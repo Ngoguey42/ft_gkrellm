@@ -55,7 +55,7 @@ void						TimeModule::refresh_datas(void)
 						localtime(&t));
 	this->_strings[0].assign(buffer, ret);
 	std::strftime(buffer, sizeof(buffer) - 1, "%r", localtime(&t));
-	this->_strings[1].assign(buffer, ret);
+	this->_strings[1].assign(buffer, ret - 2);
 	return ;
 }
 

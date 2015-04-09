@@ -12,6 +12,7 @@ SRCSFILES = \
 	modules/RAMModule.cpp\
 	modules/TimeModule.cpp\
 	modules/PonyModule.cpp\
+	modules/DiskModule.cpp\
 	ft_sfml/RoundedBox.cpp\
 	ft_sfml/DefaultTextBox.cpp\
 	ft_sfml/Background.cpp\
