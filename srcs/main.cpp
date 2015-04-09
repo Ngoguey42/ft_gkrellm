@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 09:58:37 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/07 18:30:18 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/09 08:47:32 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -88,6 +88,8 @@ std::list<ft::IMonitorDisplay*> &displays, int nb)
 {
 	std::cout << "SFML: Loading ..." << std::endl;
 	ftsf::Arial.loadFromFile("srcs/ft_sfml/Liberation.ttf"); //verif !!!!
+	const_cast<sf::Texture&>(ftsf::Arial.getTexture(11U)).setSmooth(false);
+	
 	ftsf::Module::arrowTexture.loadFromFile("srcs/ft_sfml/arrow.png");//verif !!!!
 	while (--nb >= 0)
 	{
