@@ -36,6 +36,8 @@ CPUModule::CPUModule(std::string const &moduleName) :
 	this->_strings[1].assign(this->_strings[0], pos + 1, buflen - pos - 2);
 	this->_strings[0].resize(pos);	
 	this->_strings.push_back("");
+	this->_strings.push_back("");
+	this->_strings.push_back("");
 	return ;
 }
 
@@ -60,13 +62,21 @@ void						CPUModule::refresh_datas(void)
 	std::stringstream   ssbuf;
 	char                charbuf[100];
 	FILE                *stream;
+	std::string			tmp;
 
-	if((stream = popen("top -l 1 | head -n 10 | grep CPU | cut -d' ' -f3", "r")))
+	if((stream = popen("top -l 1 | head -n 10 | grep CPU | cut -d' ' -f3,5,7", "r")))
 	{
 		while (fgets(charbuf, 100, stream))
 			ssbuf << charbuf;
 		pclose(stream);
-		this->_strings[2] = "usage: " + ssbuf.str();
+		tmp = ssbuf.str();
+
+		size_t first = tmp.find(' ');
+		size_t last = tmp.find_last_of(' ');
+
+		this->_strings[2] = "user: " + tmp.substr(0, first);
+		this->_strings[3] = "system: " + tmp.substr(first + 1, last - first - 1);
+		this->_strings[4] = "idle: " + tmp.substr(last + 1);
 	}
 	return ;
 }
