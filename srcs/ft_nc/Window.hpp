@@ -3,60 +3,51 @@
 //                                                        :::      ::::::::   //
 //   Window.hpp                                         :+:      :+:    :+:   //
 //                                                    +:+ +:+         +:+     //
-//   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
+//   By: wide-aze <wide-aze@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
-//   Created: 2015/04/03 09:13:06 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/07 16:51:49 by ngoguey          ###   ########.fr       //
+//   Created: 2015/04/11 16:56:24 by wide-aze          #+#    #+#             //
+//   Updated: 2015/04/11 16:58:15 by wide-aze         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
-#ifndef FTSF_WINDOW_HPP
-# define FTSF_WINDOW_HPP
+#ifndef FTNC_WINDOW_HPP
+# define FTNC_WINDOW_HPP
 
 # include <iostream>
 # include <stdexcept>
 # include <vector>
-# include <SFML/Graphics.hpp>
-
 # include <ft_gkrellm.hpp>
 # include <IMonitorDisplay.hpp>
-# include <ft_sfml/Background.hpp>
-# include <ft_sfml/Module.hpp>
+# include <sys/ioctl.h>
+# include <ncurses.h>
+# include <unistd.h>
 
-namespace ftsf
+namespace ftnc
 {
-class Window : public sf::RenderWindow, public ft::IMonitorDisplay
+class Window : public ft::IMonitorDisplay
 {
+
 public:
-	// * STATICS ******************** //
-	static sf::Vector2f const	backgroundInsets;
-	static float const			firstModulePadding;
-
-	static sf::Vector2f			calculateWindowSize(
-		std::vector<ft::IMonitorModule*> const &modules);
-	
 	// * CTORS / DTORS ************** //
-	Window(std::vector<ft::IMonitorModule*> const &modules,
-		   sf::Vector2f const &winSize);
+	Window(std::vector<ft::IMonitorModule*> const &modules);
 	virtual ~Window();
 
 	// * MEMBER FUNCTIONS / METHODS * //
 	int							updateDisplay();
-	
-protected:
+
 private:
 	Window();
 	Window(Window const &src);
 	Window						&operator=(Window const &rhs);
 
-	void						checkArrowClick(float x, float y);
-	
 	// * ATTRIBUTES ***************** //
-	ftsf::Background			_bg;
 	std::vector<ft::IMonitorModule*> const	&_modules;
-	std::vector<Module*>		_modulesFrames;
+	// std::vector<Module*>		_modulesFrames;
+	struct winsize				w;
+	// std::vector<ftnc::line> &_y;
+
 };
-//std::ostream					&operator<<(std::ostream &o, Window const &rhs);
+
 }
 
-#endif // *************************************************** FTSF_WINDOW_HPP //
+#endif // *************************************************** FTNC_WINDOW_HPP //

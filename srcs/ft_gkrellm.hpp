@@ -37,4 +37,10 @@ class Background;
 class Module;
 }
 
+namespace ftnc
+{
+// class Window;
+class Line;
+}
+
 #endif // **************************************************** FT_GKRELLM_HPP //

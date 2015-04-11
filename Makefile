@@ -17,7 +17,9 @@ SRCSFILES = \
 	ft_sfml/DefaultTextBox.cpp\
 	ft_sfml/Background.cpp\
 	ft_sfml/Window.cpp\
-	ft_sfml/Module.cpp
+	ft_sfml/Module.cpp\
+	ft_nc/Window.cpp\
+	ft_nc/Line.cpp
 
 SRCPATH = srcs
 OBJPATH = obj
@@ -33,7 +35,7 @@ LDENV = DYLD_FRAMEWORK_PATH="$(shell pwd)/SFML/Frameworks"
 # export DYLD_FRAMEWORK_PATH=`pwd`"/SFML/Frameworks"
 
 LIBS =	-framework sfml-graphics -framework sfml-window -framework sfml-system\
-		-F SFML/Frameworks
+		-F SFML/Frameworks -lncurses
 CFLAGS = -Werror -Wall -Wextra -O2 -g
 RM = rm -rf
 

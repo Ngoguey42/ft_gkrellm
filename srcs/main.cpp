@@ -19,6 +19,7 @@
 #include <SFML/Graphics.hpp>
 #include <cstdlib>
 #include <string>
+#include <unistd.h>
 
 #include <ft_gkrellm.hpp>
 #include <modules/IMonitorModule.hpp>
@@ -32,6 +33,7 @@
 #include <modules/DiskModule.hpp>
 #include <ft_sfml/Window.hpp>
 #include <ft_sfml/Module.hpp>
+#include <ft_nc/Window.hpp>
 
 namespace ftsf
 {
@@ -126,9 +128,9 @@ std::list<ft::IMonitorDisplay*> &displays)
 	put_modules(args, modules);
 	if (s)
 		put_sfml_displays(modules, displays, nb);
+	if (n)
+ 		displays.push_back(new ftnc::Window(modules));
 }
-
-#include <unistd.h>
 
 int					main(int ac, char *av[])
 {
@@ -159,7 +161,17 @@ int					main(int ac, char *av[])
 		//fuites memoires ?
 		std::for_each(modules.begin(), modules.end(),
 					  std::mem_fun(&ft::IMonitorModule::refresh_datas));
-		displays.remove_if(std::mem_fun(&ft::IMonitorDisplay::updateDisplay));
+		for (std::list<ft::IMonitorDisplay*>::iterator it = displays.begin();
+			 it != displays.end();)
+		{
+			if ((*it)->updateDisplay() == 1)
+			{
+				delete *it;
+				displays.erase(it);
+			}
+			else
+				it++;
+		}
 		usleep(1000000/24);
 	}
     return (0);
