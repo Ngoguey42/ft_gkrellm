@@ -19,12 +19,12 @@ namespace ft;
 class IMonitorDisplay;
 class IMonitorModule;
 class TimeModule : public IMonitorModule;
-CPUModule.hpp:class CPUModule : public IMonitorModule;
-DiskModule.hpp:class DiskModule : public IMonitorModule;
-HostnameModule.hpp:class HostnameModule : public IMonitorModule;
-NetworkModule.hpp:class NetworkModule : public IMonitorModule;
-OSinfoModule.hpp:class OSinfoModule : public IMonitorModule;
-RAMModule.hpp:class RAMModule : public IMonitorModule;
+class CPUModule : public IMonitorModule;
+class DiskModule : public IMonitorModule;
+class HostnameModule : public IMonitorModule;
+class NetworkModule : public IMonitorModule;
+class OSinfoModule : public IMonitorModule;
+class RAMModule : public IMonitorModule;
 
 namespace ftsf; //ft_sfml
 class Window : public ft::IMonitorDisplay, public sf::RenderWindow; //singleton
