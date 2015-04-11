@@ -62,11 +62,16 @@ Window::~Window()
 int							Window::updateDisplay()
 {
 	int		key;
+	//int		nlines = 0;
 
 	key =getch();
 	if (key == 'q' || key == 'Q')
 		return (1);
-	// printw("aaaaaaaaaaaaaaaaaaaa");
+	clear();
+
+	printw("*****J'AIME LES EXIT******");
+
+	refresh();	
 // 	if (this->isOpen())
 // 	{
 // 		sf::Event	event;
