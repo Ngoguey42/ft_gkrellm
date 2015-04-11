@@ -36,15 +36,14 @@ Window::Window(std::vector<ft::IMonitorModule*> const &modules) :
 	nodelay(stdscr, TRUE);
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, this->w);
 
-
-	for (std::vector<ft::IMonitorModule*>::const_iterator it =
-			 this->_modules.begin();
-		 it != this->_modules.end(); it++)
-	{
-		// this->_modulesFrames.push_back(
-			// new ftnc::Module(winSize - Window::backgroundInsets, *it));
-		
-	}
+	// this->_lines.resize(w.ws_row);
+	// for (std::vector<ft::IMonitorModule*>::const_iterator it =
+	// 		 this->_modules.begin();
+	// 	 it != this->_modules.end(); it++)
+	// {
+	// 	this->_modulesFrames.push_back(
+	// 		new ftnc::Module(winSize - Window::backgroundInsets, *it));
+	// }
 	return ;
 }
 
@@ -54,7 +53,6 @@ Window::~Window()
 	clear();
 	refresh();
 	endwin();
-	exit(0);
 }
 
 // * OPERATORS ************************************************************** //
@@ -68,6 +66,7 @@ int							Window::updateDisplay()
 	key =getch();
 	if (key == 'q' || key == 'Q')
 		return (1);
+	// printw("aaaaaaaaaaaaaaaaaaaa");
 // 	if (this->isOpen())
 // 	{
 // 		sf::Event	event;

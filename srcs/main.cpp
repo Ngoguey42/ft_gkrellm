@@ -91,6 +91,8 @@ std::vector<ft::IMonitorModule*> &modules)
 static void			put_sfml_displays(std::vector<ft::IMonitorModule*> &modules,
 std::list<ft::IMonitorDisplay*> &displays, int nb)
 {
+	if (nb < 1)
+		nb = 1;
 	std::cout << "SFML: Loading ..." << std::endl;
 	ftsf::Arial.loadFromFile("srcs/ft_sfml/Liberation.ttf"); //verif !!!!
 	const_cast<sf::Texture&>(ftsf::Arial.getTexture(11U)).setSmooth(false);

@@ -21,6 +21,7 @@
 # include <sys/ioctl.h>
 # include <ncurses.h>
 # include <unistd.h>
+# include "Line.hpp"
 
 namespace ftnc
 {
@@ -44,7 +45,7 @@ private:
 	std::vector<ft::IMonitorModule*> const	&_modules;
 	// std::vector<Module*>		_modulesFrames;
 	struct winsize				w;
-	// std::vector<ftnc::line> &_y;
+	std::vector<ftnc::Line> _lines;
 
 };
 

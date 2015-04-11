@@ -15,16 +15,17 @@
 namespace ftnc
 {
 
-Line::Line(char bg, int width, const std::string &refstr, bool isDynamic)
+Line::Line(){}
+
+Line::~Line(){}
+
+void	Line::initialize(char bg, int width, const std::string &refstr,
+	bool isDynamic)
 {
 	(void)bg;
 	(void)width;
 	(void)refstr;
 	(void)isDynamic;
-}
-
-Line::~Line()
-{
 }
 
 }

@@ -23,11 +23,11 @@ class Line : public std::string
 {
 
 public:
-	Line(char bg, int width, const std::string &refstr,	bool isDynamic);
+	Line();
 	virtual ~Line();
+	void initialize(char bg, int width, const std::string &refstr,	bool isDynamic);
 
 private:
-	Line();
 	Line(Line const &src);
 	Line						&operator=(Line const &rhs);
 
