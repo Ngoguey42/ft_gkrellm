@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 09:58:37 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/09 08:47:32 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/11 19:34:05 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -165,14 +165,17 @@ int					main(int ac, char *av[])
 					  std::mem_fun(&ft::IMonitorModule::refresh_datas));
 		for (std::list<ft::IMonitorDisplay*>::iterator it = displays.begin();
 			 it != displays.end();)
-		{
+		{			
 			if ((*it)->updateDisplay() == 1)
 			{
 				delete *it;
-				displays.erase(it);
+				it = displays.erase(it);
+				std::cerr << "deleting truc" << std::endl;
+				
 			}
 			else
 				it++;
+			
 		}
 		usleep(1000000/24);
 	}
