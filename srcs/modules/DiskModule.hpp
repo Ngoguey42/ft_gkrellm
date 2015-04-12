@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 10:00:53 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/04 15:37:40 by wide-aze         ###   ########.fr       //
+//   Updated: 2015/04/12 11:14:46 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -25,6 +25,8 @@ class DiskModule : public IMonitorModule
 public:
 	DiskModule(std::string const &moduleName);
 	virtual ~DiskModule();
+
+	static std::string          datas[2];
 	
 	void						refresh_datas(void);
 	std::vector<std::string> const	&getStrings(void) const;

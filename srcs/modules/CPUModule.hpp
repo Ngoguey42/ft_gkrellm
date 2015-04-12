@@ -6,7 +6,7 @@
 //   By: wide-aze <wide-aze@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/04 15:35:01 by wide-aze          #+#    #+#             //
-//   Updated: 2015/04/04 15:35:04 by wide-aze         ###   ########.fr       //
+//   Updated: 2015/04/12 11:11:07 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -25,6 +25,8 @@ class CPUModule : public IMonitorModule
 public:
 	CPUModule(std::string const &moduleName);
 	virtual ~CPUModule();
+
+	static std::string          datas[3];
 	
 	void						refresh_datas(void);
 	std::vector<std::string> const	&getStrings(void) const;
