@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 09:58:37 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/11 19:34:05 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/12 11:47:33 by wide-aze         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -20,6 +20,7 @@
 #include <cstdlib>
 #include <string>
 #include <unistd.h>
+#include <csignal>
 
 #include <ft_gkrellm.hpp>
 #include <modules/IMonitorModule.hpp>
@@ -134,6 +135,15 @@ std::list<ft::IMonitorDisplay*> &displays)
  		displays.push_back(new ftnc::Window(modules));
 }
 
+static void			sig_handler(int toto)
+{
+	(void)toto;
+	clear();
+	refresh();
+	endwin();
+	exit(0);
+}
+
 int					main(int ac, char *av[])
 {
 	std::vector<ft::IMonitorModule*>	modules;
@@ -155,6 +165,7 @@ int					main(int ac, char *av[])
 		return (1);
 	
 	}
+	signal(SIGINT, &sig_handler);
 	while (displays.size() > 0)
 	{
 		//fuites memoires ?
