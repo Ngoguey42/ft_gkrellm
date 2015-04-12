@@ -6,7 +6,7 @@
 //   By: wide-aze <wide-aze@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/04 15:35:11 by wide-aze          #+#    #+#             //
-//   Updated: 2015/04/07 20:40:22 by wide-aze         ###   ########.fr       //
+//   Updated: 2015/04/12 11:29:00 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -18,6 +18,8 @@
 namespace ft
 {
 // * STATICS **************************************************************** //
+std::string					CPUModule::datas[3] = {"", "", ""};
+
 // * CONSTRUCTORS *********************************************************** //
 CPUModule::CPUModule(std::string const &moduleName) :
 	IMonitorModule(),
@@ -59,25 +61,9 @@ std::string const			&CPUModule::getModuleName(void) const
 // * MEMBER FUNCTIONS / METHODS ********************************************* //
 void						CPUModule::refresh_datas(void)
 {
-	std::stringstream   ssbuf;
-	char                charbuf[100];
-	FILE                *stream;
-	std::string			tmp;
-
-	if((stream = popen("top -l 1 | head -n 10 | grep CPU | cut -d' ' -f3,5,7", "r")))
-	{
-		while (fgets(charbuf, 100, stream))
-			ssbuf << charbuf;
-		pclose(stream);
-		tmp = ssbuf.str();
-
-		size_t first = tmp.find(' ');
-		size_t last = tmp.find_last_of(' ');
-
-		this->_strings[2] = "user: " + tmp.substr(0, first);
-		this->_strings[3] = "system: " + tmp.substr(first + 1, last - first - 1);
-		this->_strings[4] = "idle: " + tmp.substr(last + 1);
-	}
+	this->_strings[2] = "user: " + CPUModule::datas[0];
+	this->_strings[3] = "system: " + CPUModule::datas[1];
+	this->_strings[4] = "idle: " + CPUModule::datas[2];
 	return ;
 }
 

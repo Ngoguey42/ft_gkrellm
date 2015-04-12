@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 10:00:45 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/07 20:42:28 by wide-aze         ###   ########.fr       //
+//   Updated: 2015/04/12 11:22:20 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -18,6 +18,8 @@
 namespace ft
 {
 // * STATICS **************************************************************** //
+std::string					DiskModule::datas[2] = {"", ""};
+
 // * CONSTRUCTORS *********************************************************** //
 DiskModule::DiskModule(std::string const &moduleName) :
 	IMonitorModule(),
@@ -25,7 +27,7 @@ DiskModule::DiskModule(std::string const &moduleName) :
 	_moduleName(moduleName)
 {
 	// std::cout << "[DiskModule]() Ctor called" << std::endl;
-	this->_strings.push_back("");
+	this->_strings.push_back("DATA");
 	this->_strings.push_back("");
 	this->_strings.push_back("");
 	return ;
@@ -50,25 +52,8 @@ std::string const			&DiskModule::getModuleName(void) const
 // * MEMBER FUNCTIONS / METHODS ********************************************* //
 void						DiskModule::refresh_datas(void)
 {
-	// std::cout << "Updating disk datas:  this=" <<
-	// 	((unsigned long long int)this) % 0x1000
-	// 		  << std::endl;
-	std::stringstream   ssbuf;
-	char                charbuf[100];
-	FILE                *stream;
-	std::string			tmp;
-
-	if((stream = popen("top -l 1 | head -n 10 | grep Disk | cut -d' ' -f2,4", "r")))
-	{
-		while (fgets(charbuf, 100, stream))
-			ssbuf << charbuf;
-		pclose(stream);
-		tmp = ssbuf.str();
-		this->_strings[0] = "DATA";
-		this->_strings[1] = "read: " + tmp.substr(0, tmp.find('/'));
-		this->_strings[2] = "write: " + tmp.substr(tmp.find(' ') + 1,
-			tmp.find_last_of('/') - tmp.find(' ') - 1);
-	}
+	this->_strings[1] = "read: " + DiskModule::datas[0];
+	this->_strings[2] = "write: " + DiskModule::datas[1];
 	return ;
 }
 

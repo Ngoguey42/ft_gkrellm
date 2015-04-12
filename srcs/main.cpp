@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 09:58:37 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/11 19:34:05 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/12 11:26:43 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -41,7 +41,7 @@ sf::Font			Arial;
 float				getStrWidth(sf::Text const &ref)
 {
 	float			ret = static_cast<std::string const&>(ref.getString())
-	.length();
+		.length();
 
 	if (ref.getCharacterSize() <= 12)
 		return ((ref.getCharacterSize() - 4)) * ret;
@@ -64,7 +64,7 @@ float				getStrHeight(sf::Text const &ref)
 }
 
 static void			put_modules(std::vector<std::string> &args,
-std::vector<ft::IMonitorModule*> &modules)
+								std::vector<ft::IMonitorModule*> &modules)
 {
 	for (std::vector<std::string>::iterator it = args.begin(); it != args.end(); it++)
 	{
@@ -89,7 +89,7 @@ std::vector<ft::IMonitorModule*> &modules)
 }
 
 static void			put_sfml_displays(std::vector<ft::IMonitorModule*> &modules,
-std::list<ft::IMonitorDisplay*> &displays, int nb)
+									  std::list<ft::IMonitorDisplay*> &displays, int nb)
 {
 	if (nb < 1)
 		nb = 1;
@@ -101,14 +101,14 @@ std::list<ft::IMonitorDisplay*> &displays, int nb)
 	while (--nb >= 0)
 	{
 		displays.push_back(new ftsf::Window(modules,
-				ftsf::Window::calculateWindowSize(modules)));
+											ftsf::Window::calculateWindowSize(modules)));
 	}
 	std::cout << "SFML: Finished Loading ..." << std::endl;	
 }
 
 static void			parse_input(int ac, char **av, 
-std::vector<ft::IMonitorModule*> &modules,
-std::list<ft::IMonitorDisplay*> &displays)
+								std::vector<ft::IMonitorModule*> &modules,
+								std::list<ft::IMonitorDisplay*> &displays)
 {
 	if (ac <= 1 || av[1][0] != '-')
 		throw std::exception();
@@ -133,6 +133,86 @@ std::list<ft::IMonitorDisplay*> &displays)
 	if (n)
  		displays.push_back(new ftnc::Window(modules));
 }
+
+#include <sstream>
+#include <cstring>
+
+static void					queryTop(void)
+{
+	FILE                *stream;
+
+	if ((stream = popen("top -l 1 | head", "r")))
+	{
+		char                charbuf[256];
+		size_t				pos;
+		
+		if (fgets(charbuf, 256, stream) == NULL)
+			return ;
+		if (fgets(charbuf, 256, stream) == NULL)
+			return ;
+		if (fgets(charbuf, 256, stream) == NULL)
+			return ;
+		if (fgets(charbuf, 256, stream) == NULL)
+			return ;
+		//cpu
+		pos = std::strcspn(charbuf, " ") + 1;
+		pos += std::strcspn(charbuf + pos, " ") + 1;
+		ft::CPUModule::datas[0].assign(charbuf, pos, std::strcspn(charbuf + pos, " "));
+		// std::cerr << "{" << ft::CPUModule::datas[0] << "}" <<  std::endl;
+		pos += std::strcspn(charbuf + pos, " ") + 1;
+		pos += std::strcspn(charbuf + pos, " ") + 1;
+		ft::CPUModule::datas[1].assign(charbuf, pos, std::strcspn(charbuf + pos, " "));
+		// std::cerr << "{" << ft::CPUModule::datas[1] << "}" <<  std::endl;
+		pos += std::strcspn(charbuf + pos, " ") + 1;
+		pos += std::strcspn(charbuf + pos, " ") + 1;
+		ft::CPUModule::datas[2].assign(charbuf, pos, std::strcspn(charbuf + pos, " "));
+		// std::cerr << "{" << ft::CPUModule::datas[2] << "}" <<  std::endl;
+
+
+		if (fgets(charbuf, 256, stream) == NULL)
+			return ;
+		if (fgets(charbuf, 256, stream) == NULL)
+			return ;
+		if (fgets(charbuf, 256, stream) == NULL)
+			return ;
+		//physmem
+		pos = std::strcspn(charbuf, " ") + 1;
+		ft::RAMModule::datas[0].assign(charbuf, pos, std::strcspn(charbuf + pos, " "));
+		// std::cerr << "{" << ft::RAMModule::datas[0] << "}" <<  std::endl;
+
+
+		if (fgets(charbuf, 256, stream) == NULL)
+			return ;
+		if (fgets(charbuf, 256, stream) == NULL)
+			return ;
+		//netwo
+		pos = std::strcspn(charbuf, " ") + 1;
+		pos += std::strcspn(charbuf + pos, " ") + 1;
+		ft::NetworkModule::datas[0].assign(charbuf, pos, std::strcspn(charbuf + pos, "/"));
+		// std::cerr << "{" << ft::NetworkModule::datas[0] << "}" <<  std::endl;
+		pos += std::strcspn(charbuf + pos, " ") + 1;
+		pos += std::strcspn(charbuf + pos, " ") + 1;
+		ft::NetworkModule::datas[1].assign(charbuf, pos, std::strcspn(charbuf + pos, "/"));
+		// std::cerr << "{" << ft::NetworkModule::datas[1] << "}" <<  std::endl;
+
+
+		if (fgets(charbuf, 256, stream) == NULL)
+			return ;
+		//disks
+		pos = std::strcspn(charbuf, " ") + 1;
+		ft::DiskModule::datas[0].assign(charbuf, pos, std::strcspn(charbuf + pos, "/"));
+		// std::cerr << "{" << ft::DiskModule::datas[0] << "}" <<  std::endl;
+		pos += std::strcspn(charbuf + pos, " ") + 1;
+		pos += std::strcspn(charbuf + pos, " ") + 1;
+		ft::DiskModule::datas[1].assign(charbuf, pos, std::strcspn(charbuf + pos, "/"));
+		// std::cerr << "{" << ft::DiskModule::datas[1] << "}" <<  std::endl;
+		// std::cerr << charbuf << std::endl;
+		pclose(stream);
+		
+	}
+	return ;
+}
+
 
 int					main(int ac, char *av[])
 {
@@ -161,8 +241,10 @@ int					main(int ac, char *av[])
 		//fuites memoires ?
 		//fuites memoires ?
 		//fuites memoires ?
+		::queryTop();
 		std::for_each(modules.begin(), modules.end(),
-					  std::mem_fun(&ft::IMonitorModule::refresh_datas));
+					  std::mem_fun(&ft::IMonitorModule::refresh_datas)
+			);
 		for (std::list<ft::IMonitorDisplay*>::iterator it = displays.begin();
 			 it != displays.end();)
 		{			
@@ -177,7 +259,7 @@ int					main(int ac, char *av[])
 				it++;
 			
 		}
-		usleep(1000000/24);
+		usleep(1000000/3);
 	}
     return (0);
 }
