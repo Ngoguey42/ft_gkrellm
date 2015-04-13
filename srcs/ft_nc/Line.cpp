@@ -19,13 +19,25 @@ Line::Line(){}
 
 Line::~Line(){}
 
-void	Line::initialize(char bg, int width, const std::string &refstr,
+void			Line::initialize(char bg, int width, const std::string &refstr,
 	bool isDynamic)
 {
-	(void)bg;
-	(void)width;
-	(void)refstr;
-	(void)isDynamic;
+	this->_bg = bg;
+	this->_width = width;
+	this->_refstr = &refstr;
+	this->_isDynamic = isDynamic;
+	this->_update();
+}
+
+void			Line::update(void)
+{
+	if (this->_isDynamic == true)
+		this->_update();
+}
+
+void			Line::_update(void)
+{
+	
 }
 
 }

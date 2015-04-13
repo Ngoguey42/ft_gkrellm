@@ -21,14 +21,8 @@ namespace ftnc
 
 // * CONSTRUCTORS *********************************************************** //
 Window::Window(std::vector<ft::IMonitorModule*> const &modules) :
-// 	sf::RenderWindow(sf::VideoMode(winSize.x, winSize.y),
-// 					 "ft_gkrellm",
-// 					 sf::Style::Default ^ sf::Style::Resize,
-// 					 sf::ContextSettings(0, 0, 8)),
 	ft::IMonitorDisplay(),
-// 	_bg(winSize - Window::backgroundInsets),
 	_modules(modules)
-	// _modulesFrames()
 {
 	initscr();
 	noecho();
@@ -36,14 +30,11 @@ Window::Window(std::vector<ft::IMonitorModule*> const &modules) :
 	nodelay(stdscr, TRUE);
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, this->w);
 
-	// this->_lines.resize(w.ws_row);
-	// for (std::vector<ft::IMonitorModule*>::const_iterator it =
-	// 		 this->_modules.begin();
-	// 	 it != this->_modules.end(); it++)
-	// {
-	// 	this->_modulesFrames.push_back(
-	// 		new ftnc::Module(winSize - Window::backgroundInsets, *it));
-	// }
+// 	it sur chaque module qui it sur chaque ligne pour appeler Line::initialize pour chaque ligne
+
+//	std::vector<std::string> const	&getStrings(void) const;
+//	std::string const			&getModuleName(void) const;
+	this->_lines.resize(w.ws_row);
 	return ;
 }
 
@@ -62,45 +53,22 @@ Window::~Window()
 int							Window::updateDisplay()
 {
 	int		key;
-	//int		nlines = 0;
+	// int		nlines = 0;
 
-	key =getch();
+	key = getch();
 	if (key == 'q' || key == 'Q')
 		return (1);
 	clear();
 
-	printw("*****J'AIME LES EXIT******");
+	for (std::vector<ftnc::Line*>::iterator it = this->_lines.begin();
+		it != this->_lines.end(); it++)
+	{
+		(*it)->update();
+	}
+	printw("toto");
 
-	refresh();	
-// 	if (this->isOpen())
-// 	{
-// 		sf::Event	event;
-// 		float		y;
-
-// 		while (this->pollEvent(event))
-// 		{
-// 			if (event.type == sf::Event::Closed)
-// 				this->close();
-// 			else if (event.type == sf::Event::MouseButtonPressed &&
-// 					 event.mouseButton.button == sf::Mouse::Left)
-// 				this->checkArrowClick(event.mouseButton.x, event.mouseButton.y);
-// 		}
-// 		this->clear();
-// 		this->draw(this->_bg);
-// 		y = Window::firstModulePadding + Window::backgroundInsets.y / 2.f+
-// 			Background::titleHeight;
-// 		for (std::vector<Module*>::iterator it = this->_modulesFrames.begin();
-// 			 it != this->_modulesFrames.end(); it++)
-// 		{
-// 			(*it)->refreshStrings();
-// 			(*it)->setPosition(10., y);
-// 			y += (*it)->getHeight();
-// 			this->draw(**it);
-// 		}
-// 		this->display();
-		return (0);
-// 	}	
-	// return (1);
+	refresh();
+	return (0);
 }
 
 }

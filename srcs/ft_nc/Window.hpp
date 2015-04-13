@@ -42,10 +42,9 @@ private:
 	Window						&operator=(Window const &rhs);
 
 	// * ATTRIBUTES ***************** //
-	std::vector<ft::IMonitorModule*> const	&_modules;
-	// std::vector<Module*>		_modulesFrames;
-	struct winsize				w;
-	std::vector<ftnc::Line> _lines;
+	const std::vector<ft::IMonitorModule*>	&_modules;
+	struct winsize							w;
+	std::vector<ftnc::Line*>				_lines;
 
 };
 

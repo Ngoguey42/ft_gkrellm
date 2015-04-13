@@ -25,15 +25,22 @@ class Line : public std::string
 public:
 	Line();
 	virtual ~Line();
-	void initialize(char bg, int width, const std::string &refstr,	bool isDynamic);
+
+	void				initialize(char bg, int width, const std::string &refstr,
+		bool isDynamic);
+	void				update(void);
 
 private:
 	Line(Line const &src);
-	Line						&operator=(Line const &rhs);
+	Line				&operator=(Line const &rhs);
 
+	void				_update(void);
+
+	char				_bg;
+	int					_width;
+	const std::string	*_refstr;
+	bool				_isDynamic;
 };
-
-//std::ostream					&operator<<(std::ostream &o, Line const &rhs);
 
 }
 
