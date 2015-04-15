@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 09:58:37 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/15 15:39:52 by wide-aze         ###   ########.fr       //
+//   Updated: 2015/04/15 15:45:25 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -74,7 +74,7 @@ static void					queryTop(void)
 		
 		if (fgets(charbuf, 256, stream) == NULL)
 			return ;
-		//processes
+		// processes
 		pos = std::strcspn(charbuf, " ") + 1;
 		ft::ProcessesModule::datas[0].assign(charbuf, pos, std::strcspn(charbuf + pos, ","));
 		pos += std::strcspn(charbuf + pos, " ") + 1;
@@ -85,6 +85,10 @@ static void					queryTop(void)
 		ft::ProcessesModule::datas[1].assign(charbuf, pos, pos2);
 
 		ft::ProcessesModule::datas[2].assign(charbuf, pos, pos2);
+		// (void)pos2;
+		// ft::ProcessesModule::datas[0] = "";
+		// ft::ProcessesModule::datas[1] = "";
+		// ft::ProcessesModule::datas[2] = "";
 //		pos += std::strcspn(charbuf + pos, " ") + 1;
 //		pos += std::strcspn(charbuf + pos, " ") + 1;
 //		ft::ProcessesModule::datas[2].assign(charbuf, pos, std::strcspn(charbuf + pos, " "));
@@ -96,7 +100,7 @@ static void					queryTop(void)
 		if (fgets(charbuf, 256, stream) == NULL)
 			return ;
 		//cpu
-
+		pos = std::strcspn(charbuf, " ") + 1;
 		pos += std::strcspn(charbuf + pos, " ") + 1;
 		ft::CPUModule::datas[0].assign(charbuf, pos, std::strcspn(charbuf + pos, " "));
 		// std::cerr << "{" << ft::CPUModule::datas[0] << "}" <<  std::endl;
