@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 09:58:37 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/15 15:45:25 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/15 15:55:58 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -70,7 +70,7 @@ static void					queryTop(void)
 	{
 		char                charbuf[256];
 		size_t				pos;
-		size_t				pos2;
+		size_t				len;
 		
 		if (fgets(charbuf, 256, stream) == NULL)
 			return ;
@@ -79,19 +79,13 @@ static void					queryTop(void)
 		ft::ProcessesModule::datas[0].assign(charbuf, pos, std::strcspn(charbuf + pos, ","));
 		pos += std::strcspn(charbuf + pos, " ") + 1;
 		pos += std::strcspn(charbuf + pos, " ") + 1;
-		pos2 = std::strcspn(charbuf + pos, ",") + 1;
-		pos2 += std::strcspn(charbuf + pos2, ",") + 1;
-		pos2 += std::strcspn(charbuf + pos2, ",") + 1;
-		ft::ProcessesModule::datas[1].assign(charbuf, pos, pos2);
-
-		ft::ProcessesModule::datas[2].assign(charbuf, pos, pos2);
-		// (void)pos2;
-		// ft::ProcessesModule::datas[0] = "";
-		// ft::ProcessesModule::datas[1] = "";
-		// ft::ProcessesModule::datas[2] = "";
-//		pos += std::strcspn(charbuf + pos, " ") + 1;
-//		pos += std::strcspn(charbuf + pos, " ") + 1;
-//		ft::ProcessesModule::datas[2].assign(charbuf, pos, std::strcspn(charbuf + pos, " "));
+		len = std::strcspn(charbuf + pos, ",") + 1;
+		len += std::strcspn(charbuf + len, ",") + 1;
+		len += std::strcspn(charbuf + len, ",") + 2;
+		ft::ProcessesModule::datas[1].assign(charbuf, pos, len);
+		pos += len + 2;
+		len  = std::strcspn(charbuf + pos, "\0") - 2;
+		ft::ProcessesModule::datas[2].assign(charbuf, pos, len);
 
 		if (fgets(charbuf, 256, stream) == NULL)
 			return ;
