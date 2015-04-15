@@ -3,6 +3,7 @@ NAME = ft_gkrellm
 
 SRCSFILES = \
 			main.cpp\
+			parser.cpp\
 			IMonitorDisplay.cpp\
 	modules/IMonitorModule.cpp\
 	modules/CPUModule.cpp\

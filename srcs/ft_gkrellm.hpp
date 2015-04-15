@@ -6,12 +6,15 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 10:48:04 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/04 13:33:53 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/15 12:56:52 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
 #ifndef FT_GKRELLM_HPP
 # define FT_GKRELLM_HPP
+
+#include <vector>
+#include <list>
 
 # include <SFML/Graphics.hpp>
 # include <IMonitorDisplay.hpp>
@@ -21,6 +24,9 @@ namespace ft
 {
 class IMonitorDisplay;
 class IMonitorModule;
+void					parse_input(int ac, char **av,
+								   std::vector<ft::IMonitorModule*> &modules,
+								   std::list<ft::IMonitorDisplay*> &displays);
 }
 
 namespace ftsf
