@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 09:58:37 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/15 15:55:58 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/15 16:32:23 by wide-aze         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -79,9 +79,8 @@ static void					queryTop(void)
 		ft::ProcessesModule::datas[0].assign(charbuf, pos, std::strcspn(charbuf + pos, ","));
 		pos += std::strcspn(charbuf + pos, " ") + 1;
 		pos += std::strcspn(charbuf + pos, " ") + 1;
-		len = std::strcspn(charbuf + pos, ",") + 1;
-		len += std::strcspn(charbuf + len, ",") + 1;
-		len += std::strcspn(charbuf + len, ",") + 2;
+		len = std::strcspn(charbuf + pos, ",") + 1 ;
+		len += std::strcspn(charbuf + pos + len, ",");
 		ft::ProcessesModule::datas[1].assign(charbuf, pos, len);
 		pos += len + 2;
 		len  = std::strcspn(charbuf + pos, "\0") - 2;
