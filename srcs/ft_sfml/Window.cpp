@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:13:13 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/11 19:26:40 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/15 18:41:33 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -47,6 +47,12 @@ Window::Window(std::vector<ft::IMonitorModule*> const &modules,
 	_modules(modules),
 	_modulesFrames()
 {
+	if (winSize.y > 15000)
+	{
+		std::cout << "Window too large" << std::endl;
+		exit(1);
+	}
+	
 	for (std::vector<ft::IMonitorModule*>::const_iterator it =
 			 this->_modules.begin();
 		 it != this->_modules.end(); it++)
