@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 09:58:37 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/15 16:57:55 by wide-aze         ###   ########.fr       //
+//   Updated: 2015/04/15 17:13:55 by wide-aze         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -22,6 +22,7 @@
 #include <modules/DiskModule.hpp>
 #include <modules/ProcessesModule.hpp>
 #include <modules/VMModule.hpp>
+#include <modules/MemRegionsModule.hpp>
 #include <ft_sfml/Window.hpp>
 #include <ft_sfml/Module.hpp>
 #include <ft_nc/Window.hpp>
@@ -106,6 +107,23 @@ static void					queryTop(void)
 			return ;
 		if (fgets(charbuf, 256, stream) == NULL)
 			return ;
+		// MemRegions
+		pos = std::strcspn(charbuf, " ") + 1;
+		ft::MemRegionsModule::datas[0].assign(charbuf, pos, std::strcspn(charbuf + pos, ","));
+		pos += std::strcspn(charbuf + pos, " ") + 1;
+		pos += std::strcspn(charbuf + pos, " ") + 1;
+		len = std::strcspn(charbuf + pos, ",");
+		ft::MemRegionsModule::datas[1].assign(charbuf, pos, len);
+		pos += len + 2;
+		len  = std::strcspn(charbuf + pos, "\0") - 2;
+		ft::MemRegionsModule::datas[2].assign(charbuf, pos, len);
+		if (fgets(charbuf, 256, stream) == NULL)
+			return ;
+		//physmem
+		pos = std::strcspn(charbuf, " ") + 1;
+		ft::RAMModule::datas[0].assign(charbuf, pos, std::strcspn(charbuf + pos, " "));
+		if (fgets(charbuf, 256, stream) == NULL)
+			return ;
 		// VM
 		pos = std::strcspn(charbuf, " ") + 1;
 		ft::VMModule::datas[0].assign(charbuf, pos, std::strcspn(charbuf + pos, ","));
@@ -116,14 +134,6 @@ static void					queryTop(void)
 		pos += len + 2;
 		len  = std::strcspn(charbuf + pos, "\0") - 2;
 		ft::VMModule::datas[2].assign(charbuf, pos, len);
-
-		if (fgets(charbuf, 256, stream) == NULL)
-			return ;
-		//physmem
-		pos = std::strcspn(charbuf, " ") + 1;
-		ft::RAMModule::datas[0].assign(charbuf, pos, std::strcspn(charbuf + pos, " "));
-		if (fgets(charbuf, 256, stream) == NULL)
-			return ;
 		if (fgets(charbuf, 256, stream) == NULL)
 			return ;
 		//network
@@ -142,7 +152,6 @@ static void					queryTop(void)
 		pos += std::strcspn(charbuf + pos, " ") + 1;
 		ft::DiskModule::datas[1].assign(charbuf, pos, std::strcspn(charbuf + pos, "/"));
 		pclose(stream);
-		
 	}
 	return ;
 }
@@ -156,7 +165,7 @@ int					main(int ac, char *av[])
 		ft::parse_input(ac, av, modules, displays);	
 	if (displays.size() < 1)
 		std::cout << "./ft_gkrellm -[ns] " <<
-			"hostname|osinfo|time|cpu|ram|network|disk|pony|processes|vm" << std::endl;
+			"hostname|osinfo|time|cpu|ram|network|disk|pony|processes|memregions|vm" << std::endl;
 	signal(SIGINT, &sig_handler);	
 	while (displays.size() > 0)
 	{

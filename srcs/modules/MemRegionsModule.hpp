@@ -1,7 +1,7 @@
 // ************************************************************************** //
 //                                                                            //
 //                                                        :::      ::::::::   //
-//   ProcessesModule.hpp                                :+:      :+:    :+:   //
+//   MemRegionsModule.hpp                               :+:      :+:    :+:   //
 //                                                    +:+ +:+         +:+     //
 //   By: wide-aze <wide-aze@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
@@ -10,19 +10,19 @@
 //                                                                            //
 // ************************************************************************** //
 
-#ifndef PROCESSESMODULE_HPP
-# define PROCESSESMODULE_HPP
+#ifndef MEMREGIONSMODULE_HPP
+# define MEMREGIONSMODULE_HPP
 
 # include <Vector>
 # include <modules/IMonitorModule.hpp>
 
 namespace ft
 {
-class ProcessesModule : public IMonitorModule
+class MemRegionsModule : public IMonitorModule
 {
 public:
-	ProcessesModule(std::string const &moduleName);
-	virtual ~ProcessesModule();
+	MemRegionsModule(std::string const &moduleName);
+	virtual ~MemRegionsModule();
 
 	static std::string          datas[3];
 	
@@ -32,9 +32,9 @@ public:
 	
 protected:
 private:
-	ProcessesModule();
-	ProcessesModule(ProcessesModule const &src);
-	ProcessesModule					&operator=(ProcessesModule const &rhs);
+	MemRegionsModule();
+	MemRegionsModule(MemRegionsModule const &src);
+	MemRegionsModule					&operator=(MemRegionsModule const &rhs);
 
 	std::vector<std::string>	_strings;
 	std::string const			_moduleName;
@@ -42,4 +42,4 @@ private:
 };
 }
 
-#endif // *********************************************** PROCESSESMODULE_HPP //
+#endif // ********************************************** MEMREGIONSMODULE_HPP //

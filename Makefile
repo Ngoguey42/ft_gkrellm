@@ -16,6 +16,7 @@ SRCSFILES = \
 	modules/DiskModule.cpp\
 	modules/ProcessesModule.cpp\
 	modules/VMModule.cpp\
+	modules/MemRegionsModule.cpp\
 	ft_sfml/RoundedBox.cpp\
 	ft_sfml/DefaultTextBox.cpp\
 	ft_sfml/Background.cpp\

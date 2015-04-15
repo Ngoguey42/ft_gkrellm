@@ -26,17 +26,6 @@ ProcessesModule::ProcessesModule(std::string const &moduleName) :
 	_strings(),
 	_moduleName(moduleName)
 {
-//	char			buf[100];
-//	size_t			buflen = 100;
-//	size_t			pos;
-
-/*	this->_strings.resize(2);
-	sysctlbyname("machdep.cpu.brand_string", &buf, &buflen, NULL, 0);
-	pos = buflen;
-	this->_strings[0].assign(buf, pos);
-	pos = this->_strings[0].find(" ", this->_strings[0].find(" ") + 1);
-	this->_strings[1].assign(this->_strings[0], pos + 1, buflen - pos - 2);
-	this->_strings[0].resize(pos);*/	
 	this->_strings.push_back("");
 	this->_strings.push_back("");
 	this->_strings.push_back("");

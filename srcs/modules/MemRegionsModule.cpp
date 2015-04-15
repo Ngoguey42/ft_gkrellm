@@ -1,7 +1,7 @@
 // ************************************************************************** //
 //                                                                            //
 //                                                        :::      ::::::::   //
-//   VMModule.cpp                                       :+:      :+:    :+:   //
+//   MemRegionsModule.cpp                               :+:      :+:    :+:   //
 //                                                    +:+ +:+         +:+     //
 //   By: wide-aze <wide-aze@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
@@ -10,7 +10,7 @@
 //                                                                            //
 // ************************************************************************** //
 
-#include "VMModule.hpp"
+#include "MemRegionsModule.hpp"
 #include <sys/types.h>
 #include <sys/sysctl.h>
 #include <sstream>
@@ -18,10 +18,10 @@
 namespace ft
 {
 // * STATICS **************************************************************** //
-std::string					VMModule::datas[3] = {"", "", ""};
+std::string					MemRegionsModule::datas[3] = {"", "", ""};
 
 // * CONSTRUCTORS *********************************************************** //
-VMModule::VMModule(std::string const &moduleName) :
+MemRegionsModule::MemRegionsModule(std::string const &moduleName) :
 	IMonitorModule(),
 	_strings(),
 	_moduleName(moduleName)
@@ -33,26 +33,26 @@ VMModule::VMModule(std::string const &moduleName) :
 }
 
 // * DESTRUCTORS ************************************************************ //
-VMModule::~VMModule()
+MemRegionsModule::~MemRegionsModule()
 {
 	return ;
 }
 
 // * OPERATORS ************************************************************** //
-std::vector<std::string> const	&VMModule::getStrings(void) const
+std::vector<std::string> const	&MemRegionsModule::getStrings(void) const
 {return (this->_strings);}
 
-std::string const			&VMModule::getModuleName(void) const
+std::string const			&MemRegionsModule::getModuleName(void) const
 {return (this->_moduleName);}
 
 // * GETTERS **************************************************************** //
 // * SETTERS **************************************************************** //
 // * MEMBER FUNCTIONS / METHODS ********************************************* //
-void						VMModule::refresh_datas(void)
+void						MemRegionsModule::refresh_datas(void)
 {
-	this->_strings[0] = VMModule::datas[0];
-	this->_strings[1] = VMModule::datas[1];
-	this->_strings[2] = VMModule::datas[2];
+	this->_strings[0] = MemRegionsModule::datas[0];
+	this->_strings[1] = MemRegionsModule::datas[1];
+	this->_strings[2] = MemRegionsModule::datas[2];
 	return ;
 }
 
