@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 09:58:37 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/15 13:01:51 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/15 14:33:21 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -141,24 +141,13 @@ int					main(int ac, char *av[])
 {
 	std::vector<ft::IMonitorModule*>	modules;
 	std::list<ft::IMonitorDisplay*>		displays;
-	//on peut foutre autant de sfml qu'on veut dans le liste et ca fonctionne
-	//penser bonus
-	
-	try
-	{
-		//fuites memoires ?
-		//fuites memoires ?
-		//fuites memoires ?
-		//fuites memoires ?
-		ft::parse_input(ac, av, modules, displays);
-	}
-	catch (...)
-	{
-		std::cout << "error" << std::endl;
-		return (1);
-	
-	}
-	signal(SIGINT, &sig_handler);
+
+	if (!(ac <= 1 || av[1][0] != '-'))
+		ft::parse_input(ac, av, modules, displays);	
+	if (displays.size() < 1)
+		std::cout << "./ft_gkrellm -[ns] " <<
+			"hostname|osinfo|time|cpu|ram|network|disk|pony" << std::endl;
+	signal(SIGINT, &sig_handler);	
 	while (displays.size() > 0)
 	{
 		//fuites memoires ?

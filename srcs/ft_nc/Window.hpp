@@ -6,7 +6,7 @@
 //   By: wide-aze <wide-aze@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/11 16:56:24 by wide-aze          #+#    #+#             //
-//   Updated: 2015/04/11 16:58:15 by wide-aze         ###   ########.fr       //
+//   Updated: 2015/04/15 13:52:00 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -29,6 +29,10 @@ class Window : public ft::IMonitorDisplay
 {
 
 public:
+
+	// * NESTED OBJECTS ************* //
+	// pour willy wonka
+	
 	// * CTORS / DTORS ************** //
 	Window(std::vector<ft::IMonitorModule*> const &modules);
 	virtual ~Window();
@@ -36,15 +40,21 @@ public:
 	// * MEMBER FUNCTIONS / METHODS * //
 	int							updateDisplay();
 
+
+	
 private:
+	void                        _pushLine(char bg,
+										  const std::string &refstr,
+										  bool isDynamic);
 	Window();
 	Window(Window const &src);
 	Window						&operator=(Window const &rhs);
 
 	// * ATTRIBUTES ***************** //
 	const std::vector<ft::IMonitorModule*>	&_modules;
-	struct winsize							w;
-	std::vector<ftnc::Line*>				_lines;
+	struct winsize				w;
+	std::vector<ftnc::Line>		_lines;
+	size_t						_pushedLines;
 
 };
 

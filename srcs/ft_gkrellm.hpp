@@ -6,15 +6,15 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 10:48:04 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/15 12:56:52 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/15 13:03:23 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
 #ifndef FT_GKRELLM_HPP
 # define FT_GKRELLM_HPP
 
-#include <vector>
-#include <list>
+# include <vector>
+# include <list>
 
 # include <SFML/Graphics.hpp>
 # include <IMonitorDisplay.hpp>

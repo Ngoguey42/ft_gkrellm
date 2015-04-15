@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/15 13:00:00 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/15 13:00:07 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/15 14:33:23 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -51,8 +51,9 @@ static void			put_modules(std::vector<std::string> &args,
 	}
 }
 
-static void			put_sfml_displays(std::vector<ft::IMonitorModule*> &modules,
-									  std::list<ft::IMonitorDisplay*> &displays, int nb)
+static void			put_sfml_displays(
+	std::vector<ft::IMonitorModule*> &modules,
+	std::list<ft::IMonitorDisplay*> &displays, int nb)
 {
 	if (nb < 1)
 		nb = 1;
@@ -63,8 +64,9 @@ static void			put_sfml_displays(std::vector<ft::IMonitorModule*> &modules,
 	ftsf::Module::arrowTexture.loadFromFile("srcs/ft_sfml/arrow.png");//verif !!!!
 	while (--nb >= 0)
 	{
-		displays.push_back(new ftsf::Window(modules,
-											ftsf::Window::calculateWindowSize(modules)));
+		displays.push_back(new ftsf::Window(
+							   modules,
+							   ftsf::Window::calculateWindowSize(modules)));
 	}
 	std::cout << "SFML: Finished Loading ..." << std::endl;	
 }
@@ -73,8 +75,6 @@ void				parse_input(int ac, char **av,
 								std::vector<ft::IMonitorModule*> &modules,
 								std::list<ft::IMonitorDisplay*> &displays)
 {
-	if (ac <= 1 || av[1][0] != '-')
-		throw std::exception();
 	std::string					opt = &av[1][1];
 	std::vector<std::string> 	args(av + 2, av + ac);
 	int							nb = atoi(&av[1][1]);
