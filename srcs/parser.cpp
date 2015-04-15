@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/15 13:00:00 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/15 14:33:23 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/15 15:02:31 by wide-aze         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -23,6 +23,7 @@
 #include <modules/RAMModule.hpp>
 #include <modules/PonyModule.hpp>
 #include <modules/DiskModule.hpp>
+#include <modules/ProcessesModule.hpp>
 
 namespace ft
 {
@@ -48,6 +49,8 @@ static void			put_modules(std::vector<std::string> &args,
 			modules.push_back(new ft::PonyModule("Pony"));
 		else if (*it == "disk")
 			modules.push_back(new ft::DiskModule("Disk"));
+		else if (*it == "processes")
+			modules.push_back(new ft::ProcessesModule("Processes"));
 	}
 }
 

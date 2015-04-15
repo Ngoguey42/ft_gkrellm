@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 09:58:37 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/15 14:33:21 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/15 15:39:52 by wide-aze         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -20,6 +20,7 @@
 #include <modules/RAMModule.hpp>
 #include <modules/PonyModule.hpp>
 #include <modules/DiskModule.hpp>
+#include <modules/ProcessesModule.hpp>
 #include <ft_sfml/Window.hpp>
 #include <ft_sfml/Module.hpp>
 #include <ft_nc/Window.hpp>
@@ -69,9 +70,25 @@ static void					queryTop(void)
 	{
 		char                charbuf[256];
 		size_t				pos;
+		size_t				pos2;
 		
 		if (fgets(charbuf, 256, stream) == NULL)
 			return ;
+		//processes
+		pos = std::strcspn(charbuf, " ") + 1;
+		ft::ProcessesModule::datas[0].assign(charbuf, pos, std::strcspn(charbuf + pos, ","));
+		pos += std::strcspn(charbuf + pos, " ") + 1;
+		pos += std::strcspn(charbuf + pos, " ") + 1;
+		pos2 = std::strcspn(charbuf + pos, ",") + 1;
+		pos2 += std::strcspn(charbuf + pos2, ",") + 1;
+		pos2 += std::strcspn(charbuf + pos2, ",") + 1;
+		ft::ProcessesModule::datas[1].assign(charbuf, pos, pos2);
+
+		ft::ProcessesModule::datas[2].assign(charbuf, pos, pos2);
+//		pos += std::strcspn(charbuf + pos, " ") + 1;
+//		pos += std::strcspn(charbuf + pos, " ") + 1;
+//		ft::ProcessesModule::datas[2].assign(charbuf, pos, std::strcspn(charbuf + pos, " "));
+
 		if (fgets(charbuf, 256, stream) == NULL)
 			return ;
 		if (fgets(charbuf, 256, stream) == NULL)
@@ -79,7 +96,7 @@ static void					queryTop(void)
 		if (fgets(charbuf, 256, stream) == NULL)
 			return ;
 		//cpu
-		pos = std::strcspn(charbuf, " ") + 1;
+
 		pos += std::strcspn(charbuf + pos, " ") + 1;
 		ft::CPUModule::datas[0].assign(charbuf, pos, std::strcspn(charbuf + pos, " "));
 		// std::cerr << "{" << ft::CPUModule::datas[0] << "}" <<  std::endl;
@@ -146,7 +163,7 @@ int					main(int ac, char *av[])
 		ft::parse_input(ac, av, modules, displays);	
 	if (displays.size() < 1)
 		std::cout << "./ft_gkrellm -[ns] " <<
-			"hostname|osinfo|time|cpu|ram|network|disk|pony" << std::endl;
+			"hostname|osinfo|time|cpu|ram|network|disk|pony|processes" << std::endl;
 	signal(SIGINT, &sig_handler);	
 	while (displays.size() > 0)
 	{

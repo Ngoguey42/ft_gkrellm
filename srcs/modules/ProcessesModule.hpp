@@ -1,17 +1,17 @@
 // ************************************************************************** //
 //                                                                            //
 //                                                        :::      ::::::::   //
-//   CPUModule.hpp                                      :+:      :+:    :+:   //
+//   ProcessesModule.hpp                                :+:      :+:    :+:   //
 //                                                    +:+ +:+         +:+     //
 //   By: wide-aze <wide-aze@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/04 15:35:01 by wide-aze          #+#    #+#             //
-//   Updated: 2015/04/15 15:00:09 by wide-aze         ###   ########.fr       //
+//   Updated: 2015/04/15 15:00:25 by wide-aze         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
-#ifndef CPUMODULE_HPP
-# define CPUMODULE_HPP
+#ifndef PROCESSESMODULE_HPP
+# define PROCESSESMODULE_HPP
 
 //# include <string>
 //# include <iostream>
@@ -20,11 +20,11 @@
 
 namespace ft
 {
-class CPUModule : public IMonitorModule
+class ProcessesModule : public IMonitorModule
 {
 public:
-	CPUModule(std::string const &moduleName);
-	virtual ~CPUModule();
+	ProcessesModule(std::string const &moduleName);
+	virtual ~ProcessesModule();
 
 	static std::string          datas[3];
 	
@@ -34,15 +34,15 @@ public:
 	
 protected:
 private:
-	CPUModule();
-	CPUModule(CPUModule const &src);
-	CPUModule					&operator=(CPUModule const &rhs);
+	ProcessesModule();
+	ProcessesModule(ProcessesModule const &src);
+	ProcessesModule					&operator=(ProcessesModule const &rhs);
 
 	std::vector<std::string>	_strings;
 	std::string const			_moduleName;
 	
 };
-//std::ostream					&operator<<(std::ostream &o, CPUModule const &rhs);
+//std::ostream				&operator<<(std::ostream &o, ProcessesModule const &rhs);
 }
 
-#endif // ***************************************************** CPUMODULE_HPP //
+#endif // *********************************************** PROCESSESMODULE_HPP //
