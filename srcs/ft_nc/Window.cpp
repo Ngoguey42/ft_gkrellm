@@ -19,6 +19,21 @@
 namespace ftnc
 {
 
+
+// * NESTED OBJECTS ********************************************************* //
+Window::bad_length::bad_length() throw(): std::exception(){}
+
+Window::bad_length::bad_length(bad_length const &rhs) throw():
+std::exception()
+{(void)rhs;}
+
+Window::bad_length::~bad_length() throw(){}
+
+const char *Window::bad_length::what() const throw()
+{
+	return ("Bad length");
+}
+
 // * CONSTRUCTORS *********************************************************** //
 Window::Window(std::vector<ft::IMonitorModule*> const &modules) :
 	ft::IMonitorDisplay(),
@@ -58,13 +73,8 @@ Window::Window(std::vector<ft::IMonitorModule*> const &modules) :
 		}
 		_pushLine('_', "", false);		
 	}
-	catch (std::length_error &)
+	catch (bad_length &)
 	{}
-// 	it sur chaque module qui it sur chaque ligne pour appeler Line::initialize pour chaque ligne
-
-//	std::vector<std::string> const	&getStrings(void) const;
-//	std::string const			&getModuleName(void) const;
-	
 	return ;
 }
 
@@ -101,7 +111,7 @@ void						Window::_pushLine(char bg,
 											  const std::string &refstr, bool isDynamic)
 {
 	if (_pushedLines >= w.ws_row)
-		throw std::length_error("");	
+		throw bad_length();	
 	
 	_lines[_pushedLines++].initialize(
 		bg, static_cast<size_t>(w.ws_col), refstr, isDynamic);

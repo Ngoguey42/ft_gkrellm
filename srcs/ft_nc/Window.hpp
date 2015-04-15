@@ -31,7 +31,16 @@ class Window : public ft::IMonitorDisplay
 public:
 
 	// * NESTED OBJECTS ************* //
-	// pour willy wonka
+	class bad_length : public std::exception
+	{
+	public:
+		bad_length() throw();
+		bad_length(bad_length const &rhs) throw();
+		virtual ~bad_length() throw();
+		virtual const char	*what() const throw();
+	private:
+		bad_length &operator=(bad_length const &rhs);
+	};
 	
 	// * CTORS / DTORS ************** //
 	Window(std::vector<ft::IMonitorModule*> const &modules);
