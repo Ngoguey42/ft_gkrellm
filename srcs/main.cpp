@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 09:58:37 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/15 17:13:55 by wide-aze         ###   ########.fr       //
+//   Updated: 2015/04/17 09:01:13 by wide-aze         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -19,6 +19,7 @@
 #include <modules/OSinfoModule.hpp>
 #include <modules/RAMModule.hpp>
 #include <modules/PonyModule.hpp>
+#include <modules/CatModule.hpp>
 #include <modules/DiskModule.hpp>
 #include <modules/ProcessesModule.hpp>
 #include <modules/VMModule.hpp>
@@ -165,7 +166,7 @@ int					main(int ac, char *av[])
 		ft::parse_input(ac, av, modules, displays);	
 	if (displays.size() < 1)
 		std::cout << "./ft_gkrellm -[ns] " <<
-			"hostname|osinfo|time|cpu|ram|network|disk|pony|processes|memregions|vm" << std::endl;
+			"hostname|osinfo|time|cpu|ram|network|disk|processes|memregions|vm|pony|cat" << std::endl;
 	signal(SIGINT, &sig_handler);	
 	while (displays.size() > 0)
 	{

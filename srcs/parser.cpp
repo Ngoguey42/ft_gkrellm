@@ -21,11 +21,12 @@
 #include <modules/NetworkModule.hpp>
 #include <modules/OSinfoModule.hpp>
 #include <modules/RAMModule.hpp>
-#include <modules/PonyModule.hpp>
 #include <modules/DiskModule.hpp>
 #include <modules/ProcessesModule.hpp>
 #include <modules/VMModule.hpp>
 #include <modules/MemRegionsModule.hpp>
+#include <modules/PonyModule.hpp>
+#include <modules/CatModule.hpp>
 
 namespace ft
 {
@@ -47,8 +48,6 @@ static void			put_modules(std::vector<std::string> &args,
 			modules.push_back(new ft::RAMModule("RAM"));
 		else if (*it == "network")
 			modules.push_back(new ft::NetworkModule("Network"));
-		else if (*it == "pony")
-			modules.push_back(new ft::PonyModule("Pony"));
 		else if (*it == "disk")
 			modules.push_back(new ft::DiskModule("Disk"));
 		else if (*it == "processes")
@@ -57,6 +56,10 @@ static void			put_modules(std::vector<std::string> &args,
 			modules.push_back(new ft::MemRegionsModule("MemRegions"));
 		else if (*it == "vm")
 			modules.push_back(new ft::VMModule("VM"));
+		else if (*it == "pony")
+			modules.push_back(new ft::PonyModule("Pony"));
+		else if (*it == "cat")
+			modules.push_back(new ft::CatModule("Cat"));
 	}
 }
 
