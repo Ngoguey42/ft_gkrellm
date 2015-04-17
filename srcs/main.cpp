@@ -166,7 +166,7 @@ int					main(int ac, char *av[])
 		ft::parse_input(ac, av, modules, displays);	
 	if (displays.size() < 1)
 		std::cout << "./ft_gkrellm -[ns] " <<
-			"hostname|osinfo|time|cpu|ram|network|disk|processes|memregions|vm|pony|cat" << std::endl;
+			"hostname|osinfo|time|cpu|ram|network|disk|processes|memregions|vm" << std::endl;
 	signal(SIGINT, &sig_handler);	
 	while (displays.size() > 0)
 	{
