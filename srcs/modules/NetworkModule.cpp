@@ -44,6 +44,9 @@ NetworkModule::~NetworkModule()
 std::vector<std::string> const	&NetworkModule::getStrings(void) const
 {return (this->_strings);}
 
+std::deque<float> const			&NetworkModule::getNumbers(void) const
+{return (this->_numbers);}
+
 std::string const			&NetworkModule::getModuleName(void) const
 {return (this->_moduleName);}
 

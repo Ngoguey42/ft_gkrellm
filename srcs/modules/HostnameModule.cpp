@@ -44,6 +44,9 @@ HostnameModule::~HostnameModule()
 std::vector<std::string> const	&HostnameModule::getStrings(void) const
 {return (this->_strings);}
 
+std::deque<float> const			&HostnameModule::getNumbers(void) const
+{return (this->_numbers);}
+
 std::string const			&HostnameModule::getModuleName(void) const
 {return (this->_moduleName);}
 

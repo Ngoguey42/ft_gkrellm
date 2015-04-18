@@ -40,6 +40,9 @@ OSinfoModule::~OSinfoModule()
 std::vector<std::string> const	&OSinfoModule::getStrings(void) const
 {return (this->_strings);}
 
+std::deque<float> const			&OSinfoModule::getNumbers(void) const
+{return (this->_numbers);}
+
 std::string const			&OSinfoModule::getModuleName(void) const
 {return (this->_moduleName);}
 

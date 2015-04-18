@@ -13,8 +13,6 @@
 #ifndef CATMODULE_HPP
 # define CATMODULE_HPP
 
-//# include <string>
-//# include <iostream>
 # include <Vector>
 # include <modules/IMonitorModule.hpp>
 
@@ -26,9 +24,10 @@ public:
 	CatModule(std::string const &moduleName);
 	virtual ~CatModule();
 	
-	void						refresh_datas(void);
+	void							refresh_datas(void);
 	std::vector<std::string> const	&getStrings(void) const;
-	std::string const			&getModuleName(void) const;
+	std::deque<float> const			&getNumbers(void) const;
+	std::string const				&getModuleName(void) const;
 	
 protected:
 private:
@@ -38,9 +37,9 @@ private:
 
 	std::vector<std::string>	_strings;
 	std::string const			_moduleName;
+	std::deque<float>			_numbers;
 	
 };
-//std::ostream					&operator<<(std::ostream &o, CatModule const &rhs);
 }
 
 #endif // ***************************************************** CATMODULE_HPP //

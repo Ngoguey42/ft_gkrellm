@@ -38,6 +38,9 @@ TimeModule::~TimeModule()
 std::vector<std::string> const	&TimeModule::getStrings(void) const
 {return (this->_strings);}
 
+std::deque<float> const			&TimeModule::getNumbers(void) const
+{return (this->_numbers);}
+
 std::string const			&TimeModule::getModuleName(void) const
 {return (this->_moduleName);}
 

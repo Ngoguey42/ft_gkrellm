@@ -13,8 +13,6 @@
 #ifndef VMMODULE_HPP
 # define VMMODULE_HPP
 
-//# include <string>
-//# include <iostream>
 # include <Vector>
 # include <modules/IMonitorModule.hpp>
 
@@ -30,6 +28,7 @@ public:
 	
 	void						refresh_datas(void);
 	std::vector<std::string> const	&getStrings(void) const;
+	std::deque<float> const			&getNumbers(void) const;
 	std::string const			&getModuleName(void) const;
 	
 protected:
@@ -40,9 +39,9 @@ private:
 
 	std::vector<std::string>	_strings;
 	std::string const			_moduleName;
+	std::deque<float>			_numbers;
 	
 };
-//std::ostream				&operator<<(std::ostream &o, VMModule const &rhs);
 }
 
 #endif // ****************************************************** VMMODULE_HPP //

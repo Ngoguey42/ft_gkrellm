@@ -45,6 +45,10 @@ CatModule::~CatModule()
 std::vector<std::string> const	&CatModule::getStrings(void) const
 {return (this->_strings);}
 
+std::deque<float> const			&CatModule::getNumbers(void) const
+{return (this->_numbers);}
+
+
 std::string const			&CatModule::getModuleName(void) const
 {return (this->_moduleName);}
 

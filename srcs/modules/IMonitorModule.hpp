@@ -13,10 +13,9 @@
 #ifndef IMONITORMODULE_HPP
 # define IMONITORMODULE_HPP
 
-// # include <string>
 # include <iostream>
-//# include <stdexcept>
 # include <Vector>
+# include <Deque>
 
 namespace ft
 {
@@ -26,16 +25,16 @@ public:
 	IMonitorModule();
 	virtual ~IMonitorModule();
 
-	virtual void					refresh_datas(void) = 0;
-	virtual std::string const			&getModuleName(void) const = 0;
-	virtual std::vector<std::string>const	&getStrings(void) const = 0;
+	virtual void							refresh_datas(void) = 0;
+	virtual std::string const				&getModuleName(void) const = 0;
+	virtual std::vector<std::string> const	&getStrings(void) const = 0;
+	virtual std::deque<float> const			&getNumbers(void) const = 0;
 	
 protected:
 private:
 	IMonitorModule(IMonitorModule const &src);
 	IMonitorModule				&operator=(IMonitorModule const &rhs);
 };
-//std::ostream					&operator<<(std::ostream &o, IMonitorModule const &rhs);
 }
 
 #endif // ************************************************ IMONITORMODULE_HPP //

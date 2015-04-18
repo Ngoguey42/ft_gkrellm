@@ -26,9 +26,10 @@ public:
 
 	static std::string          datas[3];
 	
-	void						refresh_datas(void);
+	void							refresh_datas(void);
+	std::deque<float> const			&getNumbers(void) const;
 	std::vector<std::string> const	&getStrings(void) const;
-	std::string const			&getModuleName(void) const;
+	std::string const				&getModuleName(void) const;
 	
 protected:
 private:
@@ -38,6 +39,7 @@ private:
 
 	std::vector<std::string>	_strings;
 	std::string const			_moduleName;
+	std::deque<float>			_numbers;
 	
 };
 }

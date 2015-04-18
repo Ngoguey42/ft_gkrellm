@@ -13,8 +13,6 @@
 #ifndef NETWORKMODULE_HPP
 # define NETWORKMODULE_HPP
 
-//# include <string>
-//# include <iostream>
 # include <Vector>
 # include <modules/IMonitorModule.hpp>
 
@@ -28,9 +26,10 @@ public:
 
 	static std::string          datas[2];
 	
-	void						refresh_datas(void);
+	void							refresh_datas(void);
 	std::vector<std::string> const	&getStrings(void) const;
-	std::string const			&getModuleName(void) const;
+	std::deque<float> const			&getNumbers(void) const;
+	std::string const				&getModuleName(void) const;
 	
 protected:
 private:
@@ -40,9 +39,9 @@ private:
 
 	std::vector<std::string>	_strings;
 	std::string const			_moduleName;
+	std::deque<float>			_numbers;
 	
 };
-//std::ostream					&operator<<(std::ostream &o, NetworkModule const &rhs);
 }
 
 #endif // ************************************************* NETWORKMODULE_HPP //

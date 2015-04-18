@@ -42,6 +42,9 @@ MemRegionsModule::~MemRegionsModule()
 std::vector<std::string> const	&MemRegionsModule::getStrings(void) const
 {return (this->_strings);}
 
+std::deque<float> const			&MemRegionsModule::getNumbers(void) const
+{return (this->_numbers);}
+
 std::string const			&MemRegionsModule::getModuleName(void) const
 {return (this->_moduleName);}
 

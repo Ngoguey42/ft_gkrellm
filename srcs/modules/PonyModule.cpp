@@ -66,6 +66,9 @@ PonyModule::~PonyModule()
 std::vector<std::string> const	&PonyModule::getStrings(void) const
 {return (this->_strings);}
 
+std::deque<float> const			&PonyModule::getNumbers(void) const
+{return (this->_numbers);}
+
 std::string const			&PonyModule::getModuleName(void) const
 {return (this->_moduleName);}
 

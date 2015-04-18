@@ -44,6 +44,9 @@ DiskModule::~DiskModule()
 std::vector<std::string> const	&DiskModule::getStrings(void) const
 {return (this->_strings);}
 
+std::deque<float> const			&DiskModule::getNumbers(void) const
+{return (this->_numbers);}
+
 std::string const			&DiskModule::getModuleName(void) const
 {return (this->_moduleName);}
 

@@ -42,6 +42,9 @@ ProcessesModule::~ProcessesModule()
 std::vector<std::string> const	&ProcessesModule::getStrings(void) const
 {return (this->_strings);}
 
+std::deque<float> const			&ProcessesModule::getNumbers(void) const
+{return (this->_numbers);}
+
 std::string const			&ProcessesModule::getModuleName(void) const
 {return (this->_moduleName);}
 

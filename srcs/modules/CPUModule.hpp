@@ -13,8 +13,6 @@
 #ifndef CPUMODULE_HPP
 # define CPUMODULE_HPP
 
-//# include <string>
-//# include <iostream>
 # include <Vector>
 # include <deque>
 # include <modules/IMonitorModule.hpp>
@@ -29,9 +27,10 @@ public:
 
 	static std::string          datas[3];
 	
-	void						refresh_datas(void);
+	void							refresh_datas(void);
 	std::vector<std::string> const	&getStrings(void) const;
-	std::string const			&getModuleName(void) const;
+	std::deque<float> const			&getNumbers(void) const;
+	std::string const				&getModuleName(void) const;
 	
 protected:
 private:
@@ -44,7 +43,6 @@ private:
 	std::deque<float>			_numbers;
 	
 };
-//std::ostream					&operator<<(std::ostream &o, CPUModule const &rhs);
 }
 
 #endif // ***************************************************** CPUMODULE_HPP //

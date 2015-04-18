@@ -42,6 +42,9 @@ VMModule::~VMModule()
 std::vector<std::string> const	&VMModule::getStrings(void) const
 {return (this->_strings);}
 
+std::deque<float> const			&VMModule::getNumbers(void) const
+{return (this->_numbers);}
+
 std::string const			&VMModule::getModuleName(void) const
 {return (this->_moduleName);}
 

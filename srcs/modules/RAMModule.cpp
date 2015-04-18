@@ -51,6 +51,9 @@ RAMModule::~RAMModule()
 std::vector<std::string> const	&RAMModule::getStrings(void) const
 {return (this->_strings);}
 
+std::deque<float> const			&RAMModule::getNumbers(void) const
+{return (this->_numbers);}
+
 std::string const			&RAMModule::getModuleName(void) const
 {return (this->_moduleName);}
 

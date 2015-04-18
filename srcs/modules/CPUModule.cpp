@@ -58,6 +58,9 @@ CPUModule::~CPUModule()
 std::vector<std::string> const	&CPUModule::getStrings(void) const
 {return (this->_strings);}
 
+std::deque<float> const			&CPUModule::getNumbers(void) const
+{return (this->_numbers);}
+
 std::string const			&CPUModule::getModuleName(void) const
 {return (this->_moduleName);}
 
