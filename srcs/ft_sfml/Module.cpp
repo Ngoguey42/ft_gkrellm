@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:09:09 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/07 16:43:26 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/18 15:22:47 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -43,6 +43,7 @@ float						Module::calcMainBoxHeight(
 		 it != module.getStrings().end();
 		 it++)
 		tot += ftsf::getStrHeight(*it) + Module::stringsBottomPadding;
+	
 	return (tot + Module::mainBoxContentInset * 2.f);
 }
 
@@ -62,6 +63,7 @@ Module::Module(const sf::Vector2f &mainBoxSize,
 			 5.f),
 	_refModule(refModule),
 	_stringsFrames(refModule->getStrings().size()),
+	_linesFrames(0),
 	_height(Module::calcModuleFullHeight(*refModule))
 {
 	// stOxd::cout << "[Module](const sf::Vector2f&) Ctor called" << std::endl;

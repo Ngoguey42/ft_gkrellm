@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:09:03 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/07 16:32:21 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/18 15:37:15 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -17,6 +17,7 @@
 //# include <iostream>
 //# include <stdexcept>
 # include <vector>
+# include <deque>
 # include <SFML/Graphics.hpp>
 
 # include <ft_gkrellm.hpp>
@@ -74,6 +75,8 @@ private:
 	RoundedBox					_mainBox;
 	ft::IMonitorModule const	*_refModule;
 	std::vector<sf::Text>		_stringsFrames;
+	std::deque<sf::Vertex>		_linesFrames;
+	
 	float						_height;
 	sf::Sprite					_arrows[2];
 	

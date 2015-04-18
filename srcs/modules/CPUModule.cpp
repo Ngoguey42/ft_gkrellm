@@ -6,7 +6,7 @@
 //   By: wide-aze <wide-aze@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/04 15:35:11 by wide-aze          #+#    #+#             //
-//   Updated: 2015/04/15 15:00:04 by wide-aze         ###   ########.fr       //
+//   Updated: 2015/04/18 15:35:27 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -14,6 +14,7 @@
 #include <sys/types.h>
 #include <sys/sysctl.h>
 #include <sstream>
+#include <cmath>
 
 namespace ft
 {
@@ -24,7 +25,8 @@ std::string					CPUModule::datas[3] = {"", "", ""};
 CPUModule::CPUModule(std::string const &moduleName) :
 	IMonitorModule(),
 	_strings(),
-	_moduleName(moduleName)
+	_moduleName(moduleName),
+	_numbers(0)
 {
 	char			buf[100];
 	size_t			buflen = 100;
@@ -37,6 +39,9 @@ CPUModule::CPUModule(std::string const &moduleName) :
 	pos = this->_strings[0].find(" ", this->_strings[0].find(" ") + 1);
 	this->_strings[1].assign(this->_strings[0], pos + 1, buflen - pos - 2);
 	this->_strings[0].resize(pos);	
+	this->_strings.push_back("");
+	this->_strings.push_back("");
+	this->_strings.push_back("");
 	this->_strings.push_back("");
 	this->_strings.push_back("");
 	this->_strings.push_back("");
@@ -61,6 +66,23 @@ std::string const			&CPUModule::getModuleName(void) const
 // * MEMBER FUNCTIONS / METHODS ********************************************* //
 void						CPUModule::refresh_datas(void)
 {
+	size_t			pos = CPUModule::datas[1].find_first_of("0123456789.");
+	std::string		cpy(
+		CPUModule::datas[1].substr(
+			pos,
+			CPUModule::datas[1].find_last_of("0123456789.") - pos + 1
+			));
+	float			nb = atof(cpy.c_str());
+
+	if (!isnan(nb) && nb > 0.f && nb < 100.f)
+	{
+		this->_numbers.push_back(nb / 100.f);
+		std::cerr << cpy << " " << nb <<
+			" " << this->_numbers.size() <<
+			std::endl;
+		if (this->_numbers.size() > 60)
+			this->_numbers.pop_front();
+	}
 	this->_strings[2] = "user: " + CPUModule::datas[0];
 	this->_strings[3] = "system: " + CPUModule::datas[1];
 	this->_strings[4] = "idle: " + CPUModule::datas[2];

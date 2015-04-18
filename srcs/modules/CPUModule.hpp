@@ -6,7 +6,7 @@
 //   By: wide-aze <wide-aze@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/04 15:35:01 by wide-aze          #+#    #+#             //
-//   Updated: 2015/04/15 15:00:09 by wide-aze         ###   ########.fr       //
+//   Updated: 2015/04/18 15:31:54 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -16,6 +16,7 @@
 //# include <string>
 //# include <iostream>
 # include <Vector>
+# include <deque>
 # include <modules/IMonitorModule.hpp>
 
 namespace ft
@@ -40,6 +41,7 @@ private:
 
 	std::vector<std::string>	_strings;
 	std::string const			_moduleName;
+	std::deque<float>			_numbers;
 	
 };
 //std::ostream					&operator<<(std::ostream &o, CPUModule const &rhs);
