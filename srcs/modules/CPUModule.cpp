@@ -6,7 +6,7 @@
 //   By: wide-aze <wide-aze@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/04 15:35:11 by wide-aze          #+#    #+#             //
-//   Updated: 2015/04/18 15:35:27 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/18 17:22:41 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -38,13 +38,12 @@ CPUModule::CPUModule(std::string const &moduleName) :
 	this->_strings[0].assign(buf, pos);
 	pos = this->_strings[0].find(" ", this->_strings[0].find(" ") + 1);
 	this->_strings[1].assign(this->_strings[0], pos + 1, buflen - pos - 2);
-	this->_strings[0].resize(pos);	
+	this->_strings[0].resize(pos);
 	this->_strings.push_back("");
 	this->_strings.push_back("");
 	this->_strings.push_back("");
-	this->_strings.push_back("");
-	this->_strings.push_back("");
-	this->_strings.push_back("");
+	this->_numbers.push_back(0.f);
+	this->_numbers.push_back(1.f);
 	return ;
 }
 

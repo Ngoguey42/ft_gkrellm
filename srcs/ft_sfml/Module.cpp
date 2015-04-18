@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:09:09 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/18 15:22:47 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/18 17:23:49 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -43,7 +43,8 @@ float						Module::calcMainBoxHeight(
 		 it != module.getStrings().end();
 		 it++)
 		tot += ftsf::getStrHeight(*it) + Module::stringsBottomPadding;
-	
+	if (module.getNumbers().size() > 0)
+		tot += 100;
 	return (tot + Module::mainBoxContentInset * 2.f);
 }
 
@@ -63,7 +64,7 @@ Module::Module(const sf::Vector2f &mainBoxSize,
 			 5.f),
 	_refModule(refModule),
 	_stringsFrames(refModule->getStrings().size()),
-	_linesFrames(0),
+	_linesFrames(sf::LinesStrip, 0),
 	_height(Module::calcModuleFullHeight(*refModule))
 {
 	// stOxd::cout << "[Module](const sf::Vector2f&) Ctor called" << std::endl;
@@ -93,7 +94,7 @@ Module::Module(const sf::Vector2f &mainBoxSize,
 							   ftsf::Arial));
 	std::for_each(this->_stringsFrames.begin(), this->_stringsFrames.end(),
 				  std::bind2nd(std::mem_fun_ref(&sf::Text::setCharacterSize),
-							   11));
+							   11));	
 	return ;
 }
 
@@ -147,17 +148,50 @@ void						Module::draw(sf::RenderTarget& target,
 	for (std::vector<sf::Text>::const_iterator it = this->_stringsFrames.begin();
 		 it != this->_stringsFrames.end(); it++)
 		target.draw(*it, states);
+
+	target.draw(_linesFrames);
+	// window.draw(line, 2, sf::Lines);
+	
 	return ;
 }
+void						Module::refreshGraphs(void)
+{
+	std::deque<float> const				&numbers =
+		this->_refModule->getNumbers();
+	std::deque<float>::const_iterator	its = numbers.begin();
+	float								topY = this->_mainBox.getPosition().y +
+		this->_mainBox.getSize().y - 100.f - 7.;
+
+	for (size_t i = 0; its != numbers.end(); i++, its++)
+	{
+		if (i < _linesFrames.getVertexCount())
+			_linesFrames[i] = 
+				sf::Vertex(
+					sf::Vector2f(16.f + (190.f / 60.f) * static_cast<float>(i),
+								 (1.f - *its) * 100.f + topY));
+		else
+			_linesFrames.append(
+				sf::Vertex(
+					sf::Vector2f(16.f + (190.f / 60.f) * static_cast<float>(i),
+								 (1.f - *its) * 100.f + topY)));
+	}
+	(void)topY;
+	return ;
+}
+
 void						Module::refreshStrings(void)
 {
-	std::vector<sf::Text>::iterator itf = this->_stringsFrames.begin();
-	std::vector<std::string>::const_iterator its =
-		this->_refModule->getStrings().begin();			
+	std::vector<sf::Text>::iterator				itf =
+		this->_stringsFrames.begin();
+	std::vector<std::string>::const_iterator	its =
+		this->_refModule->getStrings().begin();
+
 	for (;itf != this->_stringsFrames.end() &&
 			 its != this->_refModule->getStrings().end();
 		 itf++, its++)
 		itf->setString(*its);
+
+	refreshGraphs();
 	return ;
 }
 int							Module::doesCollideArrow(float x, float y)
