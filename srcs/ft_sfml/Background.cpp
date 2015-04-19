@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 10:59:43 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/04 13:57:00 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/19 10:45:30 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -59,7 +59,6 @@ Background::Background(const sf::Vector2f &size) :
 	this->_footerBox.setTextColor(sf::Color::Black);
 	this->_footerBox.setCharacterSize(10);
 	this->_footerBox.setStyle(sf::Text::Italic);
-	(void)size;
 	return ;
 }
 

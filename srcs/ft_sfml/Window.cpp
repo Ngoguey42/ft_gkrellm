@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:13:13 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/15 18:41:33 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/19 10:19:55 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -68,6 +68,9 @@ Window::Window(std::vector<ft::IMonitorModule*> const &modules,
 Window::~Window()
 {
 	// std::cout << "[Window]() Dtor called" << std::endl;
+	for (std::vector<Module*>::iterator it = _modulesFrames.begin();
+		 it != _modulesFrames.end(); it++)
+		delete *it;
 	return ;
 }
 

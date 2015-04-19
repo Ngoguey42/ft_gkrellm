@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:09:09 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/18 17:23:49 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/19 10:45:07 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -175,7 +175,6 @@ void						Module::refreshGraphs(void)
 					sf::Vector2f(16.f + (190.f / 60.f) * static_cast<float>(i),
 								 (1.f - *its) * 100.f + topY)));
 	}
-	(void)topY;
 	return ;
 }
 

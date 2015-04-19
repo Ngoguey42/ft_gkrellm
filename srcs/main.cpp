@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 09:58:37 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/17 09:01:13 by wide-aze         ###   ########.fr       //
+//   Updated: 2015/04/19 10:45:50 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -42,9 +42,8 @@ float				getStrWidth(sf::Text const &ref)
 		return ((ref.getCharacterSize() - 8) * ret);
 	return ((ref.getCharacterSize() - 5) * ret);
 }
-float				getStrHeight(std::string const &ref)
+float				getStrHeight(std::string const &)
 {
-	(void)ref;
 	return (12.5);
 }
 float				getStrHeight(sf::Text const &ref)
@@ -56,9 +55,8 @@ float				getStrHeight(sf::Text const &ref)
 }
 }
 
-static void			sig_handler(int sig)
+static void			sig_handler(int)
 {
-	(void)sig;
 	clear();
 	refresh();
 	endwin();

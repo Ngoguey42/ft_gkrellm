@@ -6,7 +6,7 @@
 //   By: wide-aze <wide-aze@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/11 16:57:43 by wide-aze          #+#    #+#             //
-//   Updated: 2015/04/15 14:26:45 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/19 10:26:47 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -23,9 +23,9 @@ namespace ftnc
 // * NESTED OBJECTS ********************************************************* //
 Window::bad_length::bad_length() throw(): std::exception(){}
 
-Window::bad_length::bad_length(bad_length const &rhs) throw():
+Window::bad_length::bad_length(bad_length const &) throw():
 std::exception()
-{(void)rhs;}
+{}
 
 Window::bad_length::~bad_length() throw(){}
 
@@ -47,9 +47,6 @@ Window::Window(std::vector<ft::IMonitorModule*> const &modules) :
 	curs_set(0);
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &this->w);
 	this->_lines.resize(w.ws_row);
-
-	std::cerr << w.ws_col << "cols" << std::endl;
-	std::cerr << w.ws_row << "rows" << std::endl;	
 	try
 	{
 		_pushLine('*', "", false);
@@ -107,8 +104,8 @@ int							Window::updateDisplay()
 	refresh();
 	return (0);
 }
-void						Window::_pushLine(char bg,
-											  const std::string &refstr, bool isDynamic)
+void						Window::_pushLine(
+	char bg, const std::string &refstr, bool isDynamic)
 {
 	if (_pushedLines >= w.ws_row)
 		throw bad_length();	
