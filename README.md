@@ -25,6 +25,7 @@ class HostnameModule : public IMonitorModule;
 class NetworkModule : public IMonitorModule;
 class OSinfoModule : public IMonitorModule;
 class RAMModule : public IMonitorModule;
+//etc...
 
 namespace ftsf; //ft_sfml
 class Window : public ft::IMonitorDisplay, public sf::RenderWindow; //singleton
@@ -38,6 +39,7 @@ class Window : public ft::IMonitorDisplay; //singleton
 class Line : public std::string; //one for each line in the terminal
 ```
 
+![ft_gkrellm](./screenshot.png)
 <br>
  
 <br><br><br><br><br><br><br><br>
