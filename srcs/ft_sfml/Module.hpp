@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:09:03 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/19 14:47:29 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/19 16:51:49 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -53,7 +53,6 @@ public:
 	// * CTORS / DTORS ************** //
 	Module(const sf::Vector2f &mainBoxSize,
 		   ft::IMonitorModule const *refModule);
-	Module(Module const &src);
 	virtual ~Module();
 
 	// * MEMBER FUNCTIONS / METHODS * //
@@ -67,6 +66,7 @@ public:
 
 protected:
 private:
+	Module(Module const &src);
 	Module();
 	Module						&operator=(Module const &rhs);
 

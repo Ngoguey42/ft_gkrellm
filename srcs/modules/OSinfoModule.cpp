@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 10:00:45 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/07 19:22:29 by wide-aze         ###   ########.fr       //
+//   Updated: 2015/04/19 16:29:01 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -51,18 +51,12 @@ std::string const			&OSinfoModule::getModuleName(void) const
 // * MEMBER FUNCTIONS / METHODS ********************************************* //
 void						OSinfoModule::refresh_datas(void)
 {
-	// std::cout << "Updating os info datas:  this=" <<
-	// 	((unsigned long long int)this) % 0x1000
-	// 		  << std::endl;
-	// std::cout << "[OSinfoModule]() Ctor called" << std::endl;
 	char	kernostype[100];
 	char	kernosrelease[100];
 	size_t	size = 100;
 
-//int sysctlbyname(char *name, void *oldp, size_t *oldlenp, void *newp, size_t newlen);
 	sysctlbyname("kern.ostype", &kernostype, &size, NULL, 0);
 	sysctlbyname("kern.osrelease", &kernosrelease, &size, NULL, 0);
-
 	this->_strings[0] = "Type: ";
 	this->_strings[0] += kernostype;
 	this->_strings[1] = "Release: ";
