@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/15 13:00:00 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/15 17:12:25 by wide-aze         ###   ########.fr       //
+//   Updated: 2015/04/19 16:17:19 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -70,10 +70,18 @@ static void			put_sfml_displays(
 	if (nb < 1)
 		nb = 1;
 	std::cout << "SFML: Loading ..." << std::endl;
-	ftsf::Arial.loadFromFile("srcs/ft_sfml/Liberation.ttf"); //verif !!!!
+	if (!ftsf::Arial.loadFromFile("srcs/ft_sfml/Liberation.ttf"))
+	{
+		std::cout << "Could not load 'srcs/ft_sfml/Liberation.ttf'" << std::endl;
+		exit(1);
+	}
 	const_cast<sf::Texture&>(ftsf::Arial.getTexture(11U)).setSmooth(false);
-	
-	ftsf::Module::arrowTexture.loadFromFile("srcs/ft_sfml/arrow.png");//verif !!!!
+
+	if (!ftsf::Module::arrowTexture.loadFromFile("srcs/ft_sfml/arrow.png"))
+	{
+		std::cout << "Could not load 'srcs/ft_sfml/arrow.png'" << std::endl;
+		exit(1);
+	}
 	while (--nb >= 0)
 	{
 		displays.push_back(new ftsf::Window(
@@ -94,10 +102,10 @@ void				parse_input(int ac, char **av,
 	bool						n = false, s = false;
 
 	if (pos == std::string::npos)
-		throw std::exception();
+		return ;
 	opt.erase(0, pos);
 	if (opt != "s" && opt != "n" && opt != "ns" && opt != "sn")
-		throw std::exception();
+		return ;
 	if (opt.find("n", 0) != std::string::npos)
 		n = true;
 	if (opt.find("s", 0) != std::string::npos)
