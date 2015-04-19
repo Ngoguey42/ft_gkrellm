@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:09:09 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/19 13:58:00 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/19 15:44:00 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -65,9 +65,10 @@ Module::Module(const sf::Vector2f &mainBoxSize,
 	_refModule(refModule),
 	_stringsFrames(refModule->getStrings().size()),
 	_linesFrames(sf::LinesStrip, 0),
+
+	_linesBackgroundFrames(sf::Quads, 0),
 	_height(Module::calcModuleFullHeight(*refModule))
 {
-	// stOxd::cout << "[Module](const sf::Vector2f&) Ctor called" << std::endl;
 	this->_arrows[0].setTexture(ftsf::Module::arrowTexture);
 	this->_arrows[0].setColor(sf::Color(255, 255, 255, 220));
 	this->_arrows[0].setTextureRect(
@@ -130,7 +131,6 @@ void						Module::setPosition(const float x, const float y)
 		(*it).setPosition(
 			x + (this->_mainBox.getSize().x - ftsf::getStrWidth(*it)) / 2,
 			frameY);
-		// std::cout << "setting text center to " << frameY << std::endl;		
 		frameY += ftsf::getStrHeight(*it) + Module::stringsBottomPadding;
 	}
 	return ;
@@ -148,10 +148,8 @@ void						Module::draw(sf::RenderTarget& target,
 	for (std::vector<sf::Text>::const_iterator it = this->_stringsFrames.begin();
 		 it != this->_stringsFrames.end(); it++)
 		target.draw(*it, states);
-
-	target.draw(_linesFrames);
-	// window.draw(line, 2, sf::Lines);
-	
+	target.draw(_linesBackgroundFrames);
+	target.draw(_linesFrames);	
 	return ;
 }
 void						Module::refreshGraphs(void)
@@ -159,21 +157,61 @@ void						Module::refreshGraphs(void)
 	std::deque<float> const				&numbers =
 		this->_refModule->getNumbers();
 	std::deque<float>::const_iterator	its = numbers.begin();
-	float								topY = this->_mainBox.getPosition().y +
-		this->_mainBox.getSize().y - 100.f - 7.f;
+	float								topY;
 	sf::Vertex							v;
-	
+	sf::Vector2f const					increments[8] =
+	{
+		sf::Vector2f(0.f, 0.f),
+		sf::Vector2f(95.f, 0.f),
+		sf::Vector2f(95.f, 9.f),
+		sf::Vector2f(0.f, 9.f),
+		sf::Vector2f(95.f, 0.f),
+		sf::Vector2f(190.f, 0.f),
+		sf::Vector2f(190.f, 9.f),
+		sf::Vector2f(95.f, 9.f),
+	};
+	sf::Color const						colors[8] =
+	{
+		sf::Color(51, 51, 59),
+		sf::Color(88, 97, 102),
+		sf::Color(88, 97, 102),
+		sf::Color(51, 51, 59),
+		sf::Color(88, 97, 102),
+		sf::Color(51, 51, 59),
+		sf::Color(51, 51, 59),
+		sf::Color(88, 97, 102),
+	};
+
+	if (numbers.begin() == numbers.end())
+		return ;
+	topY = this->_mainBox.getPosition().y + this->_mainBox.getSize().y -
+		100.f - 7.f;
 	for (size_t i = 0; its != numbers.end(); i++, its++)
 	{
 		v =	sf::Vertex(sf::Vector2f(16.f + (190.f / 60.f) * static_cast<float>(i),
 									(1.f - *its) * 100.f + topY));
 		v.color = sf::Color(
-			static_cast<float>(*its * 155.f) + 100, 0,
-			static_cast<float>((1.f - *its) * 150.f) + 100);
+			static_cast<int>(*its * 100.f) + 155, 0,
+			static_cast<int>((1.f - *its) * 105.f) + 150);
 		if (i < _linesFrames.getVertexCount())
 			_linesFrames[i] = v;
 		else
 			_linesFrames.append(v);
+	}
+	for (size_t i = 0; i < 10; i++)
+	{
+		v = sf::Vertex(sf::Vector2f(15.f, topY));
+		for (int j = 0; j < 8; j++)
+		{
+			sf::Vertex	w(v.position + increments[j]);
+
+			w.color = colors[j];
+			if (i * 8 + j < _linesBackgroundFrames.getVertexCount())
+				_linesBackgroundFrames[i * 8 + j] = w;
+			else
+				_linesBackgroundFrames.append(w);
+		}
+		topY += 10.f;
 	}
 	return ;
 }
@@ -189,7 +227,6 @@ void						Module::refreshStrings(void)
 			 its != this->_refModule->getStrings().end();
 		 itf++, its++)
 		itf->setString(*its);
-
 	refreshGraphs();
 	return ;
 }

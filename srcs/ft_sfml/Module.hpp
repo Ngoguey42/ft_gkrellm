@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:09:03 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/18 17:02:15 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/19 14:47:29 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -37,16 +37,15 @@ public:
 	static sf::Color const		mainColor;
 	static sf::Color const		mainBorderColor;
 	static sf::Texture			arrowTexture;
-	
+
 	static float const			topBoxHeight;
 	static float const			mainBoxContentInset;
 	static float const			stringsBottomPadding;
 	static float const			ModuleBottomPadding;
 	static float const			ArrowSize;
 	static float const			ArrowVertPadding;
-	static float const			ArrowHorizPadding;
-	
-	
+	static float const			ArrowHorizPadding;	
+
 	static float				calcMainBoxHeight(
 		ft::IMonitorModule const &module);
 	static float				calcModuleFullHeight(
@@ -77,11 +76,11 @@ private:
 	ft::IMonitorModule const	*_refModule;
 	std::vector<sf::Text>		_stringsFrames;
 	sf::VertexArray				_linesFrames;
-	// std::deque<sf::Vertex>	_linesFrames;
-	
+	sf::VertexArray				_linesBackgroundFrames;
+
 	float						_height;
 	sf::Sprite					_arrows[2];
-	
+
 };
 //std::ostream					&operator<<(std::ostream &o, Module const &rhs);
 }
