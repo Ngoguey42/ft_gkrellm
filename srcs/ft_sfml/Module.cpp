@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 09:09:09 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/19 10:45:07 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/19 13:58:00 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -160,20 +160,20 @@ void						Module::refreshGraphs(void)
 		this->_refModule->getNumbers();
 	std::deque<float>::const_iterator	its = numbers.begin();
 	float								topY = this->_mainBox.getPosition().y +
-		this->_mainBox.getSize().y - 100.f - 7.;
-
+		this->_mainBox.getSize().y - 100.f - 7.f;
+	sf::Vertex							v;
+	
 	for (size_t i = 0; its != numbers.end(); i++, its++)
 	{
+		v =	sf::Vertex(sf::Vector2f(16.f + (190.f / 60.f) * static_cast<float>(i),
+									(1.f - *its) * 100.f + topY));
+		v.color = sf::Color(
+			static_cast<float>(*its * 155.f) + 100, 0,
+			static_cast<float>((1.f - *its) * 150.f) + 100);
 		if (i < _linesFrames.getVertexCount())
-			_linesFrames[i] = 
-				sf::Vertex(
-					sf::Vector2f(16.f + (190.f / 60.f) * static_cast<float>(i),
-								 (1.f - *its) * 100.f + topY));
+			_linesFrames[i] = v;
 		else
-			_linesFrames.append(
-				sf::Vertex(
-					sf::Vector2f(16.f + (190.f / 60.f) * static_cast<float>(i),
-								 (1.f - *its) * 100.f + topY)));
+			_linesFrames.append(v);
 	}
 	return ;
 }

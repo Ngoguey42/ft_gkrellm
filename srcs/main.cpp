@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 09:58:37 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/19 11:17:03 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/19 14:08:55 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -67,7 +67,7 @@ static void					queryTop(void)
 {
 	FILE                *stream;
 
-	if ((stream = popen("top -l 1 | head", "r")))
+	if ((stream = popen("top -l 1 -n 0 -s 0", "r")))
 	{
 		char                charbuf[256];
 		size_t				pos;
@@ -130,9 +130,14 @@ static void					queryTop(void)
 		pos += std::strcspn(charbuf + pos, " ") + 1;
 		len = std::strcspn(charbuf + pos, ",");
 		ft::VMModule::datas[1].assign(charbuf, pos, len);
+
+		pos += len + 2;
+		len = std::strcspn(charbuf + pos, ",");
+		ft::VMModule::datas[2].assign(charbuf, pos, len);
+		
 		pos += len + 2;
 		len  = std::strcspn(charbuf + pos, "\0") - 2;
-		ft::VMModule::datas[2].assign(charbuf, pos, len);
+		ft::VMModule::datas[3].assign(charbuf, pos, len);
 		if (fgets(charbuf, 256, stream) == NULL)
 			return ;
 		//network

@@ -6,7 +6,7 @@
 //   By: wide-aze <wide-aze@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/04 15:35:11 by wide-aze          #+#    #+#             //
-//   Updated: 2015/04/15 15:38:18 by wide-aze         ###   ########.fr       //
+//   Updated: 2015/04/19 14:09:12 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -18,7 +18,7 @@
 namespace ft
 {
 // * STATICS **************************************************************** //
-std::string					VMModule::datas[3] = {"", "", ""};
+std::string					VMModule::datas[4] = {"", "", "", ""};
 
 // * CONSTRUCTORS *********************************************************** //
 VMModule::VMModule(std::string const &moduleName) :
@@ -26,6 +26,7 @@ VMModule::VMModule(std::string const &moduleName) :
 	_strings(),
 	_moduleName(moduleName)
 {
+	this->_strings.push_back("");
 	this->_strings.push_back("");
 	this->_strings.push_back("");
 	this->_strings.push_back("");
@@ -56,6 +57,7 @@ void						VMModule::refresh_datas(void)
 	this->_strings[0] = VMModule::datas[0];
 	this->_strings[1] = VMModule::datas[1];
 	this->_strings[2] = VMModule::datas[2];
+	this->_strings[3] = VMModule::datas[3];
 	return ;
 }
 
