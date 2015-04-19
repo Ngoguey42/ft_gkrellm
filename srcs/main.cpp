@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/02 09:58:37 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/19 10:45:50 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/19 11:17:03 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -179,7 +179,6 @@ int					main(int ac, char *av[])
 			{
 				delete *it;
 				it = displays.erase(it);
-				std::cerr << "deleting truc" << std::endl;
 			}
 			else
 				it++;

@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/03 10:00:53 by ngoguey           #+#    #+#             //
-//   Updated: 2015/04/12 10:28:27 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/19 11:09:50 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -41,6 +41,8 @@ private:
 	std::vector<std::string>	_strings;
 	std::string const			_moduleName;
 	std::deque<float>			_numbers;
+
+	float						_maxRAM;
 	
 };
 }

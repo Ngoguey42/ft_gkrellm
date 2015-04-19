@@ -6,7 +6,7 @@
 //   By: wide-aze <wide-aze@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/04/04 15:35:11 by wide-aze          #+#    #+#             //
-//   Updated: 2015/04/18 17:22:41 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/04/19 11:09:23 by ngoguey          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -43,7 +43,6 @@ CPUModule::CPUModule(std::string const &moduleName) :
 	this->_strings.push_back("");
 	this->_strings.push_back("");
 	this->_numbers.push_back(0.f);
-	this->_numbers.push_back(1.f);
 	return ;
 }
 
@@ -69,19 +68,14 @@ std::string const			&CPUModule::getModuleName(void) const
 void						CPUModule::refresh_datas(void)
 {
 	size_t			pos = CPUModule::datas[1].find_first_of("0123456789.");
-	std::string		cpy(
+	float			nb = atof(
 		CPUModule::datas[1].substr(
-			pos,
-			CPUModule::datas[1].find_last_of("0123456789.") - pos + 1
-			));
-	float			nb = atof(cpy.c_str());
+			pos, CPUModule::datas[1].find_last_of("0123456789.") - pos + 1
+			).c_str());
 
 	if (!isnan(nb) && nb > 0.f && nb < 100.f)
 	{
 		this->_numbers.push_back(nb / 100.f);
-		std::cerr << cpy << " " << nb <<
-			" " << this->_numbers.size() <<
-			std::endl;
 		if (this->_numbers.size() > 60)
 			this->_numbers.pop_front();
 	}
