@@ -6,13 +6,15 @@
 
 Team: [wide-aze](https://github.com/wide-aze) / [ngoguey](https://github.com/Ngoguey42).
 
-On mac os x:
+Install and launch (mac os x):
 ```sh
+git clone https://github.com/Ngoguey42/ft_gkrellm.git
+cd ft_gkrellm
 make sfml all
 DYLD_FRAMEWORK_PATH=`pwd`"/SFML/Frameworks" ./ft_gkrellm
 ```
 
-### Classes tree:
+### Classes:
 ```cpp
 
 namespace ft;
