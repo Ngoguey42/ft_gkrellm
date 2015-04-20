@@ -16,8 +16,8 @@ DYLD_FRAMEWORK_PATH=`pwd`"/SFML/Frameworks" ./ft_gkrellm
 ```cpp
 
 namespace ft;
-class IMonitorDisplay;
-class IMonitorModule;
+class IMonitorDisplay; //Interface, base class for ftsf::Window and ftnc::Window
+class IMonitorModule; //Interface
 class TimeModule : public IMonitorModule;
 class CPUModule : public IMonitorModule;
 class DiskModule : public IMonitorModule;
@@ -28,14 +28,14 @@ class RAMModule : public IMonitorModule;
 //etc...
 
 namespace ftsf; //ft_sfml
-class Window : public ft::IMonitorDisplay, public sf::RenderWindow; //singleton
-class Background : public sf::Drawable; //singleton, one inside the above Window class
+class Window : public ft::IMonitorDisplay, public sf::RenderWindow; // holds the Background and the ftsf::Modules
+class Background : public sf::Drawable; //one inside the above Window class
 class Module : public sf::Drawable; //one for each ft::IMonitorModule
 class RoundedBox : public sf::Drawable; //contains 4xsf::CircleShape and 1xsf::ConvexShape
 class DefaultTextBox : public RoundedBox; //contains 1xsf::Text
 
 namespace ftnc; //ft_ncurses
-class Window : public ft::IMonitorDisplay; //singleton
+class Window : public ft::IMonitorDisplay;
 class Line : public std::string; //one for each line in the terminal
 ```
 
