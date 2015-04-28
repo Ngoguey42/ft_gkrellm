@@ -1,12 +1,12 @@
 # Piscine CPP rush#01 FT_GKRELLM, Apr 2015
 >>>>> #####Ncurse+sfml resources monitor. (group project)
 
-#####Grade ``(TBD/125)`` ``(TBD/125)*``
+#####Grade ``(125/100)`` ``(125/125)``
 --------  -----------------------
 
 Team: [wide-aze](https://github.com/wide-aze) / [ngoguey](https://github.com/Ngoguey42).
 
-Install and launch (mac os x):
+Install and launch (mac os x) (ncurses required):
 ```sh
 git clone https://github.com/Ngoguey42/ft_gkrellm.git
 cd ft_gkrellm
